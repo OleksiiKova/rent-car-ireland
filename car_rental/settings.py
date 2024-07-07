@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-k=wlm$xy6sh!5o9o56@n7yg=-)8m%s76j6q6tr!#_&%dwx+577
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-oleksiikova-rentcarirel-8ngrzpl5wn4.ws-eu115.gitpod.io',
+                '.herokuapp.com']
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cars',
 ]
 
 MIDDLEWARE = [
