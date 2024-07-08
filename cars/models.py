@@ -30,18 +30,14 @@ class Car(models.Model):
 
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
-    type = models.CharField(
-        max_length=15, choices=TYPE_CHOICES
-    )
+    type = models.CharField(max_length=15, choices=TYPE_CHOICES)
     year = models.IntegerField()
     seats = models.IntegerField()
     doors = models.IntegerField()
-    fuel_type = models.CharField(
-        max_length=8, choices=FUEL_CHOICES, default="petrol"
-    )
+    fuel_type = models.CharField(max_length=8, choices=FUEL_CHOICES)
     transmission = models.CharField(max_length=2, choices=TRANSMISSION_CHOICES)
-    air_conditioning = models.BooleanField()
-    navigation = models.BooleanField()
+    air_conditioning = models.BooleanField(default=True)
+    navigation = models.BooleanField(default=True)
     availability = models.BooleanField(default=True)
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField('image', default='placeholder')
