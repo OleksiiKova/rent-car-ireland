@@ -23,8 +23,8 @@ class Car(models.Model):
         ('Electric', 'Electric')
     ]
     TRANSMISSION_CHOICES = [
-        ('MT', 'Manual Transmission'),
-        ('AT', 'Automatic Transmission'),
+        ('MT', 'Manual'),
+        ('AT', 'Automatic'),
     ]
 
     make = models.CharField(max_length=100)
@@ -40,4 +40,7 @@ class Car(models.Model):
     availability = models.BooleanField(default=True)
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField('image', default='placeholder')
+
+    def __str__(self):
+        return f"{self.make} {self.model} ({self.year})"
     
