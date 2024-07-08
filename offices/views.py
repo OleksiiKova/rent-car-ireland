@@ -5,4 +5,4 @@ from .models import Office
 # Create your views here.
 class OfficeList(generic.ListView):
     queryset = Office.objects.all()
-    template_name = "office_list.html"
+    template_name = "offices/office_list.html"
