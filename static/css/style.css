@@ -11,3 +11,14 @@
 .navbar-nav .nav-item .nav-link img {
     margin-right: 8px;
 }
+
+#map { 
+    height: 400px; 
+    width: 100%; 
+}
+
+#officeName,
+#officePhone,
+#officeHours {
+    font-size: 1.25rem;
+}
