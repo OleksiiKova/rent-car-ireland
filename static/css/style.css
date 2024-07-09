@@ -1,0 +1,13 @@
+.brand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-text {
+    margin-top: -10px;
+}
+
+.navbar-nav .nav-item .nav-link img {
+    margin-right: 8px;
+}
