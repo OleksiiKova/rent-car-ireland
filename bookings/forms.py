@@ -1,5 +1,8 @@
 from django import forms
+from django.utils import timezone
 from .models import Booking
+from offices.models import Office
+from datetime import datetime, timedelta
 
 
 class BookingForm(forms.ModelForm):
@@ -23,3 +26,62 @@ class BookingForm(forms.ModelForm):
 
     class Media:
         js = ('js/booking_form.js',)  # Include the JavaScript file
+
+
+class SearchForm(forms.Form):
+    pickup_office = forms.ModelChoiceField(queryset=Office.objects.all(), required=True)
+    return_office = forms.ModelChoiceField(queryset=Office.objects.all(), required=True)
+    start_date = forms.DateField(label='Start Date', widget=forms.DateInput(attrs={'type': 'date'}))
+    pick_up_time = forms.ChoiceField(choices=[])
+    end_date = forms.DateField(label='End Date', widget=forms.DateInput(attrs={'type': 'date'}))
+    drop_off_time = forms.ChoiceField(choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Calculate the date 7 days ahead from today
+        self.fields['start_date'].initial = datetime.now().date()
+        self.fields['end_date'].initial = datetime.now().date() + timedelta(days=7)
+
+        self.fields['start_date'].widget.attrs['min'] = timezone.now().date()
+        self.fields['end_date'].widget.attrs['min'] = timezone.now().date()
+        
+        # Set default offices to Dublin Airport if it exists
+        dublin_airport = Office.objects.filter(name='Dublin Airport').first()
+        if dublin_airport:
+            self.fields['pickup_office'].initial = dublin_airport.id
+            self.fields['return_office'].initial = dublin_airport.id
+        
+        self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time) if dublin_airport else []
+        self.fields['drop_off_time'].choices = self.generate_drop_off_time_choices()
+
+        self.fields['pick_up_time'].initial = '09:00'
+        self.fields['drop_off_time'].initial = '09:00'
+
+    def generate_pick_up_time_choices(self, opening_time=None, closing_time=None):
+        times = []
+        if opening_time and closing_time:
+            current_time = datetime.combine(datetime.today(), opening_time)
+            end_time = datetime.combine(datetime.today(), closing_time)
+            while current_time <= end_time:
+                time_str = current_time.strftime('%H:%M')
+                times.append((time_str, time_str))
+                current_time += timedelta(hours=1)
+        return times
+
+    def generate_drop_off_time_choices(self):
+        times = []
+        start_time = datetime.strptime('00:00', '%H:%M')
+        end_time = datetime.strptime('23:00', '%H:%M')
+        while start_time <= end_time:
+            time_str = start_time.strftime('%H:%M')
+            times.append((time_str, time_str))
+            start_time += timedelta(hours=1)
+        return times
+
+    def update_pick_up_time_choices(self, opening_time, closing_time):
+        self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(opening_time, closing_time)
+
+    def update_drop_off_time_choices(self):
+        self.fields['drop_off_time'].choices = self.generate_drop_off_time_choices()
+        

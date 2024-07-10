@@ -1,5 +1,7 @@
 {% load static %}
 
+{% url 'home' as home_url %}
+{% url 'booking' as booking_url %}
 {% url 'locations' as locations_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
@@ -11,6 +13,8 @@
 <head>
     <title>CodeStar Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
@@ -35,7 +39,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <div class="brand-container">
                     <span class="brand">EireWheels</span>
                     <span class="navbar-text text-muted">car rental at Ireland airports</span>
@@ -47,6 +51,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == booking_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'booking' %}">Booking</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == locations_url %}active{% endif %}" aria-current="page"
                             href="{% url 'locations' %}">Locations</a>
@@ -112,6 +124,7 @@
 
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/1e754c32b5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

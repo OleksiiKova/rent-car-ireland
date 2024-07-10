@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Car Booking</h1>
+    <div class="search-form">
+        <form method="POST" action="{% url 'booking' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if cars %}
+    <div class="filters">
+        <h2>Filters</h2>
+        <label><input type="checkbox" id="air-conditioning"> Air Conditioning</label>
+        <label><input type="checkbox" id="navigation"> Navigation</label>
+
+        <label for="car-type">Car Type:</label>
+        <select id="car-type">
+            <option value="all">All Types</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+        </select>
+
+        <label for="transmission">Transmission:</label>
+        <select id="transmission">
+            <option value="all">All</option>
+            <option value="automatic">Automatic</option>
+            <option value="manual">Manual</option>
+        </select>
+
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+            <option value="price">Price per day</option>
+        </select>
+    </div>
+
+    <div class="car-list">
+        {% for car in cars %}
+        <div class="car-tile">
+            <img src="{{ car.image.url }}" alt="{{ car.model }}">
+            <div class="car-info">
+                <h3>{{ car.model }}</h3>
+                <p>Type: {{ car.type }}</p>
+                <p>Price per day: ${{ car.price_per_day }}</p>
+                <button>Reserve</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<script>
+    $(document).ready(function () {
+        // Function to update temporary selections
+        function updatePickupTimeChoices(officeId) {
+            $.ajax({
+                url: "{% url 'update_pickup_time_choices' %}",
+                data: {
+                    'office_id': officeId
+                },
+                success: function (data) {
+                    var pickUpTimeSelect = $('#id_pick_up_time');
+                    var dropOffTimeSelect = $('#id_drop_off_time');
+                    pickUpTimeSelect.empty(); // Clearing the list before updating
+                    dropOffTimeSelect.empty(); // Clearing the list before updating
+
+                    // Enumeration of received temporary selections for Pick up time
+                    $.each(data.choices, function (index, value) {
+                        pickUpTimeSelect.append($('<option></option>').attr('value', value[
+                            0]).text(value[1]));
+                    });
+
+                    // Iterate through the received temporary selections for Drop off time
+                    $.each(data.choices, function (index, value) {
+                        dropOffTimeSelect.append($('<option></option>').attr('value', value[
+                            0]).text(value[1]));
+                    });
+
+                    // Setting the default time to 09:00 for Pick up time
+                    pickUpTimeSelect.val('09:00');
+
+                    // Setting the default time to 09:00 for Drop off time
+                    dropOffTimeSelect.val('09:00');
+                }
+            });
+        }
+
+        // Initializing temporary selections on page load
+        updatePickupTimeChoices($('#id_pickup_office').val());
+
+        // Office selection change handler
+        $('#id_pickup_office').change(function () {
+            updatePickupTimeChoices($(this).val());
+        });
+
+        // Removing an empty line from office lists
+        $('#id_pickup_office option:first').remove();
+        $('#id_return_office option:first').remove();
+    });
+</script>
+<script src="{% static 'js/booking_form.js' %}"></script>
+{% endblock %}
