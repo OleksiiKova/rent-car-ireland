@@ -21,7 +21,7 @@ def booking_results(request):
             return_office = form.cleaned_data['return_office']
 
             # Here you can add filters based on the selected parameters
-            cars = Car.objects.all()
+            cars = Car.objects.filter(availability=True)
 
             car_types = Car.objects.values_list('type', flat=True).distinct()
             transmissions = Car.objects.values_list('transmission', flat=True).distinct()
@@ -75,8 +75,8 @@ def update_car_list(request):
     air_conditioning = request.GET.get('air_conditioning')
     navigation = request.GET.get('navigation')
 
-    # Get all the cars
-    cars = Car.objects.all()
+    # Filter cars by availability
+    cars = Car.objects.filter(availability=True)
 
     # Apply filters if specified
     if car_type != 'all':
