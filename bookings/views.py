@@ -5,6 +5,7 @@ from offices.models import Office
 from cars.models import Car
 from django.http import JsonResponse
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 
 # Create your views here.
@@ -22,9 +23,14 @@ def booking_results(request):
             # Here you can add filters based on the selected parameters
             cars = Car.objects.all()
 
+            car_types = Car.objects.values_list('type', flat=True).distinct()
+            transmissions = Car.objects.values_list('transmission', flat=True).distinct()
+
             return render(request, 'bookings/booking.html', {
                 'form': form,
                 'cars': cars,
+                'car_types': car_types,
+                'transmissions': transmissions,
                 'start_date': start_date,
                 'end_date': end_date,
                 'pick_up_time': pick_up_time,
@@ -41,7 +47,14 @@ def booking_results(request):
             form.update_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time)
             form.update_drop_off_time_choices()
 
-    return render(request, 'bookings/booking.html', {'form': form})
+        car_types = Car.objects.values_list('type', flat=True).distinct()
+        transmissions = Car.objects.values_list('transmission', flat=True).distinct()
+
+    return render(request, 'bookings/booking.html', {
+        'form': form, 
+        'car_types': car_types,
+        'transmissions': transmissions,
+        })
 
 def update_pickup_time_choices(request):
     office_id = request.GET.get('office_id')
@@ -54,5 +67,43 @@ def update_pickup_time_choices(request):
 def home(request):
     return render(request, 'bookings/home.html')
 
+# Update a list of car after applying filters
+def update_car_list(request):
+    car_type = request.GET.get('car_type')
+    transmission = request.GET.get('transmission')
+    sort_by = request.GET.get('sort_by')
+    air_conditioning = request.GET.get('air_conditioning')
+    navigation = request.GET.get('navigation')
 
+    # Get all the cars
+    cars = Car.objects.all()
+
+    # Apply filters if specified
+    if car_type != 'all':
+        cars = cars.filter(type=car_type)
+    if transmission != 'all':
+        cars = cars.filter(transmission=transmission)
+    if air_conditioning == 'true':
+        cars = cars.filter(air_conditioning=True)
+    if navigation == 'true':
+        cars = cars.filter(navigation=True)
+    if sort_by == 'price':
+        cars = cars.order_by('price_per_day')
+    
+    cars = cars.order_by('make')
+
+    if sort_by == 'price_asc':
+        cars = cars.order_by('price_per_day')
+    elif sort_by == 'price_desc':
+        cars = cars.order_by('-price_per_day')
+    
+    context = {
+        'cars': cars,
+    }
+
+    # Genere HTML for a list of cars
+    html = render_to_string('bookings/car_list.html', {'cars': cars})
+
+    # Return a JSON response with generated HTML
+    return JsonResponse({'html': html})
 

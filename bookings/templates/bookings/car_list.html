@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+    {% for car in cars %}
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="image-container col-md-6">
+                        <img class="card-img-left car-image" src="{{ car.image.url }}" alt="{{ car.model }}">
+                    </div>
+                    <div class="car-info col-md-6">
+                        <h3>{{ car.make }} {{ car.model }} / {{ car.type }}</h3>
+                        <p>Fuel: {{ car.fuel_type }}</p>
+                        <p>Transmission: {{ car.transmission }}</p>
+                        <p>Seats: {{ car.seats }}</p>
+                        <p>Doors: {{ car.doors }}</p>
+                        <p>Price per day: €{{ car.price_per_day }}</p>
+                        <button>Reserve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
