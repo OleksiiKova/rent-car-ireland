@@ -39,20 +39,47 @@
         </select>
     </div>
 
-    <div class="car-list">
-        {% for car in cars %}
-        <div class="car-tile">
-            <img src="{{ car.image.url }}" alt="{{ car.model }}">
-            <div class="car-info">
-                <h3>{{ car.model }}</h3>
-                <p>Type: {{ car.type }}</p>
-                <p>Price per day: ${{ car.price_per_day }}</p>
-                <button>Reserve</button>
+
+    <div class="col-12 mt-3">
+        <div class="row justify-content-center">
+            {% for car in cars %}
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="image-container col-md-6">
+                                <img class="card-img-left car-image" src="{{ car.image.url }}" alt="{{ car.model }}">
+                            </div>
+                            <div class="car-info col-md-6">
+                                <h3>{{ car.make }} {{ car.model }} / {{ car.type }}</h3>
+                                <p>Fuel: {{ car.fuel_type }}</p>
+                                <p>Transmission: {{ car.transmission }}</p>
+                                <p>Seats: {{ car.seats }}</p>
+                                <p>Doors: {{ car.doors }}</p>
+                                <p>Price per day: ${{ car.price_per_day }}</p>
+                                <button>Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> PREV &laquo;</a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     {% endif %}
+</div>
+{% endif %}
 </div>
 <script>
     $(document).ready(function () {
