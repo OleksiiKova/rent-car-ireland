@@ -37,6 +37,15 @@ $(document).ready(function () {
             updateCarList();
         }
     });
+
+    // Reset button handler
+    $('#reset-filters').click(function() {
+        $('#car-type').val('all');
+        $('#transmission').val('all');
+        $('#air-conditioning, #navigation').prop('checked', false);
+        sortBy = 'default';
+        updateCarList();
+    });
     // Initializing the list of cars on page load
     updateCarList();
 });
