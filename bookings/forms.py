@@ -29,13 +29,20 @@ class BookingForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    pickup_office = forms.ModelChoiceField(queryset=Office.objects.all(), required=True)
-    return_office = forms.ModelChoiceField(queryset=Office.objects.all(), required=True)
-    start_date = forms.DateField(label='Start Date', widget=forms.DateInput(attrs={'type': 'date'}))
-    pick_up_time = forms.ChoiceField(choices=[])
-    end_date = forms.DateField(label='End Date', widget=forms.DateInput(attrs={'type': 'date'}))
-    drop_off_time = forms.ChoiceField(choices=[])
-
+    pickup_office = forms.ModelChoiceField(
+        queryset=Office.objects.all(), 
+        required=True, 
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    return_office = forms.ModelChoiceField(
+        queryset=Office.objects.all(), 
+        required=True, 
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    start_date = forms.DateField(label='Start Date', widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    pick_up_time = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-control'}))
+    end_date = forms.DateField(label='End Date', widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    drop_off_time = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-control'}))
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

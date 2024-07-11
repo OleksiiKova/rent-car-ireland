@@ -40,6 +40,18 @@
     object-fit: cover;
 }
 
-.car-info p {
+.car-info p,
+.search-form p {
     margin-bottom: 0;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.form-row .col-md-3 {
+    flex: 1;
+    padding-right: 1rem;
 }

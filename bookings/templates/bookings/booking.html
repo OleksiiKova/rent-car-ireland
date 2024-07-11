@@ -5,47 +5,92 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">Car Booking</h1>
-    <div class="search-form d-flex justify-content-center">
+    <div class="col-12 col-md-6 offset-md-3 search-form">
         <form method="POST" action="{% url 'booking' %}">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Search</button>
+            <div class="form-row">
+                <div class="col-md-3">
+                    <p>Pick up Office</p>
+                    {{ form.pickup_office }}
+                </div>
+                <div class="col-md-3">
+                    <p>Return Office</p>
+                    {{ form.return_office }}
+                </div>
+            </div>
+            <p>Start time</p>
+            <div class="form-row">
+                <div class="col-md-3">
+                    {{ form.start_date }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.pick_up_time }}
+                </div>
+            </div>
+            <p>End time</p>
+            <div class="form-row">
+
+                <div class="col-md-3">
+                    {{ form.end_date }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.drop_off_time }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-secondary mx-2" type="submit">Search</button>
+            </div>
         </form>
     </div>
-
     {% if cars %}
-    <div class="filters d-flex justify-content-center align-items-center mt-4">
-        <h2 class="mx-2">Filters</h2>
-        <label class="mx-2">
-            <input type="checkbox" id="air-conditioning" name="air_conditioning"> Air Conditioning
-        </label>
-        <label class="mx-2">
-            <input type="checkbox" id="navigation" name="navigation"> Navigation
-        </label>
+    <div class="d-flex justify-content-end">
+        <button class="filter-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#filterText"
+            aria-controls="filterText" aria-expanded="false" aria-label="Toggle filter">
+            <span><i class="fa-solid fa-filter"></i></span>
+        </button>
+    </div>
+    <div class="filters-collapse mt-4 collapse d-lg-block" id="filterText">
+        <div class="d-flex col-12 justify-content-center">
+            <label class="mx-2">
+                <input type="checkbox" id="air-conditioning" name="air_conditioning"> Air Conditioning
+            </label>
+            <label class="mx-2">
+                <input type="checkbox" id="navigation" name="navigation"> Navigation
+            </label>
+            <div>
+                <label for="car-type" class="mx-2">Car Type:</label>
+                <select id="car-type" name="car_type" class="mx-2">
+                    <option value="all">All Types</option>
+                    {% for car_type in car_types %}
+                    <option value="{{ car_type }}">{{ car_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="transmission" class="mx-2">Transmission:</label>
+                <select id="transmission" name="transmission" class="mx-2">
+                    <option value="all">All</option>
+                    {% for transmission in transmissions %}
+                    <option value="{{ transmission }}">{{ transmission }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="sort" class="mx-2">Sort by:</label>
+                <select id="sort" class="mx-2">
+                    <option value="default" selected>Default</option>
+                    <option value="price_asc">Price per day ↑</option>
+                    <option value="price_desc">Price per day ↓</option>
+                </select>
+            </div>
+            <div class="">
+                <button id="reset-filters" class="btn-small btn-secondary mx-2">Reset Filters</button>
+            </div>
+        </div>
 
-        <label for="car-type" class="mx-2">Car Type:</label>
-        <select id="car-type" name="car_type" class="mx-2">
-            <option value="all">All Types</option>
-            {% for car_type in car_types %}
-            <option value="{{ car_type }}">{{ car_type }}</option>
-            {% endfor %}
-        </select>
 
-        <label for="transmission" class="mx-2">Transmission:</label>
-        <select id="transmission" name="transmission" class="mx-2">
-            <option value="all">All</option>
-            {% for transmission in transmissions %}
-            <option value="{{ transmission }}">{{ transmission }}</option>
-            {% endfor %}
-        </select>
 
-        <label for="sort" class="mx-2">Sort by:</label>
-        <select id="sort" class="mx-2">
-            <option value="default" selected>Default</option>
-            <option value="price_asc">Price per day ↑</option>
-            <option value="price_desc">Price per day ↓</option>
-        </select>
-        <button id="reset-filters" class="btn btn-secondary mx-2">Reset Filters</button>
+
     </div>
 
 
@@ -63,8 +108,8 @@
         </ul>
     </nav>
     {% endif %}
-</div>
-{% endif %}
+
+    {% endif %}
 </div>
 
 <script>
