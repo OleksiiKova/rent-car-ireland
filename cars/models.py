@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -43,4 +44,18 @@ class Car(models.Model):
 
     def __str__(self):
         return f"{self.make} {self.model} ({self.year})"
+
+    def calculate_total_cost(self, start_date, end_date, pick_up_time_str, drop_off_time_str):
+        # Convert time strings to time objects
+        pick_up_time = datetime.strptime(pick_up_time_str, "%H:%M").time()
+        drop_off_time = datetime.strptime(drop_off_time_str, "%H:%M").time()
+
+        start_datetime = datetime.combine(start_date, pick_up_time)
+        end_datetime = datetime.combine(end_date, drop_off_time)
+        rental_days = (end_datetime - start_datetime).days
+
+        # Ensure minimum rental period is one day
+        if rental_days < 1:
+            rental_days = 1
+        return rental_days * self.price_per_day
     

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from datetime import datetime
 from .forms import SearchForm
 from offices.models import Office
 from cars.models import Car
@@ -25,6 +26,10 @@ def booking_results(request):
 
             car_types = Car.objects.values_list('type', flat=True).distinct()
             transmissions = Car.objects.values_list('transmission', flat=True).distinct()
+
+            # Calculate the total cost for each car
+            for car in cars:
+                car.total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time, drop_off_time)
 
             return render(request, 'bookings/booking.html', {
                 'form': form,
@@ -75,6 +80,17 @@ def update_car_list(request):
     air_conditioning = request.GET.get('air_conditioning')
     navigation = request.GET.get('navigation')
 
+    # Additional fields from the form (ensure they are being passed from the AJAX call)
+    start_date_str = request.GET.get('start_date')
+    end_date_str = request.GET.get('end_date')
+    pick_up_time_str = request.GET.get('pick_up_time')
+    drop_off_time_str = request.GET.get('drop_off_time')
+
+    start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+    end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+
+    total_days = (end_date - start_date).days
+
     # Filter cars by availability
     cars = Car.objects.filter(availability=True)
 
@@ -87,22 +103,25 @@ def update_car_list(request):
         cars = cars.filter(air_conditioning=True)
     if navigation == 'true':
         cars = cars.filter(navigation=True)
-    if sort_by == 'price':
-        cars = cars.order_by('price_per_day')
     
-    cars = cars.order_by('make')
-
+    # Sort the cars
     if sort_by == 'price_asc':
         cars = cars.order_by('price_per_day')
     elif sort_by == 'price_desc':
         cars = cars.order_by('-price_per_day')
-    
+    else:
+        cars = cars.order_by('make')
+
+    # Calculate the total cost for each car
+    for car in cars:
+        car.total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time_str, drop_off_time_str)
+
     context = {
         'cars': cars,
     }
 
-    # Genere HTML for a list of cars
-    html = render_to_string('bookings/car_list.html', {'cars': cars})
+    # Generate HTML for a list of cars
+    html = render_to_string('bookings/car_list.html', {'cars': cars, 'total_days': total_days})
 
     # Return a JSON response with generated HTML
     return JsonResponse({'html': html})
