@@ -47,14 +47,16 @@ def booking_results(request):
             })
     else:
         initial_data = {
-            'start_date': timezone.now().date(),
-            'end_date': timezone.now().date() + timezone.timedelta(days=7),
+            'start_date': timezone.now().date() + timezone.timedelta(days=1),
+            'end_date': timezone.now().date() + timezone.timedelta(days=8),
+            'pick_up_time': '09:00',
+            'drop_off_time': '09:00',
         }
         form = SearchForm(initial=initial_data)
         dublin_airport = Office.objects.filter(name='Dublin Airport').first()
-        if dublin_airport:
-            form.update_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time)
-            form.update_drop_off_time_choices()
+        # if dublin_airport:
+        #     form.update_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time)
+        #     form.update_drop_off_time_choices()
 
         car_types = Car.objects.values_list('type', flat=True).distinct()
         transmissions = Car.objects.values_list('transmission', flat=True).distinct()

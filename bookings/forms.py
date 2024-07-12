@@ -47,8 +47,8 @@ class SearchForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         # Calculate the date 7 days ahead from today
-        self.fields['start_date'].initial = datetime.now().date()
-        self.fields['end_date'].initial = datetime.now().date() + timedelta(days=7)
+        # self.fields['start_date'].initial = datetime.now().date()
+        # self.fields['end_date'].initial = datetime.now().date() + timedelta(days=7)
 
         self.fields['start_date'].widget.attrs['min'] = timezone.now().date()
         self.fields['end_date'].widget.attrs['min'] = timezone.now().date()
@@ -62,8 +62,8 @@ class SearchForm(forms.Form):
         self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time) if dublin_airport else []
         self.fields['drop_off_time'].choices = self.generate_drop_off_time_choices()
 
-        self.fields['pick_up_time'].initial = '09:00'
-        self.fields['drop_off_time'].initial = '09:00'
+        # self.fields['pick_up_time'].initial = '09:00'
+        # self.fields['drop_off_time'].initial = '09:00'
 
     def generate_pick_up_time_choices(self, opening_time=None, closing_time=None):
         times = []
@@ -86,9 +86,9 @@ class SearchForm(forms.Form):
             start_time += timedelta(hours=1)
         return times
 
-    def update_pick_up_time_choices(self, opening_time, closing_time):
-        self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(opening_time, closing_time)
+    # def update_pick_up_time_choices(self, opening_time, closing_time):
+    #     self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(opening_time, closing_time)
 
-    def update_drop_off_time_choices(self):
-        self.fields['drop_off_time'].choices = self.generate_drop_off_time_choices()
+    # def update_drop_off_time_choices(self):
+    #     self.fields['drop_off_time'].choices = self.generate_drop_off_time_choices()
         

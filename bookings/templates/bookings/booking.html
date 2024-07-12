@@ -127,9 +127,9 @@
                     },
                     success: function (data) {
                         var pickUpTimeSelect = $('#id_pick_up_time');
-                        var dropOffTimeSelect = $('#id_drop_off_time');
-                        pickUpTimeSelect.empty(); // Clearing the list before updating
-                        dropOffTimeSelect.empty(); // Clearing the list before updating
+                        // var dropOffTimeSelect = $('#id_drop_off_time');
+                        pickUpTimeSelect.empty();
+                        // dropOffTimeSelect.empty();
 
                         // Enumeration of received temporary selections for Pick up time
                         $.each(data.choices, function (index, value) {
@@ -139,23 +139,23 @@
                         });
 
                         // Iterate through the received temporary selections for Drop off time
-                        $.each(data.choices, function (index, value) {
-                            dropOffTimeSelect.append($('<option></option>').attr('value',
-                                value[
-                                    0]).text(value[1]));
-                        });
+                        // $.each(data.choices, function (index, value) {
+                        //     dropOffTimeSelect.append($('<option></option>').attr('value',
+                        //         value[
+                        //             0]).text(value[1]));
+                        // });
 
                         // Setting the default time to 09:00 for Pick up time
                         pickUpTimeSelect.val('09:00');
 
                         // Setting the default time to 09:00 for Drop off time
-                        dropOffTimeSelect.val('09:00');
+                        // dropOffTimeSelect.val('09:00');
                     }
                 });
             }
 
             // Initializing temporary selections on page load
-            updatePickupTimeChoices($('#id_pickup_office').val());
+            // updatePickupTimeChoices($('#id_pickup_office').val());
 
             // Office selection change handler
             $('#id_pickup_office').change(function () {
