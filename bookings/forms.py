@@ -86,6 +86,25 @@ class SearchForm(forms.Form):
             start_time += timedelta(hours=1)
         return times
 
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("start_date")
+        end_date = cleaned_data.get("end_date")
+        pick_up_time = cleaned_data.get("pick_up_time")
+        drop_off_time = cleaned_data.get("drop_off_time")
+
+        if start_date and end_date and pick_up_time and drop_off_time:
+            if end_date < start_date:
+                self.add_error('end_date', 'End date cannot be earlier than start date.')
+            if start_date == end_date:
+                pick_up_time_dt = datetime.strptime(pick_up_time, '%H:%M').time()
+                drop_off_time_dt = datetime.strptime(drop_off_time, '%H:%M').time()
+
+                if drop_off_time_dt <= pick_up_time_dt:
+                    self.add_error('drop_off_time', "Return time cannot be earlier than or equal to pickup time on the same day.")
+
+        return cleaned_data
+
     # def update_pick_up_time_choices(self, opening_time, closing_time):
     #     self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(opening_time, closing_time)
 

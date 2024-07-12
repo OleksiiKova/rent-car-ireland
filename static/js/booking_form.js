@@ -14,23 +14,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // When end_date changes
-    endDateInput.addEventListener('change', function () {
-        // Parsing the start_date and end_date values
-        var startDate = new Date(startDateInput.value);
-        var endDate = new Date(endDateInput.value);
-        // If end_date is earlier than start_date, reset its value
-        if (endDate < startDate) {
-            endDateInput.value = '';
-        }
-    });
+    // endDateInput.addEventListener('change', function () {
+    //     // Parsing the start_date and end_date values
+    //     var startDate = new Date(startDateInput.value);
+    //     var endDate = new Date(endDateInput.value);
+    //     // If end_date is earlier than start_date, reset its value
+    //     if (endDate < startDate) {
+    //         endDateInput.value = '';
+    //     }
+    // });
 
-    // Check on page load
-    var startDate = new Date(startDateInput.value);
-    var endDate = new Date(endDateInput.value);
-    if (endDate < startDate) {
-        endDateInput.value = '';
-    }
+    // // Check on page load
+    // var startDate = new Date(startDateInput.value);
+    // var endDate = new Date(endDateInput.value);
+    // if (endDate < startDate) {
+    //     endDateInput.value = '';
+    // }
 });
+
+
+
 
 // function toggleChildSeatOption(checkbox) {
 //     const childSeatOptionField = document.querySelector('select[name="child_seat_option"]');

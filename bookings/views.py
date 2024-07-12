@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 
 # Create your views here.
 def booking_results(request):
+    car_types = Car.objects.values_list('type', flat=True).distinct()
+    transmissions = Car.objects.values_list('transmission', flat=True).distinct()
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -23,9 +25,6 @@ def booking_results(request):
 
             # Here you can add filters based on the selected parameters
             cars = Car.objects.filter(availability=True)
-
-            car_types = Car.objects.values_list('type', flat=True).distinct()
-            transmissions = Car.objects.values_list('transmission', flat=True).distinct()
 
             cars = cars.order_by('make')
 

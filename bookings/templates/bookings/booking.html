@@ -9,6 +9,21 @@
         <div class="col-md-6 mt-2">
             <form method="POST" action="{% url 'booking' %}">
                 {% csrf_token %}
+                <!-- Display form errors -->
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                        <!-- {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %} -->
+                    </ul>
+                </div>
+                {% endif %}
                 <div class="form-row">
                     <div class="col-md-3">
                         <p>Pick up Office</p>
