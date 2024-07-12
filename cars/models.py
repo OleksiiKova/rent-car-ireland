@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from decimal import Decimal
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -52,11 +53,22 @@ class Car(models.Model):
 
         start_datetime = datetime.combine(start_date, pick_up_time)
         end_datetime = datetime.combine(end_date, drop_off_time)
-        rental_days = (end_datetime - start_datetime).days
-
+        
+        # Calculate the total rental period in hours
+        rental_hours = (end_datetime - start_datetime).total_seconds() / 3600
+        
+        # Calculate rental days, rounding up any fractional day
+        rental_days = rental_hours // 24
+        if rental_hours % 24 > 0:
+            rental_days += 1
+        
         # Ensure minimum rental period is one day
-        if rental_days < 1:
-            rental_days = 1
+        # if rental_days < 1:
+        #     rental_days = 1
+        
+        # Convert rental_days to Decimal for compatibility with price_per_day
+        rental_days = Decimal(rental_days)
+        
         total_cost = rental_days * self.price_per_day
 
         return rental_days, total_cost
