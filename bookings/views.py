@@ -27,9 +27,13 @@ def booking_results(request):
             car_types = Car.objects.values_list('type', flat=True).distinct()
             transmissions = Car.objects.values_list('transmission', flat=True).distinct()
 
+            cars = cars.order_by('make')
+
             # Calculate the total cost for each car
             for car in cars:
-                car.total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time, drop_off_time)
+                rental_days, total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time, drop_off_time)
+                car.rental_days = rental_days
+                car.total_cost = total_cost
 
             return render(request, 'bookings/booking.html', {
                 'form': form,
@@ -76,7 +80,7 @@ def home(request):
 def update_car_list(request):
     car_type = request.GET.get('car_type')
     transmission = request.GET.get('transmission')
-    sort_by = request.GET.get('sort_by')
+    sort_by = request.GET.get('sort_by', 'make')
     air_conditioning = request.GET.get('air_conditioning')
     navigation = request.GET.get('navigation')
 
@@ -88,8 +92,6 @@ def update_car_list(request):
 
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
-
-    total_days = (end_date - start_date).days
 
     # Filter cars by availability
     cars = Car.objects.filter(availability=True)
@@ -114,14 +116,16 @@ def update_car_list(request):
 
     # Calculate the total cost for each car
     for car in cars:
-        car.total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time_str, drop_off_time_str)
+        rental_days, total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time_str, drop_off_time_str)
+        car.rental_days = rental_days
+        car.total_cost = total_cost
 
     context = {
         'cars': cars,
     }
 
     # Generate HTML for a list of cars
-    html = render_to_string('bookings/car_list.html', {'cars': cars, 'total_days': total_days})
+    html = render_to_string('bookings/car_list.html', {'cars': cars})
 
     # Return a JSON response with generated HTML
     return JsonResponse({'html': html})

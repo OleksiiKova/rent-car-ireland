@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var sortBy = 'default';  //
+    var sortBy = 'default';
     // Function for sending an AJAX request to update a list of cars
     function updateCarList() {
         var carType = $('#car-type').val();
@@ -52,6 +52,5 @@ $(document).ready(function () {
         sortBy = 'default';
         updateCarList();
     });
-    // Initializing the list of cars on page load
     updateCarList();
 });

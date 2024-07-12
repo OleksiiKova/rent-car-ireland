@@ -57,5 +57,7 @@ class Car(models.Model):
         # Ensure minimum rental period is one day
         if rental_days < 1:
             rental_days = 1
-        return rental_days * self.price_per_day
+        total_cost = rental_days * self.price_per_day
+
+        return rental_days, total_cost
     

@@ -1,11 +1,15 @@
 $(document).ready(function () {
-    var sortBy = 'default';  //
+    var sortBy = 'default';
     // Function for sending an AJAX request to update a list of cars
     function updateCarList() {
         var carType = $('#car-type').val();
         var transmission = $('#transmission').val();
         var airConditioning = $('#air-conditioning').prop('checked');
         var navigation = $('#navigation').prop('checked');
+        var startDate = $('#id_start_date').val();
+        var endDate = $('#id_end_date').val();
+        var pickUpTime = $('#id_pick_up_time').val();
+        var dropOffTime = $('#id_drop_off_time').val();
 
         $.ajax({
             url: '/update_car_list/',
@@ -14,7 +18,11 @@ $(document).ready(function () {
                 'transmission': transmission,
                 'sort_by': sortBy,
                 'air_conditioning': airConditioning,
-                'navigation': navigation
+                'navigation': navigation,
+                'start_date': startDate,
+                'end_date': endDate,
+                'pick_up_time': pickUpTime,
+                'drop_off_time': dropOffTime
             },
             dataType: 'json',
             success: function (data) {
@@ -29,11 +37,9 @@ $(document).ready(function () {
     // Filter change handlers
     $('#car-type, #transmission, #sort, #air-conditioning, #navigation').change(function() {
         if ($(this).attr('id') === 'sort') {
-            // Handling sort direction changes
             sortBy = $(this).val();
             updateCarList();
         } else {
-            // Handling changes to other filters
             updateCarList();
         }
     });
@@ -43,9 +49,8 @@ $(document).ready(function () {
         $('#car-type').val('all');
         $('#transmission').val('all');
         $('#air-conditioning, #navigation').prop('checked', false);
-        sortBy = 'default';  // Сброс сортировки по умолчанию
+        sortBy = 'default';
         updateCarList();
     });
-    // Initializing the list of cars on page load
     updateCarList();
 });

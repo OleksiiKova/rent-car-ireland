@@ -14,7 +14,14 @@
                         <p>Seats: {{ car.seats }}</p>
                         <p>Doors: {{ car.doors }}</p>
                         <p>Price per day: €{{ car.price_per_day }}</p>
-                        <button>Reserve €{{ car.total_cost }} for {{ total_days }} days </button>
+                        <button>
+                            Reserve €{{ car.total_cost }} for {{ car.rental_days }}
+                            {% if car.rental_days == 1 %}
+                            day
+                            {% else %}
+                            days
+                            {% endif %}
+                        </button>
                     </div>
                 </div>
             </div>
