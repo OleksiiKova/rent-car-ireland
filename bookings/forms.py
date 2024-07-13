@@ -12,10 +12,10 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = (
-            'user', 'car', 'first_name', 'last_name', 'date_of_birth',
-            'start_date', 'end_date', 'pick_up_time', 'drop_off_time',
-            'pickup_office', 'return_office', 'child_seat', 'child_seat_option',
-            'extra_insurance', 'rules_agreement', 'status', 'total_price'
+            'pickup_office', 'return_office', 'start_date', 'pick_up_time', 'end_date', 'drop_off_time',
+            'car', 'first_name', 'last_name', 'date_of_birth',
+            'child_seat', 'child_seat_option',
+            'extra_insurance', 'rules_agreement', 'total_price'
         )
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -92,6 +92,7 @@ class SearchForm(forms.Form):
         end_date = cleaned_data.get("end_date")
         pick_up_time = cleaned_data.get("pick_up_time")
         drop_off_time = cleaned_data.get("drop_off_time")
+        pickup_office = cleaned_data.get("pickup_office")
 
         if start_date and end_date and pick_up_time and drop_off_time:
             if end_date < start_date:

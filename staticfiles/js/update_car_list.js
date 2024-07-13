@@ -10,6 +10,8 @@ $(document).ready(function () {
         var endDate = $('#id_end_date').val();
         var pickUpTime = $('#id_pick_up_time').val();
         var dropOffTime = $('#id_drop_off_time').val();
+        var pickupOffice = $('#id_pickup_office').val();
+        var returnOffice = $('#id_return_office').val();
 
         $.ajax({
             url: '/update_car_list/',
@@ -22,7 +24,9 @@ $(document).ready(function () {
                 'start_date': startDate,
                 'end_date': endDate,
                 'pick_up_time': pickUpTime,
-                'drop_off_time': dropOffTime
+                'drop_off_time': dropOffTime,
+                'pickup_office': pickupOffice,
+                'return_office': returnOffice,
             },
             dataType: 'json',
             success: function (data) {

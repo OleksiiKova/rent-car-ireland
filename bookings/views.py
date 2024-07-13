@@ -1,18 +1,21 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from datetime import datetime
-from .forms import SearchForm
+from .forms import SearchForm, BookingForm
 from offices.models import Office
+from .models import Booking
 from cars.models import Car
 from django.http import JsonResponse
 from django.urls import reverse
 from django.template.loader import render_to_string
+from urllib.parse import urlencode
 
 
 # Create your views here.
 def booking_results(request):
     car_types = Car.objects.values_list('type', flat=True).distinct()
     transmissions = Car.objects.values_list('transmission', flat=True).distinct()
+    
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -23,9 +26,7 @@ def booking_results(request):
             pickup_office = form.cleaned_data['pickup_office']
             return_office = form.cleaned_data['return_office']
 
-            # Here you can add filters based on the selected parameters
             cars = Car.objects.filter(availability=True)
-
             cars = cars.order_by('make')
 
             # Calculate the total cost for each car
@@ -34,6 +35,7 @@ def booking_results(request):
                 car.rental_days = rental_days
                 car.total_cost = total_cost
 
+            # Render the booking results page
             return render(request, 'bookings/booking.html', {
                 'form': form,
                 'cars': cars,
@@ -42,7 +44,9 @@ def booking_results(request):
                 'start_date': start_date,
                 'end_date': end_date,
                 'pick_up_time': pick_up_time,
-                'drop_off_time': drop_off_time
+                'drop_off_time': drop_off_time,
+                'pickup_office': pickup_office,
+                'return_office': return_office,
             })
     else:
         initial_data = {
@@ -53,18 +57,10 @@ def booking_results(request):
         }
         form = SearchForm(initial=initial_data)
         dublin_airport = Office.objects.filter(name='Dublin Airport').first()
-        # if dublin_airport:
-        #     form.update_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time)
-        #     form.update_drop_off_time_choices()
-
-        car_types = Car.objects.values_list('type', flat=True).distinct()
-        transmissions = Car.objects.values_list('transmission', flat=True).distinct()
-
+    
     return render(request, 'bookings/booking.html', {
-        'form': form, 
-        'car_types': car_types,
-        'transmissions': transmissions,
-        })
+        'form': form
+    })
 
 def update_pickup_time_choices(request):
     office_id = request.GET.get('office_id')
@@ -84,12 +80,12 @@ def update_car_list(request):
     sort_by = request.GET.get('sort_by', 'make')
     air_conditioning = request.GET.get('air_conditioning')
     navigation = request.GET.get('navigation')
-
-    # Additional fields from the form (ensure they are being passed from the AJAX call)
     start_date_str = request.GET.get('start_date')
     end_date_str = request.GET.get('end_date')
     pick_up_time_str = request.GET.get('pick_up_time')
     drop_off_time_str = request.GET.get('drop_off_time')
+    pickup_office = request.GET.get('pickup_office')
+    return_office = request.GET.get('return_office')
 
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
@@ -122,12 +118,81 @@ def update_car_list(request):
         car.total_cost = total_cost
 
     context = {
-        'cars': cars,
+        'cars': cars,     
     }
 
     # Generate HTML for a list of cars
-    html = render_to_string('bookings/car_list.html', {'cars': cars})
+    html = render_to_string('bookings/car_list.html', {
+        'cars': cars,
+        # 'car_types': car_types,
+        # 'transmissions': transmissions,
+        'start_date': start_date,
+        'end_date': end_date,
+        'pick_up_time': pick_up_time_str,
+        'drop_off_time': drop_off_time_str,
+        'pickup_office': pickup_office,
+        'return_office': return_office,
+        })
 
     # Return a JSON response with generated HTML
     return JsonResponse({'html': html})
 
+def booking_form(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    pick_up_time = request.GET.get('pick_up_time')
+    drop_off_time = request.GET.get('drop_off_time')
+    pickup_office_id = request.GET.get('pickup_office')
+    return_office_id = request.GET.get('return_office')
+    
+    # Получение объектов офисов по id
+    try:
+        pickup_office = Office.objects.get(id=pickup_office_id)
+    except Office.DoesNotExist:
+        pickup_office = None
+    try:
+        return_office = Office.objects.get(id=return_office_id)
+    except Office.DoesNotExist:
+        return_office = None
+
+    print("Car ID:", car_id)
+    print("Start Date:", start_date)
+    print("End Date:", end_date)
+    print("Pick Up Time:", pick_up_time)
+    print("Drop Off Time:", drop_off_time)
+    print("Pickup Office ID:", pickup_office_id)
+    print("Return Office ID:", return_office_id)
+    print("Pickup Office:", pickup_office)
+    print("Return Office:", return_office)
+
+    initial_data = {
+        'car': car,
+        'start_date': start_date,
+        'end_date': end_date,
+        'pick_up_time': pick_up_time,
+        'drop_off_time': drop_off_time,
+        'pickup_office': pickup_office,
+        'return_office': return_office,
+    }
+
+    if request.method == 'POST':
+        form = BookingForm(request.POST, initial=initial_data)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            return redirect('booking_confirmation', booking_id=booking.id)
+    else:
+        form = BookingForm(initial=initial_data)
+
+    return render(request, 'bookings/booking_form.html', {
+        'form': form, 
+        'car': car,        
+        'start_date': start_date,
+        'end_date': end_date,
+        'pick_up_time': pick_up_time,
+        'drop_off_time': drop_off_time,
+        'pickup_office': pickup_office,
+        'return_office': return_office,
+        })
