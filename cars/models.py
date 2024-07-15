@@ -47,7 +47,7 @@ class Car(models.Model):
         return f"{self.make} {self.model} ({self.year})"
 
 
-    def calculate_total_cost(self, start_date, end_date, pick_up_time_str, drop_off_time_str):
+    def calculate_total_cost(self, start_date, end_date, pick_up_time_str, drop_off_time_str, extra_insurance=None):
         # Convert time strings to time objects
         pick_up_time = datetime.strptime(pick_up_time_str, "%H:%M").time()
         drop_off_time = datetime.strptime(drop_off_time_str, "%H:%M").time()
@@ -65,10 +65,11 @@ class Car(models.Model):
         if rental_days < 1:
             rental_days = 1
         
-        # Convert rental_days to Decimal for compatibility with price_per_day
-        # rental_days = Decimal(rental_days)
-        
         total_cost = rental_days * self.price_per_day
+
+        if extra_insurance is not None:
+            if extra_insurance:
+                total_cost += min(rental_days * 5, 50)
 
         return rental_days, total_cost
 

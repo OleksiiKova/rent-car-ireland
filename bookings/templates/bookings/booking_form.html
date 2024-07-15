@@ -88,8 +88,11 @@
             </div>
             <div class="form-row flex justify-content-center">
                 <div class="form-group col-12 col-lg-6">
-                    {{ form.extra_insurance.label_tag }}
+                    <label for="id_extra_insurance">Extra Insurance 5€/day Max. 50€</label>
                     {{ form.extra_insurance }}
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#insuranceModal">
+                        More About Extra Insurance
+                    </button>
                 </div>
             </div>
             <div class="form-row flex justify-content-center">
@@ -101,6 +104,9 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3 id="totalPrice">Final Price:</h3>
         </div>
         <div class="d-flex justify-content-center">
             <button class="btn btn-primary mx-2" type="submit">Book Now</button>
@@ -123,6 +129,42 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="insuranceModal" tabindex="-1" aria-labelledby="insuranceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="insuranceModalLabel">Extra Insurance</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>You can enhance your insurance coverage for a nominal additional fee. By selecting <strong>Extra
+                        Insurance</strong> alongside the comprehensive protection included in your rental,
+                    you'll be covered for the following exceptions:</p>
+
+                <h4>Price without insurance (approx*):</h4>
+                <ul>
+                    <li>Lost key: €150</li>
+                    <li>Rim damage: €150</li>
+                    <li>Tyre damage: €100</li>
+                    <li>Incorrect fuel type refueling: €250</li>
+                    <li>Accidental battery drain: €200</li>
+                    <li>*Plus towing service: €200</li>
+                </ul>
+
+                <p>This insurance will protect you against all exceptions not already included in our policy, except for
+                    those excluded by any insurer.</p>
+
+                <p>Secure your coverage now for just €5 per day, up to a maximum of €50 for any vehicle, and enjoy
+                    stress-free car rental.</p>
+
+                <p><strong>The ideal choice for complete protection.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="okButton">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     function toggleChildSeatOption(checkbox) {
@@ -135,14 +177,22 @@
         }
     }
     document.addEventListener('DOMContentLoaded', function () {
+        // Modal Insurance
         const agreeButton = document.getElementById('agreeButton');
         const rulesAgreementCheckbox = document.querySelector('input[name="rules_agreement"]');
-
         agreeButton.addEventListener('click', function () {
             rulesAgreementCheckbox.checked = true;
             const modal = bootstrap.Modal.getInstance(document.getElementById('termsModal'));
             modal.hide();
         });
+
+        // Modal Insurance
+        const okButton = document.getElementById('okButton');
+        okButton.addEventListener('click', function () {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('insuranceModal'));
+            modal.hide();
+        });
+
     });
 
     document.addEventListener('DOMContentLoaded', function () {

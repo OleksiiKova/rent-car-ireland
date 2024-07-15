@@ -55,3 +55,24 @@
     flex: 1;
     padding-right: 1rem;
 }
+
+.hide-select-arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    pointer-events: none;
+    padding: 0;
+    font-size: 1rem;
+    color: #574e49;
+}
+
+.btn-link {
+    padding: 0;
+}
+
+.btn-link:focus {
+    outline: none;
+    box-shadow: none;
+}
