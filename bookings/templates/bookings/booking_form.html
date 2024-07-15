@@ -25,31 +25,31 @@
         </div>
         {% endif %}
         <div class="unchangeable_booking_info">
-            <div class="form-row flex justify-content-md-center">
-                <div class="form-group col-lg-2 col-4">
+            <div class="form-row d-flex flex-wrap justify-content-center">
+                <div class="form-group col-12 col-sm-4 col-lg-2">
                     {{ form.pickup_office.label_tag }}
                     {{ form.pickup_office }}
                 </div>
-                <div class="form-group col-lg-2 col-4">
+                <div class="form-group col-12 col-sm-4 col-lg-2">
                     {{ form.start_date.label_tag }}
                     {{ form.start_date }}
                 </div>
-                <div class="form-group col-lg-2 col-4">
+                <div class="form-group col-12 col-sm-4 col-lg-2">
                     {{ form.pick_up_time.label_tag }}
                     {{ form.pick_up_time }}
                 </div>
             </div>
 
-            <div class="form-row flex justify-content-md-center">
-                <div class="form-group col-lg-2 col-4">
+            <div class="form-row d-flex flex-wrap justify-content-center">
+                <div class="form-group col-12 col-sm-4 col-lg-2">
                     {{ form.return_office.label_tag }}
                     {{ form.return_office }}
                 </div>
-                <div class="form-group col-lg-2 col-4">
+                <div class="form-group col-12 col-sm-4 col-lg-2">
                     {{ form.end_date.label_tag }}
                     {{ form.end_date }}
                 </div>
-                <div class="form-group col-lg-2 col-4">
+                <div class="form-group col-12 col-sm-4 col-lg-2">
                     {{ form.drop_off_time.label_tag }}
                     {{ form.drop_off_time }}
                 </div>
@@ -96,6 +96,9 @@
                 <div class="form-group col-12 col-lg-6">
                     {{ form.rules_agreement.label_tag }}
                     {{ form.rules_agreement }}
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#termsModal">
+                        Read Terms and Conditions
+                    </button>
                 </div>
             </div>
         </div>
@@ -103,6 +106,22 @@
             <button class="btn btn-primary mx-2" type="submit">Book Now</button>
         </div>
     </form>
+</div>
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Terms and conditions content goes here...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="agreeButton">I have read and agree</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -115,6 +134,16 @@
             childSeatOptionField.value = '';
         }
     }
+    document.addEventListener('DOMContentLoaded', function () {
+        const agreeButton = document.getElementById('agreeButton');
+        const rulesAgreementCheckbox = document.querySelector('input[name="rules_agreement"]');
+
+        agreeButton.addEventListener('click', function () {
+            rulesAgreementCheckbox.checked = true;
+            const modal = bootstrap.Modal.getInstance(document.getElementById('termsModal'));
+            modal.hide();
+        });
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
         const childSeatCheckbox = document.querySelector('input[name="child_seat"]');

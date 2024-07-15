@@ -67,3 +67,12 @@
     font-size: 1rem;
     color: #574e49;
 }
+
+.btn-link {
+    padding-left: 0;
+}
+
+.btn-link:focus {
+    outline: none;
+    box-shadow: none;
+}
