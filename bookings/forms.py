@@ -17,8 +17,19 @@ class BookingForm(forms.ModelForm):
             'child_seat', 'child_seat_option',
             'extra_insurance', 'rules_agreement', 'total_price'
         )
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        # Set the specified fields as read-only
+        readonly_fields = ['pickup_office', 'start_date', 'pick_up_time', 'return_office', 'end_date', 'drop_off_time', 'car']
+        for field in readonly_fields:
+            # self.fields[field].widget.attrs['readonly'] = True
+            # self.fields[field].widget.attrs['disabled'] = True
+            self.fields[field].widget.attrs['class'] = 'form-control-plaintext hide-select-arrow'
+
         # Disable child_seat_option field initially
         self.fields['child_seat_option'].widget.attrs['disabled'] = True
         # Add onchange event to child_seat field

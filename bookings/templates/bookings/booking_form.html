@@ -3,15 +3,13 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">Complete Your Booking</h1>
-    <!-- <div>
-        <p><strong>Car:</strong> {{ car.make }} {{ car.model }}</p>
-        <p>Pick Up Office: <strong>{{ pickup_office }}</strong></p>
-        <p>Return Office: <strong>{{ return_office }}</strong></p>
-        <p>Start Date: <strong>{{ start_date }}</strong></p>
-        <p>End Date: <strong>{{ end_date }}</strong></p>
-        <p>Pick Up Time: <strong>{{ pick_up_time }}</strong></p>
-        <p>Drop Off Time: <strong>{{ drop_off_time }}</strong></p>
-    </div> -->
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <!-- Display form errors -->
@@ -26,10 +24,101 @@
             </ul>
         </div>
         {% endif %}
-        {{ form.as_p }}
+        <div class="unchangeable_booking_info">
+            <div class="form-row flex justify-content-md-center">
+                <div class="form-group col-lg-2 col-4">
+                    {{ form.pickup_office.label_tag }}
+                    {{ form.pickup_office }}
+                </div>
+                <div class="form-group col-lg-2 col-4">
+                    {{ form.start_date.label_tag }}
+                    {{ form.start_date }}
+                </div>
+                <div class="form-group col-lg-2 col-4">
+                    {{ form.pick_up_time.label_tag }}
+                    {{ form.pick_up_time }}
+                </div>
+            </div>
+
+            <div class="form-row flex justify-content-md-center">
+                <div class="form-group col-lg-2 col-4">
+                    {{ form.return_office.label_tag }}
+                    {{ form.return_office }}
+                </div>
+                <div class="form-group col-lg-2 col-4">
+                    {{ form.end_date.label_tag }}
+                    {{ form.end_date }}
+                </div>
+                <div class="form-group col-lg-2 col-4">
+                    {{ form.drop_off_time.label_tag }}
+                    {{ form.drop_off_time }}
+                </div>
+            </div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.car.label_tag }}
+                    {{ form.car }}
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+            </div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+            </div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.date_of_birth.label_tag }}
+                    {{ form.date_of_birth }}
+                </div>
+            </div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.child_seat.label_tag }}
+                    {{ form.child_seat }} {{ form.child_seat_option }}
+                </div>
+            </div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.extra_insurance.label_tag }}
+                    {{ form.extra_insurance }}
+                </div>
+            </div>
+            <div class="form-row flex justify-content-center">
+                <div class="form-group col-12 col-lg-6">
+                    {{ form.rules_agreement.label_tag }}
+                    {{ form.rules_agreement }}
+                </div>
+            </div>
+        </div>
         <div class="d-flex justify-content-center">
-            <button class="btn btn-secondary mx-2" type="submit">Book Now</button>
+            <button class="btn btn-primary mx-2" type="submit">Book Now</button>
         </div>
     </form>
 </div>
+
+<script>
+    function toggleChildSeatOption(checkbox) {
+        const childSeatOptionField = document.querySelector('select[name="child_seat_option"]');
+        if (checkbox.checked) {
+            childSeatOptionField.disabled = false;
+        } else {
+            childSeatOptionField.disabled = true;
+            childSeatOptionField.value = '';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const childSeatCheckbox = document.querySelector('input[name="child_seat"]');
+        toggleChildSeatOption(childSeatCheckbox);
+    });
+</script>
 {% endblock %}

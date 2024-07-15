@@ -42,14 +42,25 @@ class Booking(models.Model):
     def __str__(self):
         return f"Booking for {self.user} - {self.car}"
 
-    def save(self, *args, **kwargs):
-        if not self.rules_agreement:
-            raise ValueError("You must agree to the rules before booking.")
+    # def save(self, *args, **kwargs):
+    #     if not self.rules_agreement:
+    #         raise ValueError("You must agree to the rules before booking.")
 
-        super().save(*args, **kwargs)
+    #     super().save(*args, **kwargs)
 
-    def clean(self):
-        super().clean()
-        if self.pick_up_time and self.drop_off_time:
-            if self.drop_off_time <= self.pick_up_time:
-                raise ValidationError('Drop off time must be later than pick up time.')
+    # def clean(self):
+    #     super().clean()
+    #     if self.start_date and self.end_date and self.pick_up_time and self.drop_off_time:
+    #         if self.end_date < self.start_date:
+    #             self.add_error('end_date', 'End date cannot be earlier than start date.')
+    #         if self.start_date == self.end_date:
+    #             # pick_up_time_dt = datetime.strptime(pick_up_time, '%H:%M').time()
+    #             # drop_off_time_dt = datetime.strptime(drop_off_time, '%H:%M').time()
+
+    #             if drop_off_time_dt <= pick_up_time_dt:
+    #                 self.add_error('drop_off_time', "Return time cannot be earlier than or equal to pickup time on the same day.")
+
+        # if self.pick_up_time and self.drop_off_time:
+        #     if self.drop_off_time <= self.pick_up_time:
+        #         raise ValidationError('Drop off time must be later than pick up time.')
+

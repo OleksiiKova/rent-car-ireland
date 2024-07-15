@@ -14,9 +14,9 @@
                         <p>Seats: {{ car.seats }}</p>
                         <p>Doors: {{ car.doors }}</p>
                         <p>Price per day: €{{ car.price_per_day }}</p>
-                        <a href="{% url 'booking_form' car.id %}?start_date={{ start_date }}&end_date={{ end_date }}&pick_up_time={{ pick_up_time }}&drop_off_time={{ drop_off_time }}&pickup_office={{ pickup_office }}&return_office={{ return_office }}"
-                            class="btn btn-primary">
-                            <button>
+                        <a
+                            href="{% url 'booking_form' car.id %}?start_date={{ start_date }}&end_date={{ end_date }}&pick_up_time={{ pick_up_time }}&drop_off_time={{ drop_off_time }}&pickup_office={{ pickup_office }}&return_office={{ return_office }}">
+                            <button class="btn btn-primary">
                                 Reserve €{{ car.total_cost }} for {{ car.rental_days }}
                                 {% if car.rental_days == 1 %}
                                 day

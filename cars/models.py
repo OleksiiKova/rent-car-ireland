@@ -46,6 +46,7 @@ class Car(models.Model):
     def __str__(self):
         return f"{self.make} {self.model} ({self.year})"
 
+
     def calculate_total_cost(self, start_date, end_date, pick_up_time_str, drop_off_time_str):
         # Convert time strings to time objects
         pick_up_time = datetime.strptime(pick_up_time_str, "%H:%M").time()
@@ -70,4 +71,11 @@ class Car(models.Model):
         total_cost = rental_days * self.price_per_day
 
         return rental_days, total_cost
-    
+
+
+    def calculate_car_rental_price(cars, start_date, end_date, pick_up_time, drop_off_time):
+        for car in cars:
+            rental_days, total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time, drop_off_time)
+            car.rental_days = rental_days
+            car.total_cost = total_cost
+        return cars

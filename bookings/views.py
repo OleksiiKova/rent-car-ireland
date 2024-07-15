@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from datetime import datetime
+from django.contrib import messages
 from .forms import SearchForm, BookingForm
 from offices.models import Office
 from .models import Booking
@@ -12,7 +13,7 @@ from urllib.parse import urlencode
 
 
 # Create your views here.
-def booking_results(request):
+def booking_search(request):
     car_types = Car.objects.values_list('type', flat=True).distinct()
     transmissions = Car.objects.values_list('transmission', flat=True).distinct()
     
@@ -26,14 +27,9 @@ def booking_results(request):
             pickup_office = form.cleaned_data['pickup_office']
             return_office = form.cleaned_data['return_office']
 
-            cars = Car.objects.filter(availability=True)
-            cars = cars.order_by('make')
+            cars = Car.objects.filter(availability=True).order_by('make')
+            cars = Car.calculate_car_rental_price(cars, start_date, end_date, pick_up_time, drop_off_time)
 
-            # Calculate the total cost for each car
-            for car in cars:
-                rental_days, total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time, drop_off_time)
-                car.rental_days = rental_days
-                car.total_cost = total_cost
 
             # Render the booking results page
             return render(request, 'bookings/booking.html', {
@@ -80,15 +76,12 @@ def update_car_list(request):
     sort_by = request.GET.get('sort_by', 'make')
     air_conditioning = request.GET.get('air_conditioning')
     navigation = request.GET.get('navigation')
-    start_date_str = request.GET.get('start_date')
-    end_date_str = request.GET.get('end_date')
-    pick_up_time_str = request.GET.get('pick_up_time')
-    drop_off_time_str = request.GET.get('drop_off_time')
+    start_date = datetime.strptime(request.GET.get('start_date'), "%Y-%m-%d").date()
+    end_date = datetime.strptime(request.GET.get('end_date'), "%Y-%m-%d").date()
+    pick_up_time = request.GET.get('pick_up_time')
+    drop_off_time = request.GET.get('drop_off_time')
     pickup_office = request.GET.get('pickup_office')
     return_office = request.GET.get('return_office')
-
-    start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
-    end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
 
     # Filter cars by availability
     cars = Car.objects.filter(availability=True)
@@ -111,11 +104,7 @@ def update_car_list(request):
     else:
         cars = cars.order_by('make')
 
-    # Calculate the total cost for each car
-    for car in cars:
-        rental_days, total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time_str, drop_off_time_str)
-        car.rental_days = rental_days
-        car.total_cost = total_cost
+    cars = Car.calculate_car_rental_price(cars, start_date, end_date, pick_up_time, drop_off_time)
 
     context = {
         'cars': cars,     
@@ -124,12 +113,10 @@ def update_car_list(request):
     # Generate HTML for a list of cars
     html = render_to_string('bookings/car_list.html', {
         'cars': cars,
-        # 'car_types': car_types,
-        # 'transmissions': transmissions,
         'start_date': start_date,
         'end_date': end_date,
-        'pick_up_time': pick_up_time_str,
-        'drop_off_time': drop_off_time_str,
+        'pick_up_time': pick_up_time,
+        'drop_off_time': drop_off_time,
         'pickup_office': pickup_office,
         'return_office': return_office,
         })
@@ -156,16 +143,6 @@ def booking_form(request, car_id):
     except Office.DoesNotExist:
         return_office = None
 
-    print("Car ID:", car_id)
-    print("Start Date:", start_date)
-    print("End Date:", end_date)
-    print("Pick Up Time:", pick_up_time)
-    print("Drop Off Time:", drop_off_time)
-    print("Pickup Office ID:", pickup_office_id)
-    print("Return Office ID:", return_office_id)
-    print("Pickup Office:", pickup_office)
-    print("Return Office:", return_office)
-
     initial_data = {
         'car': car,
         'start_date': start_date,
@@ -181,18 +158,38 @@ def booking_form(request, car_id):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user
+            if not booking.rules_agreement:
+                messages.add_message(request, messages.ERROR,
+                                 'You must agree to the rules before booking!')
+                return render(request, 'bookings/booking_form.html', {
+                    'form': form,
+                    # 'car': car,
+                    # 'start_date': start_date,
+                    # 'end_date': end_date,
+                    # 'pick_up_time': pick_up_time,
+                    # 'drop_off_time': drop_off_time,
+                    # 'pickup_office': pickup_office,
+                    # 'return_office': return_office,
+                })
             booking.save()
-            return redirect('booking_confirmation', booking_id=booking.id)
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Thank you for your booking!You can view your booking details in your profile!'
+            )
+            return render(request, 'bookings/home.html')
+        
+
     else:
         form = BookingForm(initial=initial_data)
 
     return render(request, 'bookings/booking_form.html', {
         'form': form, 
-        'car': car,        
-        'start_date': start_date,
-        'end_date': end_date,
-        'pick_up_time': pick_up_time,
-        'drop_off_time': drop_off_time,
-        'pickup_office': pickup_office,
-        'return_office': return_office,
+        # 'car': car,        
+        # 'start_date': start_date,
+        # 'end_date': end_date,
+        # 'pick_up_time': pick_up_time,
+        # 'drop_off_time': drop_off_time,
+        # 'pickup_office': pickup_office,
+        # 'return_office': return_office,
         })
+
