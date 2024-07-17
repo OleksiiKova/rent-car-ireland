@@ -110,14 +110,12 @@
         {% include 'bookings/car_list.html' %}
     </div>
     {% endif %}
-
+    
+    
     <script>
         $(document).ready(function () {
             var sortBy = 'default';
-            // var isAuthenticated = "{{ user.is_authenticated|yesno:'true,false' }}";
             var isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
-            // Log the isAuthenticated value to the console
-            console.log("User is authenticated:", isAuthenticated);
 
             function updateCarList() {
                 var carType = $('#car-type').val();
@@ -222,6 +220,7 @@
             $('#id_return_office option:first').remove();
         });
     </script>
+    
     <script src="{% static 'js/booking_form.js' %}"></script>
     <!-- <script src="{% static 'js/update_car_list.js' %}"></script> -->
     {% endblock %}

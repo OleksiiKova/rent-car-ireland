@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var sortBy = 'default';
     var isAuthenticated = "{{ user.is_authenticated|yesno:'true,false' }}";
-    console.log("User is authenticated:", isAuthenticated);
+    
     function updateCarList() {
         var carType = $('#car-type').val();
         var transmission = $('#transmission').val();

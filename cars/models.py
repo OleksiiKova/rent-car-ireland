@@ -71,6 +71,8 @@ class Car(models.Model):
             if extra_insurance:
                 total_cost += min(rental_days * 5, 50)
 
+        total_cost = round(total_cost, 2)
+
         return rental_days, total_cost
 
 

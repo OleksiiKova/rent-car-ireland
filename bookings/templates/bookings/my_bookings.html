@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% for message in messages %}
+<div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+<div class="container">
+    <h1 class="text-center">My Bookings</h1>
+    {% if bookings %}
+    <ul>
+        {% for booking in bookings %}
+        <div>
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{ booking.car.image.url }}" class="img-fluid" alt="Car image">
+                </div>
+                <div class="col-8">
+                    <div>
+                        {{ booking.car }}
+                    </div>
+                    <div>
+                        {{ booking.start_date }} ({{ booking.pick_up_time }}) - {{ booking.end_date }}
+                        ({{ booking.drop_off_time}})
+                    </div>
+                    <div>
+                        Child seat:
+                        {% if booking.child_seat %}
+                        Yes ({{ booking.child_seat_option }})
+                        {% else %}
+                        No
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>You have no bookings.</p>
+    {% endif %}
+</div>
+{% endblock %}

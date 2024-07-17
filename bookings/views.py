@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.contrib import messages
 from .forms import SearchForm, BookingForm
@@ -210,9 +211,9 @@ def booking_form(request, car_id):
             booking.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Thank you for your booking!You can view your booking details in your profile!'
+                'Your booking has been completed successfully!'
             )
-            return render(request, 'bookings/home.html')
+            return redirect('my_bookings')
         
 
     else:
@@ -230,4 +231,10 @@ def booking_form(request, car_id):
         # 'pickup_office': pickup_office,
         # 'return_office': return_office,
         })
+
+
+@login_required
+def my_bookings(request):
+    user_bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'bookings/my_bookings.html', {'bookings': user_bookings})
 

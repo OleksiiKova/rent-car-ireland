@@ -254,7 +254,8 @@
             extraInsuranceCost = Math.min(rentalDays * 5, 50);
         }
 
-        const totalCost = baseCost + extraInsuranceCost;
+        let totalCost = baseCost + extraInsuranceCost;
+        totalCost = totalCost.toFixed(2);
         document.getElementById('totalPrice').innerText =
             `Final Price: ${totalCost}€ for ${rentalDays} ${rentalDays === 1 ? 'day' : 'days'}`;
 
@@ -273,8 +274,10 @@
         const childSeatOptionField = document.querySelector('select[name="child_seat_option"]');
         if (checkbox.checked) {
             childSeatOptionField.disabled = false;
+            childSeatOptionField.required = true;
         } else {
             childSeatOptionField.disabled = true;
+            childSeatOptionField.required = false;
             childSeatOptionField.value = '';
         }
     }
@@ -299,6 +302,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         const childSeatCheckbox = document.querySelector('input[name="child_seat"]');
+        const childSeatOptionField = document.querySelector('select[name="child_seat_option"]');
         toggleChildSeatOption(childSeatCheckbox);
     });
 </script>

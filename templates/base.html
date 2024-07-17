@@ -2,6 +2,7 @@
 
 {% url 'home' as home_url %}
 {% url 'booking' as booking_url %}
+{% url 'my_bookings' as my_booking_url  %}
 {% url 'locations' as locations_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
@@ -79,7 +80,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="#">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">My Bookings</a></li>
+                            <li><a class="dropdown-item" href="{% url 'my_bookings' %}">My Bookings</a></li>
                             <li><a class="dropdown-item" href="#">My Reviews</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -121,7 +122,6 @@
 
 
     <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/booking_form.js' %}"></script>
 
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/1e754c32b5.js" crossorigin="anonymous"></script>
