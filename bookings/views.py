@@ -124,16 +124,36 @@ def update_car_list(request):
     # Return a JSON response with generated HTML
     return JsonResponse({'html': html})
 
+
+def parse_date(date_str):
+    for date_format in ("%B %d, %Y", "%b. %d, %Y"):
+        try:
+            return datetime.strptime(date_str, date_format)
+        except ValueError:
+            continue
+    raise ValueError(f"Date format for '{date_str}' is not supported.")
+
+
 def booking_form(request, car_id):
     car = get_object_or_404(Car, id=car_id)
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
+    start_date_str = request.GET.get('start_date')
+    end_date_str = request.GET.get('end_date')
+    # start_date = datetime.strptime(request.GET.get('start_date'), '%b. %d, %Y').date()
+    # end_date = datetime.strptime(request.GET.get('end_date'), '%b. %d, %Y').date()
     pick_up_time = request.GET.get('pick_up_time')
     drop_off_time = request.GET.get('drop_off_time')
     pickup_office_id = request.GET.get('pickup_office')
     return_office_id = request.GET.get('return_office')
     
-    # Получение объектов офисов по id
+    try:
+        # Use the helper function to parse the dates
+        start_date = parse_date(start_date_str)
+        end_date = parse_date(end_date_str)
+    except ValueError as e:
+        # Handle the error appropriately, e.g., return an error response
+        return HttpResponse(f"Error parsing date: {e}", status=400)
+
+    # Retrieving office objects by id
     try:
         pickup_office = Office.objects.get(id=pickup_office_id)
     except Office.DoesNotExist:
@@ -142,6 +162,17 @@ def booking_form(request, car_id):
         return_office = Office.objects.get(id=return_office_id)
     except Office.DoesNotExist:
         return_office = None
+
+    # Calculate the rental price for the selected car
+    rental_info = Car.calculate_final_price([car], start_date, end_date, pick_up_time, drop_off_time)
+
+    # Unpack rental_info if it is not empty
+    if rental_info:
+        car_with_price = rental_info[0][0]
+        rental_days = rental_info[0][1]
+        total_cost = rental_info[0][2]
+    else:
+        rental_days = total_cost = None
 
     initial_data = {
         'car': car,
@@ -163,7 +194,9 @@ def booking_form(request, car_id):
                                  'You must agree to the rules before booking!')
                 return render(request, 'bookings/booking_form.html', {
                     'form': form,
-                    # 'car': car,
+                    'car': car,
+                    'rental_days': rental_days,
+                    'total_cost': total_cost,
                     # 'start_date': start_date,
                     # 'end_date': end_date,
                     # 'pick_up_time': pick_up_time,
@@ -184,7 +217,9 @@ def booking_form(request, car_id):
 
     return render(request, 'bookings/booking_form.html', {
         'form': form, 
-        # 'car': car,        
+        'car': car,
+        'rental_days': rental_days,
+        'total_cost': total_cost,        
         # 'start_date': start_date,
         # 'end_date': end_date,
         # 'pick_up_time': pick_up_time,

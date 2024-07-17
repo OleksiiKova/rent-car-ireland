@@ -80,3 +80,10 @@ class Car(models.Model):
             car.rental_days = rental_days
             car.total_cost = total_cost
         return cars
+
+    def calculate_final_price(cars, start_date, end_date, pick_up_time, drop_off_time):
+        rental_info = []
+        for car in cars:
+            rental_days, total_cost = car.calculate_total_cost(start_date, end_date, pick_up_time, drop_off_time)
+            rental_info.append((car, rental_days, total_cost))
+        return rental_info

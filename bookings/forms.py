@@ -1,24 +1,41 @@
 from django import forms
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from .models import Booking
 from offices.models import Office
 from datetime import datetime, timedelta
+
+
+def validate_phone_number(value):
+    if not value[1:].isdigit() or not value.startswith('+'):
+        raise ValidationError('Phone number must start with "+" and contain only digits after it.')
 
 
 class BookingForm(forms.ModelForm):
     """
     
     """
+    phone_number = forms.CharField(
+        max_length=15,
+        initial='+',
+        validators=[validate_phone_number],
+        widget=forms.TextInput(attrs={
+            'type': 'tel',
+            'placeholder': 'Enter phone number'
+        })
+    )
+
     class Meta:
         model = Booking
         fields = (
             'pickup_office', 'return_office', 'start_date', 'pick_up_time', 'end_date', 'drop_off_time',
-            'car', 'first_name', 'last_name', 'date_of_birth',
+            'car', 'first_name', 'last_name', 'phone_number', 'date_of_birth',
             'child_seat', 'child_seat_option',
             'extra_insurance', 'rules_agreement', 'total_price'
         )
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+            'phone_number': forms.TextInput(attrs={'type': 'tel', 'pattern': '[0-9]+'}),
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,7 +53,7 @@ class BookingForm(forms.ModelForm):
         self.fields['child_seat'].widget.attrs['onchange'] = 'toggleChildSeatOption(this)'
 
     class Media:
-        js = ('js/booking_form.js',)  # Include the JavaScript file
+        js = ('js/booking_form.js',)
 
 
 class SearchForm(forms.Form):
@@ -57,10 +74,6 @@ class SearchForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Calculate the date 7 days ahead from today
-        # self.fields['start_date'].initial = datetime.now().date()
-        # self.fields['end_date'].initial = datetime.now().date() + timedelta(days=7)
-
         self.fields['start_date'].widget.attrs['min'] = timezone.now().date()
         self.fields['end_date'].widget.attrs['min'] = timezone.now().date()
         
@@ -72,9 +85,6 @@ class SearchForm(forms.Form):
         
         self.fields['pick_up_time'].choices = self.generate_pick_up_time_choices(dublin_airport.opening_time, dublin_airport.closing_time) if dublin_airport else []
         self.fields['drop_off_time'].choices = self.generate_drop_off_time_choices()
-
-        # self.fields['pick_up_time'].initial = '09:00'
-        # self.fields['drop_off_time'].initial = '09:00'
 
     def generate_pick_up_time_choices(self, opening_time=None, closing_time=None):
         times = []
