@@ -24,12 +24,11 @@ class BookingForm(forms.ModelForm):
             'placeholder': 'Enter phone number'
         })
     )
-
     class Meta:
         model = Booking
         fields = (
             'pickup_office', 'return_office', 'start_date', 'pick_up_time', 'end_date', 'drop_off_time',
-            'car', 'first_name', 'last_name', 'phone_number', 'date_of_birth',
+            'car', 'first_name', 'last_name', 'email', 'phone_number', 'date_of_birth',
             'child_seat', 'child_seat_option',
             'extra_insurance', 'rules_agreement', 'total_price'
         )

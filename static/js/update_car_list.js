@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var sortBy = 'default';
-    // Function for sending an AJAX request to update a list of cars
+    var isAuthenticated = "{{ user.is_authenticated|yesno:'true,false' }}";
+    console.log("User is authenticated:", isAuthenticated);
     function updateCarList() {
         var carType = $('#car-type').val();
         var transmission = $('#transmission').val();
@@ -27,10 +28,18 @@ $(document).ready(function () {
                 'drop_off_time': dropOffTime,
                 'pickup_office': pickupOffice,
                 'return_office': returnOffice,
+                'is_authenticated': isAuthenticated
             },
             dataType: 'json',
             success: function (data) {
                 $('#car-list-container').html(data.html);
+                if (data.is_authenticated === 'true') {
+                    $('.reserve-button').show();
+                    $('.login-to-continue').hide();
+                } else {
+                    $('.reserve-button').hide();
+                    $('.login-to-continue').show();
+                }
             },
             error: function (xhr, status, error) {
                 console.error('Error loading data:', error);
@@ -56,5 +65,6 @@ $(document).ready(function () {
         sortBy = 'default';
         updateCarList();
     });
+
     updateCarList();
 });

@@ -7,16 +7,17 @@
                     <div class="image-container col-md-6">
                         <img class="card-img-left car-image" src="{{ car.image.url }}" alt="{{ car.model }}">
                     </div>
-                    <div class="car-info col-md-6">
+                    <div class="car-info col-md-6 text-center text-md-start">
                         <h3>{{ car.make }} {{ car.model }} / {{ car.type }}</h3>
                         <p>Fuel: {{ car.fuel_type }}</p>
                         <p>Transmission: {{ car.transmission }}</p>
                         <p>Seats: {{ car.seats }}</p>
                         <p>Doors: {{ car.doors }}</p>
                         <p>Price per day: €{{ car.price_per_day }}</p>
+                        {% if user.is_authenticated %}
                         <a
                             href="{% url 'booking_form' car.id %}?start_date={{ start_date }}&end_date={{ end_date }}&pick_up_time={{ pick_up_time }}&drop_off_time={{ drop_off_time }}&pickup_office={{ pickup_office }}&return_office={{ return_office }}">
-                            <button class="btn btn-primary">
+                            <button class="reserve-button btn btn-primary">
                                 Reserve €{{ car.total_cost }} for {{ car.rental_days }}
                                 {% if car.rental_days == 1 %}
                                 day
@@ -25,6 +26,10 @@
                                 {% endif %}
                             </button>
                         </a>
+                        {% else %}
+                        <a href="{% url 'account_login' %}" class="login-to-continue btn btn-primary">Login to
+                            Continue</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="text-center">Complete Your Booking</h1>
+    <h1 class="text-center my-4">Complete Your Booking</h1>
     {% if messages %}
     <div class="container">
         {% for message in messages %}
@@ -129,6 +129,12 @@
                         <div class="col">
                             {{ form.last_name.label_tag }}
                             {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
                         </div>
                     </div>
                     <div class="row my-4">

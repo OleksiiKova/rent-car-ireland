@@ -82,6 +82,7 @@ def update_car_list(request):
     drop_off_time = request.GET.get('drop_off_time')
     pickup_office = request.GET.get('pickup_office')
     return_office = request.GET.get('return_office')
+    is_authenticated = request.user.is_authenticated
 
     # Filter cars by availability
     cars = Car.objects.filter(availability=True)
@@ -108,21 +109,23 @@ def update_car_list(request):
 
     context = {
         'cars': cars,     
-    }
-
-    # Generate HTML for a list of cars
-    html = render_to_string('bookings/car_list.html', {
-        'cars': cars,
+        'user': request.user,
         'start_date': start_date,
         'end_date': end_date,
         'pick_up_time': pick_up_time,
         'drop_off_time': drop_off_time,
         'pickup_office': pickup_office,
         'return_office': return_office,
-        })
+    }
+
+    # Generate HTML for a list of cars
+    html = render_to_string('bookings/car_list.html', context)
 
     # Return a JSON response with generated HTML
-    return JsonResponse({'html': html})
+    return JsonResponse({
+        'html': html,
+        'is_authenticated': request.user.is_authenticated
+    })
 
 
 def parse_date(date_str):
