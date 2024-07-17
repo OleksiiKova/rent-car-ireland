@@ -40,6 +40,7 @@ class Booking(models.Model):
     rules_agreement = models.BooleanField(default=False)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='confirmed')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    rental_days = models.IntegerField()
 
     def __str__(self):
         return f"Booking for {self.user} - {self.car}"

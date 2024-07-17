@@ -201,12 +201,6 @@ def booking_form(request, car_id):
                     'car': car,
                     'rental_days': rental_days,
                     'total_cost': total_cost,
-                    # 'start_date': start_date,
-                    # 'end_date': end_date,
-                    # 'pick_up_time': pick_up_time,
-                    # 'drop_off_time': drop_off_time,
-                    # 'pickup_office': pickup_office,
-                    # 'return_office': return_office,
                 })
             booking.save()
             messages.add_message(
@@ -223,13 +217,7 @@ def booking_form(request, car_id):
         'form': form, 
         'car': car,
         'rental_days': rental_days,
-        'total_cost': total_cost,        
-        # 'start_date': start_date,
-        # 'end_date': end_date,
-        # 'pick_up_time': pick_up_time,
-        # 'drop_off_time': drop_off_time,
-        # 'pickup_office': pickup_office,
-        # 'return_office': return_office,
+        'total_cost': total_cost,
         })
 
 
@@ -237,4 +225,40 @@ def booking_form(request, car_id):
 def my_bookings(request):
     user_bookings = Booking.objects.filter(user=request.user)
     return render(request, 'bookings/my_bookings.html', {'bookings': user_bookings})
+
+
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    car = booking.car
+    
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            if not booking.rules_agreement:
+                messages.add_message(request, messages.ERROR,
+                                 'You must agree to the rules before booking!')
+                return render(request, 'bookings/edit_booking.html', {
+                    'form': form,
+                    'car': car,
+                })
+            form.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your booking has been changed successfully!'
+            )
+            return redirect('my_bookings')
+    else:
+        form = BookingForm(instance=booking)
+        form.initial['rules_agreement'] = False
+
+    return render(request, 'bookings/edit_booking.html', {'form': form, 'car': car})
+
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    if request.method == 'POST':
+        booking.delete()
+        messages.success(request, 'Booking deleted successfully.')
+        return redirect('my_bookings')
+
+    return render(request, 'bookings/confirm_delete.html', {'booking': booking})
 

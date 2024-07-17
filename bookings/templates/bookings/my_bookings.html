@@ -3,42 +3,75 @@
 {% load static %}
 
 {% block content %}
-{% for message in messages %}
+<!-- {% for message in messages %}
 <div class="alert alert-danger">{{ message }}</div>
 {% endfor %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endif %} -->
 <div class="container">
     <h1 class="text-center">My Bookings</h1>
     {% if bookings %}
-    <ul>
-        {% for booking in bookings %}
-        <div>
-            <div class="row">
-                <div class="col-4">
-                    <img src="{{ booking.car.image.url }}" class="img-fluid" alt="Car image">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <ul>
+                {% for booking in bookings %}
+                <div class="row border my-2 p-2 my-md-4 p-md-4">
+                    <div class="d-none d-sm-block col-4">
+                        <img src="{{ booking.car.image.url }}" class="img-fluid" alt="Car image">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {{ booking.car }}
+                            </div>
+                            <div>
+                                <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </div>
+                        <div>
+                            {{ booking.start_date }} ({{ booking.pick_up_time }}) - {{ booking.end_date }}
+                            ({{ booking.drop_off_time}})
+                        </div>
+                        <div>
+                            Child seat:
+                            {% if booking.child_seat %}
+                            Yes ({{ booking.child_seat_option }})
+                            {% else %}
+                            No
+                            {% endif %}
+                        </div>
+                        <div>
+                            Extra Insurance:
+                            {% if booking.extra_insurance %}
+                            Yes
+                            {% else %}
+                            No
+                            {% endif %}
+                        </div>
+                        <div class="row flex justify-content-end">
+                            <div class="col-auto bg-info p-1 rounded">
+                                {{ booking.total_price}}€ for {{ booking.rental_days }}
+                                {% if car.rental_days == 1 %}
+                                day
+                                {% else %}
+                                days
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-8">
-                    <div>
-                        {{ booking.car }}
-                    </div>
-                    <div>
-                        {{ booking.start_date }} ({{ booking.pick_up_time }}) - {{ booking.end_date }}
-                        ({{ booking.drop_off_time}})
-                    </div>
-                    <div>
-                        Child seat:
-                        {% if booking.child_seat %}
-                        Yes ({{ booking.child_seat_option }})
-                        {% else %}
-                        No
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+
+                {% endfor %}
+            </ul>
+            {% else %}
+
+            <p>You have no bookings.</p>
+            {% endif %}
         </div>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>You have no bookings.</p>
-    {% endif %}
+    </div>
 </div>
 {% endblock %}
