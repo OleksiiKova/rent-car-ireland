@@ -104,7 +104,7 @@
                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                                 data-bs-parent="#carAccordion">
                                 <div class="accordion-body">
-                                    <div class="row my-2 flex">
+                                    <div class="row my-2 flex align-items-center">
                                         <div class="col-sm-6">
                                             <div>
                                                 Price per day: {{ car.price_per_day }}€
@@ -142,7 +142,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <img src="{{ car.image.url }}" alt="Car image" class="img-fluid">
+                                            <img src="{{ car.image.url }}" alt="Car image" class="img-fluid rounded">
                                         </div>
                                     </div>
                                 </div>
