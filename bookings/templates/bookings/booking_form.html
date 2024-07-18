@@ -5,18 +5,6 @@
     <h1 class="text-center my-4">Complete Your Booking</h1>
     <form method="POST">
         {% csrf_token %}
-        <!-- Display form errors -->
-        {% if form.errors %}
-        <div class="alert alert-danger">
-            <ul>
-                {% for field in form %}
-                {% for error in field.errors %}
-                <li><strong>{{ field.label }}:</strong> {{ error }}</li>
-                {% endfor %}
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="unchangeable_booking_info border px-3">
@@ -178,6 +166,7 @@
                         <div class="col">
                             {{ form.date_of_birth.label_tag }}
                             {{ form.date_of_birth }}
+                            <p class="text-muted age-limit fst-italic">Age: 23 - 70</p>
                         </div>
                     </div>
                     <div class="row my-4">

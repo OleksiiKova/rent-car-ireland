@@ -1,9 +1,10 @@
 from django import forms
 from django.utils import timezone
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from .models import Booking
 from offices.models import Office
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 
 def validate_phone_number(value):
@@ -48,6 +49,16 @@ class BookingForm(forms.ModelForm):
         self.fields['child_seat_option'].widget.attrs['disabled'] = True
         # Add onchange event to child_seat field
         self.fields['child_seat'].widget.attrs['onchange'] = 'toggleChildSeatOption(this)'
+
+    def clean_date_of_birth(self):
+        dob = self.cleaned_data['date_of_birth']
+        today = date.today()
+        age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+
+        if age < 23 or age > 70:
+            self.add_error('date_of_birth', 'According to our rules, the age must be between 23 and 70 years!')
+
+        return dob
 
     class Media:
         js = ('js/booking_form.js',)

@@ -82,3 +82,8 @@
     background-color: #f8d7da;
     border-color: #f5c2c7;
 }
+
+.age-limit {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+}

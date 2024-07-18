@@ -6,7 +6,7 @@
 <div class="container">
     <h1 class="text-center">Car Booking</h1>
     <div class="d-flex justify-content-center align-items-center search-form">
-        <div class="col-12 col-md-8 col-xl-6 mt-2">
+        <div class="col-12 col-lg-8 col-xl-6 mt-2">
             <form method="POST" action="{% url 'booking' %}">
                 {% csrf_token %}
                 <!-- Display form errors -->
@@ -29,7 +29,7 @@
                         <p>Pick up Office</p>
                         {{ form.pickup_office }}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 p-0">
                         <p>Return Office</p>
                         {{ form.return_office }}
                     </div>
@@ -39,7 +39,7 @@
                     <div class="col-md-3">
                         {{ form.start_date }}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 p-0">
                         {{ form.pick_up_time }}
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-3">
                         {{ form.end_date }}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 p-0">
                         {{ form.drop_off_time }}
                     </div>
                 </div>

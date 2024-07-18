@@ -208,6 +208,12 @@ def booking_form(request, car_id):
                 'Your booking has been completed successfully!'
             )
             return redirect('my_bookings')
+            
+        else:
+            # If the form is invalid, collect form errors
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.add_message(request, messages.ERROR, f"{form.fields[field].label}: {error}")
         
 
     else:
