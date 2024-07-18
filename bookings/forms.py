@@ -22,7 +22,6 @@ class BookingForm(forms.ModelForm):
         validators=[validate_phone_number],
         widget=forms.TextInput(attrs={
             'type': 'tel',
-            'placeholder': 'Enter phone number'
         })
     )
     class Meta:
@@ -34,9 +33,12 @@ class BookingForm(forms.ModelForm):
             'extra_insurance', 'rules_agreement', 'total_price', 'rental_days'
         )
         widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
             'phone_number': forms.TextInput(attrs={'type': 'tel', 'pattern': '[0-9]+'}),
         }
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

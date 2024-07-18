@@ -5,6 +5,7 @@ from datetime import datetime
 from django.contrib import messages
 from .forms import SearchForm, BookingForm
 from offices.models import Office
+from userprofile.models import UserProfile
 from .models import Booking
 from cars.models import Car
 from django.http import JsonResponse
@@ -130,12 +131,10 @@ def update_car_list(request):
 
 
 def parse_date(date_str):
-    for date_format in ("%B %d, %Y", "%b. %d, %Y"):
-        try:
-            return datetime.strptime(date_str, date_format)
-        except ValueError:
-            continue
-    raise ValueError(f"Date format for '{date_str}' is not supported.")
+    try:
+        return datetime.strptime(date_str, "%d %B %Y").date()
+    except ValueError:
+        raise ValueError(f"Date format for '{date_str}' is not supported.")
 
 
 def booking_form(request, car_id):
@@ -188,11 +187,37 @@ def booking_form(request, car_id):
         'return_office': return_office,
     }
 
+    try:
+        profile = request.user.userprofile
+        initial_data.update({
+            'first_name': profile.first_name,
+            'last_name': profile.last_name,
+            'email': profile.email,
+            'phone_number': profile.phone,
+            'date_of_birth': profile.date_of_birth,
+        })
+    except UserProfile.DoesNotExist:
+        pass
+
+
     if request.method == 'POST':
         form = BookingForm(request.POST, initial=initial_data)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user
+            if request.user.is_authenticated:
+                try:
+                    profile = request.user.userprofile
+                    initial_data.update({
+                        'first_name': profile.first_name,
+                        'last_name': profile.last_name,
+                        'email': profile.email,
+                        'phone_number': profile.phone,
+                        'date_of_birth': profile.date_of_birth,
+                    })
+                except UserProfile.DoesNotExist:
+                    pass  
+
             if not booking.rules_agreement:
                 messages.add_message(request, messages.ERROR,
                                  'You must agree to the rules before booking!')
@@ -208,13 +233,18 @@ def booking_form(request, car_id):
                 'Your booking has been completed successfully!'
             )
             return redirect('my_bookings')
-            
+
         else:
             # If the form is invalid, collect form errors
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.add_message(request, messages.ERROR, f"{form.fields[field].label}: {error}")
-        
+            return render(request, 'bookings/booking_form.html', {
+                'form': form,
+                'car': car,
+                'rental_days': rental_days,
+                'total_cost': total_cost,
+            })
 
     else:
         form = BookingForm(initial=initial_data)

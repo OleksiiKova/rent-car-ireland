@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'cars',
     'bookings',
     'offices',
+    'userprofile',
     
 ]
 
