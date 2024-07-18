@@ -9,9 +9,9 @@ from offices.models import Office
 # Create your models here.
 class Booking(models.Model):
     CHILD_SEAT_CHOICES = [
-        ('0-9 kg', '0-9 kg'),
-        ('9-18 kg', '9-18 kg'),
-        ('booster', 'Booster'),
+        ('0-9 kg', 'Baby seat (0-9 kg)'),
+        ('9-18 kg', 'Child seat (9-18 kg)'),
+        ('booster', 'Booster seat (15-36 kg)'),
     ]
 
     STATUS_CHOICES = [
