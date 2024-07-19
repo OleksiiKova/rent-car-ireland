@@ -183,7 +183,6 @@
                 fetch(`/booking/booking_details/${bookingId}/`)
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Received data:', data);
 
                         document.getElementById('carInfo').innerHTML = `
                         <p><strong>${data.car_model} ${data.car_make} (${data.car_year}) ${data.car_type} </strong></p>
@@ -194,6 +193,7 @@
                         <p><strong>Doors:</strong> ${data.car_doors}</p>
                         <p><strong>Air Conditioning:</strong> ${data.car_air_conditioning ? 'Yes' : 'No'}</p>
                         <p><strong>Navigation:</strong> ${data.car_navigation ? 'Yes' : 'No'}</p>
+                        <img src="${data.car_image}" alt="Car image" class="img-fluid">
                     `;
 
                         document.getElementById('bookingInfo').innerHTML = `
