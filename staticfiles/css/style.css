@@ -91,53 +91,11 @@
 
 
 /* ----------------Stars in review ----------------*/
-/* .rating {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-
-.rating input {
-    display: none;
-}
-
-.rating label {
-    position: relative;
-    width: 1em;
-    font-size: 3vw;
-    color: #FFD700;
-    cursor: pointer;
-}
-
-.rating label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0;
-}
-
-.rating label:hover:before,
-.rating label:hover ~ label:before {
-    opacity: 1 !important;
-}
-
-.rating input:checked ~ label:before {
-    opacity: 1;
-}
-
-.rating input:checked + label:hover:before,
-.rating input:checked ~ label:hover:before,
-.rating label:hover ~ input:checked ~ label:before,
-.rating input:checked ~ label:hover ~ label:before {
-    opacity: 0.4;
-} */
-
-/* ----------------END Stars in review END ----------------*/
 
 .star-rating {
-    display: inline-block;
-    font-size: 24px; /* Размер звездочек */
-    unicode-bidi: bidi-override;
-    direction: rtl;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .star-rating input {
@@ -145,23 +103,27 @@
 }
 
 .star-rating label {
-    color: #ccc; /* Цвет неактивных звездочек */
     cursor: pointer;
+    font-size: 2rem;
+    color: gray;
+    margin: 0;
+    padding: 0;
 }
 
-.star-rating label:before {
-    content: '★';
+.star-rating label.checked,
+.star-rating label.preview {
+    color: gold;
 }
 
-.star-rating input:checked ~ label {
-    color: #ffcc00; /* Цвет активных звездочек */
-}
-
-.star-rating input:checked ~ label {
-    color: #ffcc00; /* Цвет активных звездочек */
-}
-
-.star-rating label:hover,
+/* .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #ffcc00; /* Цвет звездочек при наведении */
+    color: gold;
+} */
+
+.star-rating label.preview:hover,
+.star-rating label.preview:hover ~ label {
+    color: gold;
 }
+
+
+/* ----------------END Stars in review END ----------------*/
