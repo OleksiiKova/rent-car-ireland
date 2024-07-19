@@ -15,11 +15,12 @@
             <div class="row border my-2 p-2 my-md-4 p-md-4 align-items-center">
                 <div>
                     {% if booking.can_leave_review %}
-                    <h3 class="h5 text-center mb-4">Your booking was completed succesfully! You can <a
+                    <h3 class="h5 text-center mb-4">Your booking has been successfully completed! You can <a
                             href="{% url 'leave_review' booking.id %}">leave a Review</a>!</h3>
                     {% endif %}
                     {% if booking.status == 'confirmed' %}
-                    <h3 class="h5 text-center mb-4">Your booking confirmed! You can leave a review the day after your
+                    <h3 class="h5 text-center mb-4">Your booking has been confirmed! You can leave a review the day
+                        after your
                         booking ends!</a></h3>
                     {% endif %}
                     {% if booking.status == 'reviewed' %}

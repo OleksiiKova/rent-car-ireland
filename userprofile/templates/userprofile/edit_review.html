@@ -37,14 +37,12 @@
                         </div>
                     </div>
                     <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
-                    <input type="hidden" name="rating" id="rating-hidden" value="{{ review.rating.value }}">
+                    <input type="hidden" name="rating" id="rating-hidden" value="{{ review.rating }}">
                     <div class=" my-2">
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </form>
-            <!-- Debugging line, remove after verifying -->
-            <p>Debug Rating Value: {{ review.rating.value }}</p>
         </div>
     </div>
 </div>
@@ -74,7 +72,7 @@
                     document.getElementById('rating-hidden').value = rating;
                 });
             });
-            // Инициализация звездочек на основе текущего значения
+            // Initializing stars based on current value
             const currentRating = document.getElementById('rating-hidden').value;
             updateStars(currentRating);
         };
