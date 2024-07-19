@@ -1,78 +1,48 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load form_tags %}
+{% load range_tags %}
 
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center">My Reviews</h1>
-    {% if bookings %}
+    <h1 class="text-center my-4">My Reviews</h1>
     <div class="row justify-content-center mx-1">
         <div class="col-lg-8">
+            {% for review in reviews %}
+            <div class="review-card my-2 p-2 my-md-4 p-md-4 ">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h2 class="h4">Review for booking {{ review.booking.car }}</h2>
+                    </div>
+                    <div class="d-flex">
+                        <a href="{% url 'edit_review' review.id %}" data-bs-toggle="tooltip"
+                            data-bs-title="Edit Review"><i class="bi bi-pen-fill mx-1"></i></a>
+                        <a href="{% url 'delete_review' review.id %}" data-bs-toggle="tooltip"
+                            data-bs-title="Delete Review"><i class="bi bi-trash-fill"></i></a>
+                    </div>
+                </div>
+                <p>From {{ review.booking.start_date|date:"d M Y" }}
+                    to {{ review.booking.end_date|date:"d M Y" }}</p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-muted mb-0">Created: {{ review.created_at|date:"d M Y" }}</p>
+                    <div class="review-rating">
+                        {% for i in 5|times %}
+                        {% if i <= review.rating %}
+                        <span class="text-warning">★</span>
+                        {% else %}
+                        <span class="text-secondary">☆</span>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="comment-field border p-2">{{ review.comment }}</p>
 
-            {% for booking in bookings %}
-            <div class="row border my-2 p-2 my-md-4 p-md-4 align-items-center">
-                <div class="d-none d-sm-block col-4">
-                    <img src="{{ booking.car.image.url }}" class="img-fluid" alt="Car image">
-                </div>
-                <div class="col-sm-8">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{ booking.can_leave_review }}
-                        {% if booking.can_leave_review %}
-                        <a href="{% url 'leave_review' booking.id %}">Leave a Review</a>
-                        {% endif %}
-                        <div>
-                            <h3 class="h5">{{ booking.car }}</h3>
-                        </div>
-                        <div>
-                            <a href="{% url 'edit_booking' booking.id %}" data-bs-toggle="tooltip"
-                                data-bs-title="Edit Booking"><i class="bi bi-pen-fill mx-1"></i></a>
-                            <a href="{% url 'delete_booking' booking.id %}" data-bs-toggle="tooltip"
-                                data-bs-title="Delete Booking"><i class="bi bi-trash-fill"></i></a>
-                        </div>
-                    </div>
-                    <div>
-                        {{ booking.status }}
-                    </div>
-                    <div>
-                        {{ booking.start_date }} ({{ booking.pick_up_time }}) - {{ booking.end_date }}
-                        ({{ booking.drop_off_time}})
-                    </div>
-                    <div>
-                        Child seat:
-                        {% if booking.child_seat %}
-                        Yes ({{ booking.child_seat_option }})
-                        {% else %}
-                        No
-                        {% endif %}
-                    </div>
-                    <div>
-                        Extra Insurance:
-                        {% if booking.extra_insurance %}
-                        Yes
-                        {% else %}
-                        No
-                        {% endif %}
-                    </div>
-                    <div class="row flex justify-content-end">
-                        <div class="col-auto bg-light p-1 rounded">
-                            {{ booking.total_price}}€ for {{ booking.rental_days }}
-                            {% if car.rental_days == 1 %}
-                            day
-                            {% else %}
-                            days
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
             </div>
-
+            {% empty %}
+            <p>You have not left any reviews yet.</p>
             {% endfor %}
-
-            {% else %}
-
-            <p>You have no bookings.</p>
-            {% endif %}
         </div>
     </div>
 </div>

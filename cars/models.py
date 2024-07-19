@@ -44,7 +44,7 @@ class Car(models.Model):
     image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
-        return f"{self.make} {self.model} ({self.year})"
+        return f"{self.make} {self.model}"
 
 
     def calculate_total_cost(self, start_date, end_date, pick_up_time_str, drop_off_time_str, extra_insurance=None):

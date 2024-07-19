@@ -127,3 +127,13 @@
 
 
 /* ----------------END Stars in review END ----------------*/
+
+.comment-field {
+    height: 150px; /* Adjust the height as needed */
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}

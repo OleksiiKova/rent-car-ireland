@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="text-center my-4">Delete Review</h2>
+            <p class="text-center my-4">Are you sure you want to delete the review for booking {{ booking.car }} from
+                {{ booking.start_date|date:"d M Y" }}
+                to {{ booking.end_date|date:"d M Y" }}?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row d-flex justify-content-aroud text-center my-4">
+                    <div class="col-6">
+                        <a class="btn btn-light" href="{% url 'my_reviews' %}">Cancel</a>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
