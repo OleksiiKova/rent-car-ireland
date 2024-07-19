@@ -87,3 +87,43 @@
     margin-bottom: 0;
     font-size: 0.75rem;
 }
+
+
+
+/* ----------------Stars in review ----------------*/
+
+.star-rating {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: gray;
+    margin: 0;
+    padding: 0;
+}
+
+.star-rating label.checked,
+.star-rating label.preview {
+    color: gold;
+}
+
+/* .star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+} */
+
+.star-rating label.preview:hover,
+.star-rating label.preview:hover ~ label {
+    color: gold;
+}
+
+
+/* ----------------END Stars in review END ----------------*/

@@ -1,6 +1,7 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, Review
 from django.core.exceptions import ValidationError
+from star_ratings.models import Rating
 
 
 def validate_phone_number(value):
@@ -34,4 +35,18 @@ class UserProfileForm(forms.ModelForm):
     #         raise forms.ValidationError("Phone number can only contain digits and the plus sign.")
     #     return phone
 
+
+class ReviewForm(forms.ModelForm):
+    rating = forms.ChoiceField(choices=[(str(i), str(i)) for i in range(1, 6)],
+                               widget=forms.RadioSelect(attrs={'class': 'star-rating'}))
+
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']
+
+    # def clean_rating(self):
+    #     rating = self.cleaned_data.get('rating')
+    #     if not rating:
+    #         self.add_error('end_date', 'Please rate, where one star is the lowest and 5 stars is the maximum score.')
+    #     return rating
 

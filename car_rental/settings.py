@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bookings',
     'offices',
     'userprofile',
+    'star_ratings',
     
 ]
 

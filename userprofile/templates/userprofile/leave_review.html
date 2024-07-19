@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load form_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <div class="col-lg-6">
+            <h2 class="text-center">Leave a Review for Booking {{ booking.car }} </h2>
+            <p class="text-center">From {{ booking.start_date}} to {{ booking.end_date}}</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="text-center text-sm-end">
+                    <div class="form-group">
+                        <div class="star-rating">
+                            <label for="id_rating_0">
+                                <input type="radio" name="rating" value="1" id="id_rating_0">
+                                ★
+                            </label>
+                            <label for="id_rating_1">
+                                <input type="radio" name="rating" value="2" id="id_rating_1">
+                                ★
+                            </label>
+                            <label for="id_rating_2">
+                                <input type="radio" name="rating" value="3" id="id_rating_2">
+                                ★
+                            </label>
+                            <label for="id_rating_3">
+                                <input type="radio" name="rating" value="4" id="id_rating_3">
+                                ★
+                            </label>
+                            <label for="id_rating_4">
+                                <input type="radio" name="rating" value="5" id="id_rating_4">
+                                ★
+                            </label>
+                        </div>
+                    </div>
+                    <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
+                    <input type="hidden" name="rating" id="rating-hidden" required="False" value="">
+                    <div class=" my-2">
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const starRating = (selector) => {
+            const labels = document.querySelectorAll(selector + ' label');
+            const inputs = document.querySelectorAll(selector + ' input');
+            labels.forEach((label) => {
+                label.addEventListener('mouseover', (event) => {
+                    const rating = event.target.previousElementSibling ? event.target
+                        .previousElementSibling.value : event.target.querySelector('input')
+                        .value;
+                    // updateStarsPreview(rating);
+                });
+                label.addEventListener('mouseout', () => {
+                    const currentRating = document.getElementById('rating-hidden').value ||
+                        0;
+                    updateStars(currentRating);
+                });
+            });
+            inputs.forEach((input) => {
+                input.addEventListener('change', (event) => {
+                    const rating = event.target.value;
+                    console.log('Выбран рейтинг:', rating); // Отладка
+                    updateStars(rating);
+                    document.getElementById('rating-hidden').value = rating;
+                });
+            });
+            // Инициализация звездочек на основе текущего значения
+            // const currentRating = document.getElementById('rating-hidden').value || 0;
+            // updateStars(currentRating);
+        };
+
+        const updateStars = (rating) => {
+            const labels = document.querySelectorAll('.star-rating label');
+            labels.forEach((label) => {
+                const input = label.querySelector('input');
+                const value = parseInt(input.value, 10);
+                if (value <= rating) {
+                    label.classList.add('checked');
+                } else {
+                    label.classList.remove('checked');
+                }
+            });
+        };
+
+        // const updateStarsPreview = (rating) => {
+        //     const labels = document.querySelectorAll('.star-rating label');
+        //     labels.forEach((label) => {
+        //         const input = label.querySelector('input');
+        //         const value = parseInt(input.value, 10);
+        //         if (value <= rating) {
+        //             label.classList.add('preview');
+        //         } else {
+        //             label.classList.remove('preview');
+        //         }
+        //     });
+        // };
+
+        starRating('.star-rating');
+    });
+</script>
+
+{% endblock %}

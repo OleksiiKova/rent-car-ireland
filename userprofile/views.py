@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
-from .forms import UserProfileForm
 from django.contrib import messages
+from django.utils import timezone
+from .models import UserProfile
+from bookings.models import Booking
+from .forms import UserProfileForm
+from .forms import ReviewForm
+from django.urls import reverse
 
 # Create your views here.
 @login_required
@@ -38,3 +42,47 @@ def my_profile_view(request):
         'form': form
     }
     return render(request, 'userprofile/my_profile.html', context)
+
+
+def update_booking_status(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+    
+    if booking.end_date == timezone.now().date() and booking.status == 'confirmed':
+        booking.status = 'completed'
+        booking.save()
+
+    return redirect('my_bookings', booking_id=booking_id)
+
+@login_required
+def leave_review(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+
+    if not booking.can_leave_review():
+        # Redirect if review cannot be left
+        return redirect(reverse('my_bookings'))
+
+    
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.booking = booking
+            review.user = request.user
+            review.save()
+            booking.review_left = True
+            booking.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your review has been sent successfully!'
+            )
+            return redirect(reverse('my_bookings'))
+        else:
+            if 'rating' in form.errors:
+                messages.add_message(
+                    request, messages.ERROR,
+                    'Please rate, where one star is the lowest and 5 stars is the maximum score.'
+                )
+    else:
+        form = ReviewForm()
+
+    return render(request, 'userprofile/leave_review.html', {'form': form, 'booking': booking})

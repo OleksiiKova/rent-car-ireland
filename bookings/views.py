@@ -298,3 +298,4 @@ def delete_booking(request, booking_id):
 
     return render(request, 'bookings/confirm_delete.html', {'booking': booking})
 
+

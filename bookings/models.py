@@ -41,6 +41,10 @@ class Booking(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='confirmed')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     rental_days = models.IntegerField()
+    review_left = models.BooleanField(default=False)
+
+    def can_leave_review(self):
+        return self.status == 'completed' and self.end_date <= timezone.now().date()
 
     def __str__(self):
         return f"Booking for {self.user} - {self.car}"
