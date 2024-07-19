@@ -22,3 +22,16 @@ class Review(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class ContactMessage(models.Model):
+    """
+    Stores a single collaboration request message.
+    """
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Message from {self.name}"

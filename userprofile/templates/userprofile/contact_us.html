@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load form_tags %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-3">Contact Us</h2>
+    <div class="row justify-content-center my-4">
+        <div class="col-lg-6">
+            <p class="">If you have any questions, comments, or feedback, please don't hesitate to reach out
+                to us. We are here to help
+                and will respond to your inquiries as soon as possible.
+            </p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_name" class="form-label fw-bold">Name</label>
+                    {{ form.name|add_class:"form-control" }}
+                    {% if form.name.errors %}
+                    <div class="text-danger">{{ form.name.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="id_email" class="form-label fw-bold">Email</label>
+                    {{ form.email|add_class:"form-control" }}
+                    {% if form.email.errors %}
+                    <div class="text-danger">{{ form.email.errors }}</div>
+                    {% endif %}
+                    <p class="text-muted">It is important to write the correct email address so that we can respond to
+                        your message.</p>
+                </div>
+                <div class="mb-3">
+                    <label for="id_message" class="form-label fw-bold">Message</label>
+                    {{ form.message|add_class:"form-control" }}
+                    {% if form.message.errors %}
+                    <div class="text-danger">{{ form.message.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

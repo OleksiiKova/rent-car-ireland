@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, Review
+from .models import UserProfile, Review, ContactMessage
 from django.core.exceptions import ValidationError
 from star_ratings.models import Rating
 
@@ -29,12 +29,6 @@ class UserProfileForm(forms.ModelForm):
             'phone_number': forms.TextInput(attrs={'type': 'tel', 'pattern': '[0-9]+'}),
         }
 
-    # def clean_phone(self):
-    #     phone = self.cleaned_data['phone']
-    #     if not all(char.isdigit() or char == '+' for char in phone):
-    #         raise forms.ValidationError("Phone number can only contain digits and the plus sign.")
-    #     return phone
-
 
 class ReviewForm(forms.ModelForm):
     rating = forms.ChoiceField(choices=[(str(i), str(i)) for i in range(1, 6)],
@@ -44,9 +38,14 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['rating', 'comment']
 
-    # def clean_rating(self):
-    #     rating = self.cleaned_data.get('rating')
-    #     if not rating:
-    #         self.add_error('end_date', 'Please rate, where one star is the lowest and 5 stars is the maximum score.')
-    #     return rating
 
+class ContactForm(forms.ModelForm):
+    """
+    Form class for users to request a message
+    """
+    class Meta:
+        model = ContactMessage
+        fields = ('name', 'email', 'message',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

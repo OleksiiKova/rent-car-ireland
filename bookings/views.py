@@ -68,9 +68,6 @@ def update_pickup_time_choices(request):
     return JsonResponse({'choices': list(choices)})
 
 
-def home(request):
-    return render(request, 'bookings/home.html')
-
 # Update a list of car after applying filters
 def update_car_list(request):
     car_type = request.GET.get('car_type')

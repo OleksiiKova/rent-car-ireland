@@ -4,8 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import UserProfile, Review
 from bookings.models import Booking
-from .forms import UserProfileForm
-from .forms import ReviewForm
+from .forms import UserProfileForm, ReviewForm, ContactForm
 from django.urls import reverse
 
 # Create your views here.
@@ -58,7 +57,6 @@ def leave_review(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
 
     if not booking.can_leave_review():
-        # Redirect if review cannot be left
         return redirect(reverse('my_bookings'))
 
     
@@ -138,3 +136,23 @@ def delete_review(request, review_id):
         return redirect('my_reviews')
 
     return render(request, 'userprofile/confirm_delete_review.html', {'review': review, 'booking': booking})
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you for your message! We endeavour'
+                                 ' to respond within 2 working days!')
+            return redirect('home')
+        else:
+            messages.add_message(request, messages.ERROR, 'Please correct the errors below.')
+    else:
+        form = ContactForm()
+    
+    return render(request, 'userprofile/contact_us.html', {'form': form})
+
+
+def home(request):
+    return render(request, 'userprofile/home.html')
