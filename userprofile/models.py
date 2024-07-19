@@ -22,6 +22,7 @@ class Review(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_anonymous = models.BooleanField(default=False)
 
 
 class ContactMessage(models.Model):

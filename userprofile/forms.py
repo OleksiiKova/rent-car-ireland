@@ -33,10 +33,11 @@ class UserProfileForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     rating = forms.ChoiceField(choices=[(str(i), str(i)) for i in range(1, 6)],
                                widget=forms.RadioSelect(attrs={'class': 'star-rating'}))
+    is_anonymous = forms.BooleanField(required=False, initial=False, label='Leave anonymously')
 
     class Meta:
         model = Review
-        fields = ['rating', 'comment']
+        fields = ['rating', 'comment', 'is_anonymous']
 
 
 class ContactForm(forms.ModelForm):

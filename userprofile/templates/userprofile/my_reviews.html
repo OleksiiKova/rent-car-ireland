@@ -37,6 +37,13 @@
                         {% endfor %}
                     </div>
                 </div>
+                <div class="author">
+                    {% if review.is_anonymous %}
+                    As anonymous
+                    {% else %}
+                    As {{ review.user.username }}
+                    {% endif %}
+                </div>
                 <p class="comment-field border p-2">{{ review.comment }}</p>
 
             </div>
