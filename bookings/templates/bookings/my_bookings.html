@@ -34,12 +34,17 @@
                 <div class="col-sm-8">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <h4 class="h5">{{ booking.car }}</h4>
+                            <h4 class="h5">
+                                <a href="#" class="booking-link" data-bs-toggle="modal" data-bs-target="#bookingModal"
+                                    data-booking-id="{{ booking.id }}">
+                                    Booking {{ booking.car }}
+                                </a>
+                            </h4>
                         </div>
                         {% if booking.status == 'confirmed' %}
                         <div class="d-flex">
                             <a href="{% url 'edit_booking' booking.id %}" data-bs-toggle="tooltip"
-                                data-bs-title="Edit Booking"><i class="bi bi-pen-fill mx-1"></i></a>
+                                data-bs-title="Edit Booking"><i class="bi bi-pen-fill mx-2"></i></a>
                             <a href="{% url 'delete_booking' booking.id %}" data-bs-toggle="tooltip"
                                 data-bs-title="Delete Booking"><i class="bi bi-trash-fill"></i></a>
                         </div>
@@ -90,4 +95,137 @@
         </div>
     </div>
 </div>
+
+<!-- Nodal window -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookingModalLabel">Booking Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Accordion -->
+                <div class="accordion" id="bookingAccordion">
+                    <!-- Car Info -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingCar">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseCar" aria-expanded="true" aria-controls="collapseCar">
+                                Info about Car
+                            </button>
+                        </h2>
+                        <div id="collapseCar" class="accordion-collapse collapse show" aria-labelledby="headingCar"
+                            data-bs-parent="#bookingAccordion">
+                            <div class="accordion-body" id="carInfo">
+                                <!-- Car Info will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Booking Info -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingBooking">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseBooking" aria-expanded="false" aria-controls="collapseBooking">
+                                Info about Booking
+                            </button>
+                        </h2>
+                        <div id="collapseBooking" class="accordion-collapse collapse" aria-labelledby="headingBooking"
+                            data-bs-parent="#bookingAccordion">
+                            <div class="accordion-body" id="bookingInfo">
+                                <!-- Booking Info will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Customer Info -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingCustomer">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseCustomer" aria-expanded="false"
+                                aria-controls="collapseCustomer">
+                                Info about Customer
+                            </button>
+                        </h2>
+                        <div id="collapseCustomer" class="accordion-collapse collapse" aria-labelledby="headingCustomer"
+                            data-bs-parent="#bookingAccordion">
+                            <div class="accordion-body" id="customerInfo">
+                                <!-- Customer Info will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = new bootstrap.Modal(document.getElementById('bookingModal'));
+
+        document.querySelectorAll('.booking-link').forEach(link => {
+            link.addEventListener('click', function () {
+                const bookingId = this.dataset.bookingId;
+
+                function formatDate(dateString) {
+                    const date = new Date(dateString);
+                    const options = {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    };
+                    return date.toLocaleDateString('en-GB', options);
+                }
+
+                fetch(`/booking/booking_details/${bookingId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Received data:', data);
+
+                        document.getElementById('carInfo').innerHTML = `
+                        <p><strong>${data.car_model} ${data.car_make} (${data.car_year}) ${data.car_type} </strong></p>
+                        <p><strong>Price per day:</strong> ${data.car_price_per_day}€</p>
+                        <p><strong>Fuel Type:</strong> ${data.car_fuel_type}</p>
+                        <p><strong>Transmission:</strong> ${data.car_transmission}</p>
+                        <p><strong>Seats:</strong> ${data.car_seats}</p>
+                        <p><strong>Doors:</strong> ${data.car_doors}</p>
+                        <p><strong>Air Conditioning:</strong> ${data.car_air_conditioning ? 'Yes' : 'No'}</p>
+                        <p><strong>Navigation:</strong> ${data.car_navigation ? 'Yes' : 'No'}</p>
+                    `;
+
+                        document.getElementById('bookingInfo').innerHTML = `
+                        <p><strong>Start Date:</strong> ${formatDate(data.booking_start_date)}</p>
+                        <p><strong>End Date:</strong> ${formatDate(data.booking_end_date)}</p>
+                        <p><strong>Pick Up Time:</strong> ${data.booking_pick_up_time}</p>
+                        <p><strong>Drop Off Time:</strong> ${data.booking_drop_off_time}</p>
+                        <p><strong>Pickup Office:</strong> ${data.pickup_office}</p>
+                        <p><strong>Return Office:</strong> ${data.return_office}</p>
+                        <p><strong>Child Seat:</strong> ${data.booking_child_seat ? 'Yes' : 'No'}</p>
+                        ${data.booking_child_seat ? `<p><strong>Child Seat Option:</strong> ${data.booking_child_seat_option}</p>` : ''}
+                        <p><strong>Extra Insurance:</strong> ${data.booking_extra_insurance ? 'Yes' : 'No'}</p>
+                        <p><strong>Left a review?</strong> ${data.booking_review_left ? 'Yes' : 'No'}</p>
+                        <p><strong>Status:</strong> ${data.booking_status}</p>
+                        <p><strong>Rental Days:</strong> ${data.booking_rental_days}</p>
+                        <p><strong>Total Price:</strong> ${data.total_price}€</p>
+                    `;
+
+                        document.getElementById('customerInfo').innerHTML = `
+                        <p><strong>Name:</strong> ${data.customer_first_name} ${data.customer_last_name}</p>
+                        <p><strong>Email:</strong> ${data.customer_email}</p>
+                        <p><strong>Phone Number:</strong> ${data.customer_phone_number}</p>
+                        <p><strong>Date of Birth:</strong> ${formatDate(data.customer_date_of_birth)}</p>
+                    `;
+
+                        modal.show();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching booking details:', error);
+                    });
+            });
+        });
+    });
+</script>
 {% endblock %}

@@ -296,3 +296,46 @@ def delete_booking(request, booking_id):
     return render(request, 'bookings/confirm_delete.html', {'booking': booking})
 
 
+def booking_details(request, booking_id):
+    try:
+        booking = get_object_or_404(Booking, id=booking_id)
+        car = booking.car
+        
+        data = {
+            'car_model': car.model,
+            'car_make': car.make,
+            'car_year': car.year,
+            'car_type': car.type,
+            'car_fuel_type': car.fuel_type,
+            'car_transmission': car.transmission,
+            'car_seats': car.seats,
+            'car_doors': car.doors,
+            'car_air_conditioning': car.air_conditioning,
+            'car_navigation': car.navigation,
+            'car_price_per_day': car.price_per_day,
+            'car_image': car.image.url,
+            'booking_start_date': booking.start_date,
+            'booking_end_date': booking.end_date,
+            'booking_pick_up_time': booking.pick_up_time,
+            'booking_drop_off_time': booking.drop_off_time,
+            'booking_child_seat': booking.child_seat,
+            'booking_child_seat_option': booking.child_seat_option,
+            'booking_extra_insurance': booking.extra_insurance,
+            'booking_rental_days': booking.rental_days,
+            'booking_review_left': booking.review_left,
+            'booking_status': booking.status,
+            'customer_first_name': booking.first_name,
+            'customer_last_name': booking.last_name,
+            'customer_phone_number': booking.phone_number,
+            'customer_email': booking.email,
+            'customer_date_of_birth': booking.date_of_birth,
+            'pickup_office': booking.pickup_office.name,
+            'return_office': booking.return_office.name,
+            'total_price': booking.total_price,
+        }
+
+        return JsonResponse(data)
+    except Booking.DoesNotExist:
+        return JsonResponse({'error': 'Booking not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

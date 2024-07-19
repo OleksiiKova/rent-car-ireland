@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center my-4">
         <div class="col-lg-6">
-            <h2 class="text-center">Leave a Review for Booking {{ booking.car }} </h2>
+            <h2 class="text-center">Edit the Review for Booking {{ booking.car }} </h2>
             <p class="text-center">From {{ booking.start_date}} to {{ booking.end_date}}</p>
             <form method="post">
                 {% csrf_token %}
@@ -37,9 +37,17 @@
                         </div>
                     </div>
                     <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
+                    <div class="form-group">
+                        {{ form.is_anonymous }} {{ form.is_anonymous.label }}
+                    </div>
                     <input type="hidden" name="rating" id="rating-hidden" value="{{ review.rating }}">
-                    <div class=" my-2">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    <div class="row d-flex justify-content-aroud text-center my-4">
+                        <div class="col-6">
+                            <a class="btn btn-light" href="{% url 'my_reviews' %}">Cancel</a>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-primary mx-2 px-4" type="submit">Save</button>
+                        </div>
                     </div>
                 </div>
             </form>
