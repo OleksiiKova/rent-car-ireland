@@ -24,6 +24,9 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_anonymous = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ["created_at"]
+
 
 class ContactMessage(models.Model):
     """

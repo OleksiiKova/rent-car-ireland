@@ -15,7 +15,7 @@ from urllib.parse import urlencode
 
 
 # Create your views here.
-def booking_search(request):
+def car_search(request):
     car_types = Car.objects.values_list('type', flat=True).distinct()
     transmissions = Car.objects.values_list('transmission', flat=True).distinct()
     
