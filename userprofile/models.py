@@ -23,9 +23,13 @@ class Review(models.Model):
     comment = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     is_anonymous = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["created_at"]
+
+    def __str__(self):
+        return f"Review {self.comment} by {self.user}"
 
 
 class ContactMessage(models.Model):

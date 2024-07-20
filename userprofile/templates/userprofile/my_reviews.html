@@ -12,6 +12,11 @@
         <div class="col-lg-8">
             {% for review in reviews %}
             <div class="review-card my-2 p-2 my-md-4 p-md-4 ">
+                {% if not review.approved %}
+                <p class="approval text-end">
+                    This Review is awaiting approval
+                </p>
+                {% endif %}
                 <div class="d-flex justify-content-between">
                     <div>
                         <h2 class="h4">Review for booking {{ review.booking.car }}</h2>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load form_tags %}
+{% load range_tags %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-3">Customer Reviews</h2>
+    <section id="all-reviews" class="">
+        <div class="row justify-content-center mx-1">
+            <div class="col-lg-8 my-3">
+                {% for review in reviews %}
+                <div class="border my-4 p-2">
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted mb-0">Created: {{ review.created_at|date:"d M Y" }}</p>
+                        <div class="review-rating d-flex">
+                            {% for i in 5|times %}
+                            {% if i <= review.rating %}
+                            <span class="text-warning">★</span>
+                            {% else %}
+                            <span class="text-secondary">☆</span>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="p-2">{{ review.comment }}</div>
+                    <div class="d-flex justify-content-end">
+
+                        <div class="text-muted text-end">
+                            {% if user.is_authenticated and review.user == user %}
+                            This is your review
+                            {% else %}
+                            {% if review.is_anonymous %}
+                            By anonymous
+                            {% else %}
+                            By {{ review.user.username }}
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="d-flex">
+                            {% if user.is_authenticated and review.user == user %}
+                            <a href="{% url 'edit_review' review.id %}" data-bs-toggle="tooltip"
+                                data-bs-title="Edit Review"><i class="bi bi-pen-fill mx-2"></i></a>
+                            <a href="{% url 'delete_review' review.id %}" data-bs-toggle="tooltip"
+                                data-bs-title="Delete Review"><i class="bi bi-trash-fill"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

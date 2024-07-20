@@ -100,6 +100,7 @@ def edit_review(request, review_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
+            review.approved = False
             form.save()
             messages.add_message(
                 request, messages.SUCCESS,
@@ -155,4 +156,10 @@ def contact_us(request):
 
 
 def home(request):
-    return render(request, 'userprofile/home.html')
+    reviews = Review.objects.filter(approved=True).order_by('-created_at')[:2]
+    return render(request, 'userprofile/home.html', {'reviews': reviews})
+
+
+def all_reviews(request):
+    all_reviews = Review.objects.filter(approved=True).order_by('-created_at')
+    return render(request, 'userprofile/all_reviews.html', {'reviews': all_reviews})
