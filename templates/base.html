@@ -72,6 +72,10 @@
                         <a class="nav-link {% if request.path == contact_us_url %}active{% endif %}" aria-current="page"
                             href="{% url 'contact_us' %}">Contact Us</a>
                     </li>
+
+                    <!-- Divider -->
+                    <li class="nav-item mobile-divider d-lg-none"></li>
+
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link d-lg-none {% if request.path == my_profile_url %}active{% endif %}"
@@ -104,7 +108,7 @@
                             {% endif %}
                             {{ user.username }}
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end bg-dark " aria-labelledby="userDropdown">
                             <li><a class="nav-link {% if request.path == my_profile_url %}active{% endif %}"
                                     href="{% url 'my_profile' %}">My Profile</a></li>
                             <li><a class="nav-link {% if request.path == my_booking_url %}active{% endif %}"
@@ -173,7 +177,7 @@
 
                 </div>
                 <!-- Quick Links -->
-                <div class="col-md-4 text-md-end">
+                <div class="col-md-4 text-md-end d-none d-md-block">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
@@ -186,7 +190,7 @@
             <hr class="bg-light">
             <div class="row text-center">
                 <div class="col-md-6 text-md-start">
-                    <p>&copy; 2024 EireWheels. All rights reserved.</p>
+                    <p class="mb-0">&copy; 2024 EireWheels. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a>

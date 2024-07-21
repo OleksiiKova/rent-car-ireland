@@ -12,6 +12,12 @@
     margin-right: 8px;
 }
 
+.mobile-divider {
+    border-bottom: 1px solid #ddd;
+    margin: 8px 0;
+    width: 100px;
+}
+
 #map { 
     height: 400px; 
     width: 100%; 
@@ -21,6 +27,10 @@
 #officePhone,
 #officeHours {
     font-size: 1.25rem;
+}
+
+.content-container {
+    margin-top: 80px;
 }
 
 /* -----------------Car list---------------------- */
@@ -186,6 +196,13 @@
       height: 21vw;
     }
   }
+
+  /* @media screen and (min-width: 1200px) {
+    .carousel-item {
+      flex: 0 0 calc(100% / 3);
+    }
+  } */
+
   .carousel-inner {
     padding: 1em;
   }
@@ -212,3 +229,36 @@
   }
 
   /* ----------------END Review Carousel ----------------*/
+
+
+  /* ----------------Shrink the brand on small screens---------- */
+  .navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 350px) {
+    .navbar-brand {
+        flex-grow: 1;
+    }
+
+    .brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-text {
+        font-size: 0.8rem;
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+}
+
+  /* ----------------END Shrink the brand on small screens---------- */

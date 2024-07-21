@@ -12,6 +12,12 @@
     margin-right: 8px;
 }
 
+.mobile-divider {
+    border-bottom: 1px solid #ddd;
+    margin: 8px 0;
+    width: 100px;
+}
+
 #map { 
     height: 400px; 
     width: 100%; 
