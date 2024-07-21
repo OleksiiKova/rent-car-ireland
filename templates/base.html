@@ -42,7 +42,7 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark text-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <div class="brand-container">
@@ -149,7 +149,7 @@
     </div>
 
     <main class="flex-shrink-0 main-bg">
-        <div class="pt-5 my-5">
+        <div class="content-container pt-5 mb-5">
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
@@ -159,15 +159,16 @@
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg bg-dark text-light">
         <div class="container">
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex justify-content-between text-center">
                 <!-- Contact Information -->
-                <div class="col-md-4">
+                <div class="col-md-4 text-md-start">
                     <h5>Contact Us</h5>
-                    <p><i class="fas fa-map-marker-alt"></i> <a
+                    <p class="mb-1"><i class="fas fa-map-marker-alt"></i> <a
                             href="https://www.google.com/maps?q=123+Main+Street,+Dublin,+Ireland" target="_blank">123
                             Main Street, Dublin, Ireland</a></p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+35312345678">+353 1 234 5678</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:support@eirewheels.ie">support@eirewheels.ie</a>
+                    <p class="mb-1"><i class="fas fa-phone"></i> <a href="tel:+35312345678">+353 1 234 5678</a></p>
+                    <p class="mb-1"><i class="fas fa-envelope"></i> <a
+                            href="mailto:support@eirewheels.ie">support@eirewheels.ie</a>
                     </p>
 
                 </div>
@@ -183,8 +184,8 @@
                 </div>
             </div>
             <hr class="bg-light">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row text-center">
+                <div class="col-md-6 text-md-start">
                     <p>&copy; 2024 EireWheels. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">

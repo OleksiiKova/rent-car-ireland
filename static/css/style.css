@@ -23,6 +23,10 @@
     font-size: 1.25rem;
 }
 
+.content-container {
+    margin-top: 80px;
+}
+
 /* -----------------Car list---------------------- */
 .image-container {
     position: relative;
