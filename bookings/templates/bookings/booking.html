@@ -59,14 +59,16 @@
         </div>
     </div>
     {% if cars %}
-    <div class="d-flex justify-content-end">
-        <button class="filter-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#filterText"
+    <div class="row flex justify-content-center">
+    <div class="d-flex justify-content-end col-lg-8">
+        <button class="filter-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#filterText"
             aria-controls="filterText" aria-expanded="false" aria-label="Toggle filter">
             <span><i class="fa-solid fa-filter"></i></span>
         </button>
     </div>
-    <div class="filters-collapse mt-2 collapse d-lg-flex justify-content-center " id="filterText">
-        <div class="d-flex col-12 col-lg-8 flex-wrap justify-content-center">
+    <div class="filters-collapse mt-2 collapse justify-content-center " id="filterText">
+<div class="d-flex justify-content-center">
+        <div class="d-flex col-lg-8 flex-wrap justify-content-center">
             <div class="mb-2">
                 <label class="mx-2">
                     <input type="checkbox" id="air-conditioning" name="air_conditioning"> Air Conditioning
@@ -105,6 +107,8 @@
                 <button id="reset-filters" class="btn-small btn-secondary mx-2">Reset Filters</button>
             </div>
         </div>
+</div>
+    </div>
     </div>
     <div id="car-list-container" class="col-12 mt-3">
         {% include 'bookings/car_list.html' %}

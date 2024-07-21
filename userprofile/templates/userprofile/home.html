@@ -5,11 +5,11 @@
 {% load range_tags %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center mt-3 mb-5">We are in all airports in Ireland</h2>
+<h2 class="text-center mt-3 mb-3">We are in all airports in Ireland</h2>
 
-    <!-- Advantages Section -->
-    <section id="advantages" class="py-5 bg-light text-center">
+<!-- Advantages Section -->
+<section id="advantages" class="py-5 text-center">
+    <div class="container-fluid bg-light py-5">
         <div class="container">
             <h3 class="mb-5">Why Choose Us?</h3>
             <div class="row">
@@ -19,7 +19,8 @@
                         <div class="card-body">
                             <i class="bi bi-check-square fs-3 text-primary"></i>
                             <h5 class="card-title mt-3">Unlimited Mileage</h5>
-                            <p class="card-text">Enjoy the freedom to drive as far as you want without any additional
+                            <p class="card-text">Enjoy the freedom to drive as far as you want without any
+                                additional
                                 charges.</p>
                         </div>
                     </div>
@@ -30,7 +31,8 @@
                         <div class="card-body">
                             <i class="bi bi-check-square fs-3 text-primary"></i>
                             <h5 class="card-title mt-3">Free Child Seat</h5>
-                            <p class="card-text">No extra cost for providing a child seat to ensure safety and comfort
+                            <p class="card-text">No extra cost for providing a child seat to ensure safety and
+                                comfort
                                 for your little ones.</p>
                         </div>
                     </div>
@@ -41,7 +43,8 @@
                         <div class="card-body">
                             <i class="bi bi-check-square fs-3 text-primary"></i>
                             <h5 class="card-title mt-3">Basic Insurance Included</h5>
-                            <p class="card-text">Our rental includes basic insurance coverage for peace of mind on the
+                            <p class="card-text">Our rental includes basic insurance coverage for peace of mind on
+                                the
                                 road.</p>
                         </div>
                     </div>
@@ -52,7 +55,8 @@
                         <div class="card-body">
                             <i class="bi bi-check-square fs-3 text-primary"></i>
                             <h5 class="card-title mt-3">Free Additional Driver</h5>
-                            <p class="card-text">Add an extra driver to your rental at no additional cost, perfect for
+                            <p class="card-text">Add an extra driver to your rental at no additional cost, perfect
+                                for
                                 long journeys.</p>
                         </div>
                     </div>
@@ -82,10 +86,12 @@
             </div>
             <a class="btn btn-primary mt-3" aria-current="page" href="{% url 'booking' %}">Get a Quote Now</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-5 text-center">
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-5 text-center">
+    <div class="container-fluid py-5">
         <div class="container">
             <h3 class="mb-5">How It Works</h3>
             <div class="row">
@@ -117,101 +123,107 @@
                     <div class="card mb-4 h-md-100">
                         <div class="card-body">
                             <h4 class="card-title">Step 4: Return the Car</h4>
-                            <p class="card-text">Return the. Drop the keys in our mailbox.</p>
+                            <p class="card-text">Return the car and just drop the keys in our mailbox.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" class="py-5 bg-light text-center">
-        <h3 class="mb-5">What Our Customers Are Saying</h3>
-        <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-            <div class="carousel-inner flex align-items-center">
-                {% for review in reviews %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="text-muted mb-0">Created: {{ review.created_at|date:"d M Y" }}</p>
-                                <div class="review-rating d-flex">
-                                    {% for i in 5|times %}
-                                    {% if i <= review.rating %}
-                                    <span class="text-warning">★</span>
-                                    {% else %}
-                                    <span class="text-secondary">☆</span>
-                                    {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="p-2 review-field">{{ review.comment }}</div>
-                            <div class="d-flex justify-content-end">
-                                <div class="text-muted text-end">
-                                    {% if review.is_anonymous %}
-                                    By anonymous
-                                    {% else %}
-                                    By {{ review.user.username }}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        <div class="text-end">
-            <a href="{% url 'all_reviews' %}" class="btn btn-secondary btn-sm mt-3">View All Reviews</a>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about-us" class="py-5 text-center">
+<!-- Reviews Section -->
+<section id="reviews" class="py-5">
+    <div class="container-fluid py-5 bg-light">
         <div class="container">
-            <h3 class="mb-5">About Us</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{% static 'images/about-us.webp' %}" class="img-fluid mb-4" alt="About Us">
+            <h3 class="mb-5 text-center">What Our Customers Are Saying</h3>
+            <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+                <div class="carousel-inner flex align-items-center">
+                    {% for review in reviews %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-muted mb-0">Created: {{ review.created_at|date:"d M Y" }}</p>
+                                    <div class="review-rating d-flex">
+                                        {% for i in 5|times %}
+                                        {% if i <= review.rating %}
+                                        <span class="text-warning">★</span>
+                                        {% else %}
+                                        <span class="text-secondary">☆</span>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="p-2 review-field">{{ review.comment }}</div>
+                                <div class="d-flex justify-content-end">
+                                    <div class="text-muted text-end">
+                                        {% if review.is_anonymous %}
+                                        By anonymous
+                                        {% else %}
+                                        By {{ review.user.username }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="col-md-6">
-                    <p>
-                        Welcome to our car rental service! We are dedicated to providing you with a seamless and
-                        hassle-free car rental experience. Whether you're visiting Ireland for business or pleasure, we
-                        have a wide range of vehicles to suit your needs.
-                    </p>
-                    <p>
-                        Our mission is to make your travel as comfortable and convenient as possible. With locations in
-                        all major airports across Ireland, we are always there when you need us. Our fleet is regularly
-                        maintained and updated to ensure that you have a safe and enjoyable ride.
-                    </p>
-                    <p>
-                        We pride ourselves on our exceptional customer service and competitive pricing. Our team is here
-                        to assist you with any queries you may have, and we are committed to making your car rental
-                        experience a memorable one.
-                    </p>
-                    <p>
-                        Thank you for choosing us. We look forward to serving you and making your trip to Ireland
-                        unforgettable!
-                    </p>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="text-end">
+                <a href="{% url 'all_reviews' %}" class="btn btn-secondary btn-sm mt-3">View All Reviews</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-5 text-center">
+<!-- About Us Section -->
+<section id="about-us" class="py-5 text-center">
+    <div class="container">
+        <h3 class="mb-5">About Us</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'images/about-us.webp' %}" class="img-fluid mb-4" alt="About Us">
+            </div>
+            <div class="col-md-6">
+                <p>
+                    Welcome to our car rental service! We are dedicated to providing you with a seamless and
+                    hassle-free car rental experience. Whether you're visiting Ireland for business or pleasure, we
+                    have a wide range of vehicles to suit your needs.
+                </p>
+                <p>
+                    Our mission is to make your travel as comfortable and convenient as possible. With locations in
+                    all major airports across Ireland, we are always there when you need us. Our fleet is regularly
+                    maintained and updated to ensure that you have a safe and enjoyable ride.
+                </p>
+                <p>
+                    We pride ourselves on our exceptional customer service and competitive pricing. Our team is here
+                    to assist you with any queries you may have, and we are committed to making your car rental
+                    experience a memorable one.
+                </p>
+                <p>
+                    Thank you for choosing us. We look forward to serving you and making your trip to Ireland
+                    unforgettable!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" class="py-5 text-center">
+    <div class="container-fluid py-5 bg-light">
         <div class="container">
             <h3 class="mb-5">Frequently Asked Questions</h3>
             <div class="accordion" id="faqAccordion">
@@ -303,8 +315,8 @@
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
