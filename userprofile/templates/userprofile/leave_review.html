@@ -4,12 +4,12 @@
 {% load form_tags %}
 
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center my-4">
+<div class="container py-5">
+    <div class="row justify-content-center">
         <div class="col-lg-6">
             <h2 class="text-center">Leave a Review for Booking {{ booking.car }} </h2>
             <p class="text-center">From {{ booking.start_date}} to {{ booking.end_date}}</p>
-            <form method="post">
+            <form method="post" class="my-4">
                 {% csrf_token %}
                 <div class="text-center text-sm-end">
                     <div class="form-group">

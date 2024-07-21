@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-3">
+<div class="container py-5">
     <h2 class="text-center">Car Booking</h2>
-    <div class="d-flex justify-content-center align-items-center search-form">
+    <div class="d-flex justify-content-center align-items-center search-form my-4">
         <div class="col-12 col-lg-8 mt-2">
             <form method="POST" action="{% url 'booking' %}">
                 {% csrf_token %}
