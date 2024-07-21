@@ -6,6 +6,7 @@ from .models import UserProfile, Review
 from bookings.models import Booking
 from .forms import UserProfileForm, ReviewForm, ContactForm
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 # Create your views here.
 @login_required
@@ -89,7 +90,7 @@ def leave_review(request, booking_id):
 
 @login_required
 def my_reviews(request):
-    user_reviews = Review.objects.filter(user=request.user)
+    user_reviews = Review.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'userprofile/my_reviews.html', {'reviews': user_reviews})
 
 
@@ -156,10 +157,20 @@ def contact_us(request):
 
 
 def home(request):
-    reviews = Review.objects.filter(approved=True).order_by('-created_at')[:2]
+    reviews = Review.objects.filter(approved=True).order_by('-created_at')
     return render(request, 'userprofile/home.html', {'reviews': reviews})
 
 
 def all_reviews(request):
-    all_reviews = Review.objects.filter(approved=True).order_by('-created_at')
-    return render(request, 'userprofile/all_reviews.html', {'reviews': all_reviews})
+    review_list = Review.objects.filter(approved=True).order_by('-created_at')
+    paginator = Paginator(review_list, 4)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'reviews': page_obj.object_list,
+        'page_obj': page_obj,
+        'is_paginated': page_obj.has_other_pages(),
+    }
+    return render(request, 'userprofile/all_reviews.html', context)

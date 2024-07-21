@@ -129,11 +129,86 @@
 /* ----------------END Stars in review END ----------------*/
 
 .comment-field {
-    height: 150px; /* Adjust the height as needed */
-    overflow-y: auto; /* Add vertical scrollbar if content overflows */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
 }
+
+.review-field {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.faded {
+    color: rgb(172, 175, 175);
+}
+
+/* ----------------Review Carousel ----------------*/
+/* .carousel-item {
+    display: flex;
+} */
+
+.carousel-item .row {
+    width: 100%;
+}
+
+.carousel-item .col-md-6 {
+    flex: 1;
+    padding: 0 10px;
+}
+
+@media (max-width: 576px) {
+    .carousel-item .col-md-6 {
+        flex: 1 0 100%;
+        padding: 0;
+    }
+}
+
+  @media screen and (min-width: 576px) {
+    .carousel-inner {
+      display: flex;
+    }
+    .carousel-item {
+      display: flex;
+      display: block;
+      margin-right: 0;
+      flex: 0 0 calc(100% / 2);
+    }
+    .img-wrapper {
+      height: 21vw;
+    }
+  }
+  .carousel-inner {
+    padding: 1em;
+  }
+  .card {
+    margin: 0 0.5em;
+    border-radius: 0;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    font-size: 0.9em;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 6vh;
+    height: 6vh;
+    background-color: #e1e1e1;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+  }
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    opacity: 0.8;
+  }
+
+  /* ----------------END Review Carousel ----------------*/
