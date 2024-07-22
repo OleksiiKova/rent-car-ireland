@@ -303,7 +303,7 @@ def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     if request.method == 'POST':
         booking.delete()
-        messages.success(request, 'Booking deleted successfully.')
+        messages.success(request, 'Booking has been deleted successfully.')
         return redirect('my_bookings')
 
     return render(

@@ -197,13 +197,11 @@ def edit_review(request, review_id):
                 )
     else:
         form = ReviewForm(instance=review)
-
     context = {
         'form': form,
         'booking': booking,
         'review': review
     }
-
     return render(request, 'userprofile/edit_review.html', context)
 
 

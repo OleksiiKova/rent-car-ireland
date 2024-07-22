@@ -173,26 +173,34 @@
                     </div>
                     <div class="row my-4">
                         <div class="col">
-                            {{ form.child_seat.label_tag }} <span class="badge bg-secondary">Free</span>
-                            {{ form.child_seat }} {{ form.child_seat_option|add_class:"w-100 px-2 mt-2" }}
+                            <label for="id_child_seat" class="custom-checkbox-container">
+                                Child seat: <span class="badge bg-secondary">Free</span>
+                                {{ form.child_seat }}
+                                <span class="checkmark"></span>
+                            </label>
+                            {{ form.child_seat_option|add_class:"w-100 px-2 mt-2" }}
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class="col">
-                            <label for="id_extra_insurance">Extra Insurance: <span class="badge bg-secondary">5€/day max. 50€</span></label>
-                            {{ form.extra_insurance }}
-                            <button type="button" class="btn btn-link" data-bs-toggle="modal"
-                                data-bs-target="#insuranceModal">
+                            <label for="id_extra_insurance" class="custom-checkbox-container">
+                                Extra Insurance: <span class="badge bg-secondary">5€/day max. 50€</span>
+                                {{ form.extra_insurance }}
+                                <span class="checkmark"></span>
+                            </label>
+                            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#insuranceModal">
                                 More About Extra Insurance
                             </button>
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class="col">
-                            {{ form.rules_agreement.label_tag }}
-                            {{ form.rules_agreement }}
-                            <button type="button" class="btn btn-link" data-bs-toggle="modal"
-                                data-bs-target="#termsModal">
+                            <label for="id_rules_agreement" class="custom-checkbox-container">
+                                {{ form.rules_agreement.label_tag }}
+                                {{ form.rules_agreement }}
+                                <span class="checkmark"></span>
+                            </label>
+                            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#termsModal">
                                 Read Terms and Conditions
                             </button>
                         </div>
@@ -325,9 +333,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const extraInsuranceCheckbox = document.querySelector('input[name="extra_insurance"]');
         extraInsuranceCheckbox.addEventListener('change', updateTotalCost);
-
         updateTotalCost();
-
     });
 
     function toggleChildSeatOption(checkbox) {
@@ -342,7 +348,6 @@
         }
     }
     document.addEventListener('DOMContentLoaded', function () {
-        // Modal Insurance
         const agreeButton = document.getElementById('agreeButton');
         const rulesAgreementCheckbox = document.querySelector('input[name="rules_agreement"]');
         agreeButton.addEventListener('click', function () {
@@ -351,7 +356,6 @@
             modal.hide();
         });
 
-        // Modal Insurance
         const okButton = document.getElementById('okButton');
         okButton.addEventListener('click', function () {
             const modal = bootstrap.Modal.getInstance(document.getElementById('insuranceModal'));

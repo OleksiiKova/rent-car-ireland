@@ -5,27 +5,30 @@
 {% block head_title %}{% trans "Signup" %}{% endblock head_title %}
 
 {% block content %}
-<div class="conatiner">
-  <div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
-      <h3>{% trans "Sign Up" %}</h3>
+<div class="container py-2">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 mt-3">
+      <h3 class="text-center">{% trans "Sign Up" %}</h3>
 
-      <p>{% blocktrans %}Welcome back to the code|star blog. Do you already have an account? Then please <a class="link"
+      <p>{% blocktrans %}Welcome back to the EireWheel. Do you already have an account? Then please <a class="link"
           href="{{ login_url }}">sign in</a> instead.{% endblocktrans %}</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
-      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button class="btn btn-primary right" type="submit">{% trans "Sign Up" %}</button>
-      </form>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 mt-3">
+      <div class="row d-flex justify-content-center">
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <div class="text-center">
+            <button class="btn btn-primary right" type="submit">{% trans "Sign Up" %}</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-{% endblock content %}
+  {% endblock content %}

@@ -1,3 +1,131 @@
+.btn-primary {
+    background-color: #0A210F;
+    border-color: #6BA756;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #6BA756;
+    border-color: #0A210F;
+    color: #0A210F;
+}
+
+.btn-primary:focus,
+.btn-primary:active:focus {
+    box-shadow: 0 0 0  rgba(10, 33, 15, .5);
+}
+
+.btn-link {
+    color: #0A210F;
+}
+
+.btn-link:hover {
+    color: #6BA756;
+}
+
+.navbar,
+.dropdown-menu,
+.footer {
+    background-color: #0A210F;
+}
+
+footer a {
+    color: rgba(255, 255, 255, .55);
+}
+
+footer a:hover {
+    color: #6BA756;
+}
+
+a {
+    color: #0A210F;
+}
+
+.my-bookings-container a:hover,
+.my-reviews-container a:hover {
+    color: #6BA756;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #6BA756;
+    color: #0A210F;
+}
+
+.accordion-button:focus {
+    border-color: #0A210F;
+    box-shadow: 0 0 0 .25rem rgba(10, 33, 15, .5);
+}
+
+#advantages i {
+    color: #6BA756;
+}
+
+.changeable_booking_info input[type="checkbox"]:checked {
+    color: #0A210F;
+  }
+
+/* .alert-success {
+    background-color: #219831;
+    color: #0A210F;
+} */
+
+
+
+  /* ---------Custom checkbox--------- */
+  .custom-checkbox-container input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .custom-checkbox-container {
+    position: relative;
+    display: inline-block;
+    padding-left: 35px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .custom-checkbox-container input[type="checkbox"] + .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .custom-checkbox-container input[type="checkbox"]:checked + .checkmark {
+    background-color: #0A210F;
+    border-color: #0A210F;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .custom-checkbox-container input[type="checkbox"]:checked + .checkmark:after {
+    display: block;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+/* ---------END Custom checkbox--------- */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #0A210F;
+}
+
+
 .brand-container {
     display: flex;
     flex-direction: column;
@@ -125,11 +253,6 @@
     color: gold;
 }
 
-/* .star-rating label:hover,
-.star-rating label:hover ~ label {
-    color: gold;
-} */
-
 .star-rating label.preview:hover,
 .star-rating label.preview:hover ~ label {
     color: gold;
@@ -162,9 +285,6 @@
 }
 
 /* ----------------Review Carousel ----------------*/
-/* .carousel-item {
-    display: flex;
-} */
 
 .carousel-item .row {
     width: 100%;
