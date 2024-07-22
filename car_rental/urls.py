@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from bookings import views
+from cars import views
 from userprofile import views as userprofile_views
 
 

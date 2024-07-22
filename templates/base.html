@@ -24,12 +24,13 @@
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
 
     <!-- Google Fonts CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet"> -->
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
@@ -137,26 +138,27 @@
         </div>
     </nav>
 
-    <!-- displaying Django messages -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
-                    {{ message }}
-                </div>
-                {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
     <main class="flex-shrink-0 main-bg">
+        <!-- displaying Django messages -->
         <div class="content-container">
-            {% block content %}
-            <!-- Content Goes here -->
-            {% endblock content %}
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div
+                        class="mt-3 alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="">
+                {% block content %}
+                <!-- Content Goes here -->
+                {% endblock content %}
+            </div>
         </div>
     </main>
 
@@ -165,26 +167,18 @@
         <div class="container">
             <div class="row d-flex justify-content-between text-center">
                 <!-- Contact Information -->
-                <div class="col-md-4 text-md-start">
+                <div class="">
                     <h5>Contact Us</h5>
-                    <p class="mb-1"><i class="fas fa-map-marker-alt"></i> <a
-                            href="https://www.google.com/maps?q=123+Main+Street,+Dublin,+Ireland" target="_blank">123
-                            Main Street, Dublin, Ireland</a></p>
-                    <p class="mb-1"><i class="fas fa-phone"></i> <a href="tel:+35312345678">+353 1 234 5678</a></p>
-                    <p class="mb-1"><i class="fas fa-envelope"></i> <a
-                            href="mailto:support@eirewheels.ie">support@eirewheels.ie</a>
-                    </p>
-
-                </div>
-                <!-- Quick Links -->
-                <div class="col-md-4 text-md-end d-none d-md-block">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
-                        <li><a href="{% url 'booking' %}" class="text-light">Book a Car</a></li>
-                        <li><a href="{% url 'locations' %}" class="text-light">Locations</a></li>
-                        <li><a href="{% url 'contact_us' %}" class="text-light">Contact Us</a></li>
-                    </ul>
+                    <div class="d-md-flex justify-content-around">
+                        <p class="mb-1"><i class="fas fa-envelope"></i> <a
+                                href="mailto:support@eirewheels.ie">support@eirewheels.ie</a>
+                        </p>
+                        <p class="mb-1"><i class="fas fa-map-marker-alt"></i> <a
+                                href="https://www.google.com/maps?q=123+Main+Street,+Dublin,+Ireland"
+                                target="_blank">123
+                                Main Street, Dublin, Ireland</a></p>
+                        <p class="mb-1"><i class="fas fa-phone"></i> <a href="tel:+35312345678">+353 1 234 5678</a></p>
+                    </div>
                 </div>
             </div>
             <hr class="bg-light">
@@ -195,7 +189,8 @@
                 <div class="col-md-6 text-md-end">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a>
                     <span class="text-light mx-2">|</span>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsConditionsModal">Terms and Conditions</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsConditionsModal">Terms and
+                        Conditions</a>
                 </div>
             </div>
         </div>
@@ -206,32 +201,40 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="privacyPolicyModalLabel">Privacy Policy</h5>
+                        <h3 class="modal-title text-dark" id="privacyPolicyModalLabel">Privacy Policy</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-dark">
-                        <p>Welcome to EireWheels! Your privacy is important to us. This Privacy Policy outlines how we
-                            collect, use, and protect your personal information when you visit our website or use our
+                        <p>Welcome to EireWheels! Your privacy is important to us. This Privacy Policy outlines how
+                            we
+                            collect, use, and protect your personal information when you visit our website or use
+                            our
                             services.</p>
 
                         <h5>1. Information We Collect</h5>
-                        <p>We collect personal information such as your name, email address and phone number when you
+                        <p>We collect personal information such as your name, email address and phone number when
+                            you
                             book a car through our website. We also collect data about your browsing
                             activities and interactions with our website.</p>
 
                         <h5>2. How We Use Your Information</h5>
-                        <p>Your personal information is used to process your bookings, communicate with you, and improve
-                            our services. We may also use your information to send promotional offers or updates, but
+                        <p>Your personal information is used to process your bookings, communicate with you, and
+                            improve
+                            our services. We may also use your information to send promotional offers or updates,
+                            but
                             only if you have opted to receive them.</p>
 
                         <h5>3. Data Retention</h5>
-                        <p>We retain your personal information for as long as necessary to fulfill the purposes outlined
+                        <p>We retain your personal information for as long as necessary to fulfill the purposes
+                            outlined
                             in this policy or as required by law. We take steps to ensure that your data is securely
                             stored and protected.</p>
 
                         <h5>4. Sharing Your Information</h5>
-                        <p>We may share your information with third-party service providers who assist us in operating
-                            our website and providing our services. We do not sell or rent your personal information to
+                        <p>We may share your information with third-party service providers who assist us in
+                            operating
+                            our website and providing our services. We do not sell or rent your personal information
+                            to
                             third parties.</p>
 
                         <h5>5. Data Security</h5>
@@ -240,11 +243,13 @@
 
                         <h5>6. Your Rights</h5>
                         <p>You have the right to access, correct, or delete your personal information. You can also
-                            object to or restrict the processing of your data. To exercise these rights, please contact
+                            object to or restrict the processing of your data. To exercise these rights, please
+                            contact
                             us at support@eirewheels.ie.</p>
 
                         <h5>7. Contact Us</h5>
-                        <p>If you have any questions about this Privacy Policy or our data practices, please contact us
+                        <p>If you have any questions about this Privacy Policy or our data practices, please contact
+                            us
                             at support@eirewheels.ie.</p>
                     </div>
                     <div class="modal-footer">
@@ -261,16 +266,18 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="termsConditionsModalLabel">Terms and Conditions</h5>
+                        <h3 class="modal-title text-dark" id="termsConditionsModalLabel">Terms and Conditions</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-dark">
                         <h5>Introduction</h5>
-                        <p class="small">Welcome to our car rental service. By using our website and services, you agree
+                        <p class="small">Welcome to our car rental service. By using our website and services, you
+                            agree
                             to comply with and be bound by the following terms and conditions. Please review them
                             carefully.</p>
                         <h5>1. Rental Agreement</h5>
-                        <p class="small m-0">1.1. The rental agreement is between the customer (hereinafter referred to
+                        <p class="small m-0">1.1. The rental agreement is between the customer (hereinafter referred
+                            to
                             as "You" or "Customer") and our car rental company (hereinafter referred to as "We" or
                             "Company").</p>
                         <p class="small">1.2. By renting a vehicle from us, you agree to the terms and conditions
@@ -279,19 +286,23 @@
                         <p class="small m-0">2.1. You must be between 23 and 70 years old to rent a vehicle.</p>
                         <p class="small m-0">2.2. You must possess a valid driver’s license that is recognized in
                             Ireland.</p>
-                        <p class="small">2.3. Additional drivers must meet the same eligibility criteria and be listed
+                        <p class="small">2.3. Additional drivers must meet the same eligibility criteria and be
+                            listed
                             in the rental agreement.</p>
                         <h5>3. Booking and Confirmation</h5>
-                        <p class="small m-0">3.1. A booking is confirmed if a vehicle is available and we can provide
+                        <p class="small m-0">3.1. A booking is confirmed if a vehicle is available and we can
+                            provide
                             it.</p>
-                        <p class="small">3.2. Payment is to be made via credit or debit card upon vehicle pick-up.</p>
+                        <p class="small">3.2. Payment is to be made via credit or debit card upon vehicle pick-up.
+                        </p>
                         <h5>4. Cancellations and Refunds</h5>
                         <p class="small">4.1. No additional charges are incurred for canceling a booking.</p>
                         <h5>5. Vehicle Pick-up and Return</h5>
                         <p class="small m-0">5.1. Vehicles must be picked up and returned at the specified times and
                             locations.</p>
                         <p class="small m-0">5.2. Late returns may incur additional charges.</p>
-                        <p class="small">5.3. The vehicle must be returned in the same condition as it was at the time
+                        <p class="small">5.3. The vehicle must be returned in the same condition as it was at the
+                            time
                             of pick-up.</p>
                         <h5>6. Usage of the Vehicle</h5>
                         <p class="small m-0">6.1. The vehicle is to be used for personal transportation only.</p>
@@ -305,13 +316,16 @@
                         <h5>8. Fuel Policy</h5>
                         <p class="small m-0">8.1. The vehicle will be provided with a full tank of fuel and must be
                             returned with a full tank.</p>
-                        <p class="small">8.2. Failure to return the vehicle with a full tank will result in a refueling
+                        <p class="small">8.2. Failure to return the vehicle with a full tank will result in a
+                            refueling
                             charge.</p>
                         <h5>9. Privacy and Data Protection</h5>
-                        <p class="small">9.1. We are committed to protecting your privacy. All personal data collected
+                        <p class="small">9.1. We are committed to protecting your privacy. All personal data
+                            collected
                             during the booking process will be handled in accordance with our Privacy Policy.</p>
                         <h5>10. Amendments</h5>
-                        <p class="small">10.1. We reserve the right to amend these terms and conditions at any time. Any
+                        <p class="small">10.1. We reserve the right to amend these terms and conditions at any time.
+                            Any
                             changes will be posted on our website.</p>
                         <h5>11. Governing Law</h5>
                         <p class="small">11.1. These terms and conditions are governed by the laws of Ireland.</p>

@@ -14,14 +14,14 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="id_name" class="form-label fw-bold">Name</label>
+                    <label for="id_name" class="form-label">Name</label>
                     {{ form.name|add_class:"form-control" }}
                     {% if form.name.errors %}
                     <div class="text-danger">{{ form.name.errors }}</div>
                     {% endif %}
                 </div>
                 <div class="mb-3">
-                    <label for="id_email" class="form-label fw-bold">Email</label>
+                    <label for="id_email" class="form-label">Email</label>
                     {{ form.email|add_class:"form-control" }}
                     {% if form.email.errors %}
                     <div class="text-danger">{{ form.email.errors }}</div>
@@ -30,7 +30,7 @@
                         your message.</p>
                 </div>
                 <div class="mb-3">
-                    <label for="id_message" class="form-label fw-bold">Message</label>
+                    <label for="id_message" class="form-label">Message</label>
                     {{ form.message|add_class:"form-control" }}
                     {% if form.message.errors %}
                     <div class="text-danger">{{ form.message.errors }}</div>
