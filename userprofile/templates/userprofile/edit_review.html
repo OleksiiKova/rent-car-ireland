@@ -37,8 +37,12 @@
                         </div>
                     </div>
                     <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
-                    <div class="form-group">
-                        {{ form.is_anonymous }} {{ form.is_anonymous.label }}
+                    <div>
+                        <label for="id_is_anonymous" class="custom-checkbox-container">
+                            Leave anonymously
+                            {{ form.is_anonymous }}
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <input type="hidden" name="rating" id="rating-hidden" value="{{ review.rating }}">
                     <div class="row d-flex justify-content-aroud text-center my-4">
