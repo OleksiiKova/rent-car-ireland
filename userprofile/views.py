@@ -105,8 +105,8 @@ def leave_review(request, booking_id):
     """
     booking = get_object_or_404(Booking, pk=booking_id)
 
-    if not booking.can_leave_review():
-        return redirect(reverse('my_bookings'))
+    # if not booking.can_leave_review():
+    #     return redirect(reverse('my_bookings'))
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -131,7 +131,11 @@ def leave_review(request, booking_id):
                     'the maximum score.'
                 )
     else:
+        if booking.review_left:
+            # Redirect if the review has already been left
+            return redirect(reverse('my_reviews'))
         form = ReviewForm()
+        return render(request, 'userprofile/leave_review.html', {'form': form, 'booking': booking})
 
     return render(request, 'userprofile/leave_review.html',
                   {'form': form, 'booking': booking})
