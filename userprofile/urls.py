@@ -11,4 +11,6 @@ urlpatterns = [
     path('userprofile/delete/<int:review_id>/',
          views.delete_review, name='delete_review'),
     path('all-reviews/', views.all_reviews, name='all_reviews'),
+    path('update-booking-status/<int:booking_id>/', 
+         views.update_booking_status, name='update_booking_status'),
 ]

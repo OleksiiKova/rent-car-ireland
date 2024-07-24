@@ -4,8 +4,13 @@ from .models import UserProfile, Review, ContactMessage
 
 
 class UserProfileFormTest(TestCase):
-
+    """
+    Tests for the UserProfileForm.
+    """
     def test_valid_form(self):
+        """
+        Tests that the UserProfileForm accepts valid data.
+        """
         form_data = {
             'first_name': 'Mike',
             'last_name': 'Buf',
@@ -17,6 +22,9 @@ class UserProfileFormTest(TestCase):
         self.assertTrue(form.is_valid(), msg='Valid form should be accepted')
 
     def test_invalid_phone_number(self):
+        """
+        Tests that the UserProfileForm rejects invalid phone numbers.
+        """
         form_data = {
             'first_name': 'Mike',
             'last_name': 'Buf',
@@ -29,6 +37,9 @@ class UserProfileFormTest(TestCase):
             form.is_valid(), msg='Invalid phone number should be rejected')
 
     def test_empty_some_fields(self):
+        """
+        Tests that the UserProfileForm accepts empty values for some fields.
+        """
         form_data = {
             'first_name': 'Mike',
             'last_name': '',
@@ -41,8 +52,14 @@ class UserProfileFormTest(TestCase):
 
 
 class ReviewFormTest(TestCase):
+    """
+    Tests for the ReviewForm.
+    """
 
     def test_valid_form(self):
+        """
+        Tests that the ReviewForm accepts valid data.
+        """
         form_data = {
             'rating': '5',
             'comment': 'Excellent service!',
@@ -52,6 +69,9 @@ class ReviewFormTest(TestCase):
         self.assertTrue(form.is_valid(), msg='Valid form should be accepted')
 
     def test_invalid_rating(self):
+        """
+        Tests that the ReviewForm rejects invalid ratings.
+        """
         form_data = {
             'rating': '6',
             'comment': 'Excellent service!',
@@ -62,6 +82,9 @@ class ReviewFormTest(TestCase):
             form.is_valid(), msg='Invalid rating should be rejected')
 
     def test_empty_comment(self):
+        """
+        Tests that the ReviewForm rejects empty comments.
+        """
         form_data = {
             'rating': '5',
             'comment': '',
@@ -73,8 +96,14 @@ class ReviewFormTest(TestCase):
 
 
 class ContactFormTest(TestCase):
+    """
+    Tests for the ContactForm.
+    """
 
     def test_valid_form(self):
+        """
+        Tests that the ContactForm accepts valid data.
+        """
         form_data = {
             'name': 'Mike Buf',
             'email': 'test@test.com',
@@ -84,6 +113,9 @@ class ContactFormTest(TestCase):
         self.assertTrue(form.is_valid(), msg='Valid form should be accepted')
 
     def test_invalid_email(self):
+        """
+        Tests that the ContactForm rejects invalid email addresses.
+        """
         form_data = {
             'name': 'Mike Buf',
             'email': 'invalid-email',
@@ -94,6 +126,9 @@ class ContactFormTest(TestCase):
             form.is_valid(), msg='Invalid email should be rejected')
 
     def test_empty_message(self):
+        """
+        Tests that the ContactForm rejects empty messages.
+        """
         form_data = {
             'name': 'Mike Buf',
             'email': 'test@test.com',
