@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .forms import UserProfileForm, ReviewForm, ContactForm
+from .forms import UserProfileForm, ReviewForm, ContactForm, SignUpForm
 from .models import UserProfile, Review, ContactMessage
 
 
@@ -137,3 +137,85 @@ class ContactFormTest(TestCase):
         form = ContactForm(data=form_data)
         self.assertFalse(
             form.is_valid(), msg='Empty message should be rejected')
+
+
+class SignUpFormTest(TestCase):
+    """
+    Tests for the SignUpForm class.
+    """
+
+    def test_form_valid_data(self):
+        """
+        Test that the form is valid with correct data.
+        """
+        data = {
+            'username': 'testuser',
+            'email': 'testuser@example.com',
+            'password1': 'password123',
+            'password2': 'password123',
+        }
+        form = SignUpForm(data=data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data['username'], 'testuser')
+        self.assertEqual(form.cleaned_data['email'], 'testuser@example.com')
+
+    def test_form_invalid_passwords(self):
+        """
+        Test that the form is invalid when passwords do not match.
+        """
+        data = {
+            'username': 'testuser',
+            'email': 'testuser@example.com',
+            'password1': 'password123',
+            'password2': 'differentpassword',
+        }
+        form = SignUpForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('Passwords don\'t match', form.errors['password2'])
+
+    def test_form_missing_username(self):
+        """
+        Test that the form is invalid when the username is missing.
+        """
+        data = {
+            'email': 'testuser@example.com',
+            'password1': 'password123',
+            'password2': 'password123',
+        }
+        form = SignUpForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('This field is required.', form.errors['username'])
+
+    def test_form_missing_passwords(self):
+        """
+        Test that the form is invalid when passwords are missing.
+        """
+        data = {
+            'username': 'testuser',
+            'email': 'testuser@example.com',
+        }
+        form = SignUpForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn('This field is required.', form.errors['password1'])
+        self.assertIn('This field is required.', form.errors['password2'])
+
+    def test_clean_password2_function(self):
+        """
+        Test the clean_password2 method.
+        """
+        form = SignUpForm(data={
+            'username': 'testuser',
+            'email': 'testuser@example.com',
+            'password1': 'password123',
+            'password2': 'password123',
+        })
+        self.assertTrue(form.is_valid())
+
+        form = SignUpForm(data={
+            'username': 'testuser',
+            'email': 'testuser@example.com',
+            'password1': 'password123',
+            'password2': 'differentpassword',
+        })
+        self.assertFalse(form.is_valid())
+        self.assertIn('Passwords don\'t match', form.errors['password2'])

@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserProfile, Review, ContactMessage
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 from star_ratings.models import Rating
 
 
@@ -100,3 +101,52 @@ class ContactForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+
+class SignUpForm(forms.ModelForm):
+    """
+    A form for user registration.
+
+    This class represents a form used to register a new user. It inherits from
+    `forms.ModelForm` and includes additional fields for password and password
+    confirmation. Validation checks if the passwords match.
+
+    Fields:
+    - username: The username of the user.
+    - email: The user's email address (optional).
+    - password1: The user's password.
+    - password2: Password confirmation for verification.
+
+    Methods:
+    - clean_password2: Ensures that the password and its confirmation match.
+    """
+    password1 = forms.CharField(widget=forms.PasswordInput, label='Password')
+    password2 = forms.CharField(
+        widget=forms.PasswordInput, label='Password (again)')
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={'autocomplete': 'username'}),
+            'email': forms.EmailInput(attrs={'autocomplete': 'email'}),
+        }
+
+    def clean_password2(self):
+        """
+        Validates that the password and its confirmation match.
+
+        Compares the values of 'password1' and 'password2'. If they do not
+        match, a ValidationError is raised with an appropriate message.
+
+        Returns:
+            str: The confirmed password if validation is successful.
+
+        Raises:
+            ValidationError: If the passwords do not match.
+        """
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Passwords don't match")
+        return password2

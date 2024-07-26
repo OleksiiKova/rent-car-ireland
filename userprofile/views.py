@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import UserProfile, Review
 from bookings.models import Booking
-from .forms import UserProfileForm, ReviewForm, ContactForm
+from .forms import UserProfileForm, ReviewForm, ContactForm, SignUpForm
 from django.urls import reverse
 from django.core.paginator import Paginator
 
@@ -135,7 +135,8 @@ def leave_review(request, booking_id):
             # Redirect if the review has already been left
             return redirect(reverse('my_reviews'))
         form = ReviewForm()
-        return render(request, 'userprofile/leave_review.html', {'form': form, 'booking': booking})
+        return render(request, 'userprofile/leave_review.html', {
+            'form': form, 'booking': booking})
 
     return render(request, 'userprofile/leave_review.html',
                   {'form': form, 'booking': booking})
