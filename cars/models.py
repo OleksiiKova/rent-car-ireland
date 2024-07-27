@@ -108,7 +108,7 @@ class Car(models.Model):
             int: Number of rental days.
         """
         rental_days = math.ceil(rental_hours / 24)
-        return max(rental_days, 1)  # Ensure minimum rental period is one day
+        return max(rental_days, 1)
 
     def _calculate_base_cost(self, rental_days):
         """
