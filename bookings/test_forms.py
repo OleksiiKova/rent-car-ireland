@@ -14,6 +14,7 @@ class BookingFormTests(TestCase):
     Tests for the BookingForm, ensuring that the form validates correctly
     for various scenarios including valid and invalid inputs.
     """
+
     def setUp(self):
         """
         Set up the test environment by creating necessary test data including
