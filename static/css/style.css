@@ -44,7 +44,9 @@
     background-color: #0A210F;
 }
 
-footer a {
+footer,
+footer a,
+footer a:visited {
     color: rgba(255, 255, 255, .55);
 }
 
@@ -407,7 +409,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
   /* ----------------Shrink the brand on small screens---------- */
-  .navbar .container-fluid {
+  /* .navbar .container-fluid {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -434,7 +436,7 @@ h1, h2, h3, h4, h5, h6 {
     .navbar-toggler {
         margin-left: auto;
     }
-}
+} */
 
   /* ----------------END Shrink the brand on small screens---------- */
 
