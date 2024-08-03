@@ -1,3 +1,17 @@
+/* ----------------LOGO--------------- */
+.brand-logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 992px) {
+    .brand-logo {
+        height: 70px;
+    }
+  }
+
+/* ----------------END LOGO--------------- */
+
 .btn-primary {
     background-color: #0A210F;
     border-color: #6BA756;
@@ -17,7 +31,7 @@
 }
 
 .btn-link {
-    color: #0A210F;
+    color: #6BA756;
 }
 
 .btn-link:hover {
@@ -70,7 +84,42 @@ a {
     color: #0A210F;
 } */
 
+.badge {
+    background-color: #0A210F;;
+}
 
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #0A210F;
+    border-color: #0A210F;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    color: #0A210F;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #0A210F;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    color: #0A210F;
+    background-color: #e9ecef;
+    box-shadow: 0 0 0 .25rem rgba(13, 73, 21, .25);
+}
+
+.errorlist {
+    color: #dc3545;
+}
 
   /* ---------Custom checkbox--------- */
   .custom-checkbox-container input[type="checkbox"] {
@@ -382,3 +431,4 @@ h1, h2, h3, h4, h5, h6 {
 }
 
   /* ----------------END Shrink the brand on small screens---------- */
+

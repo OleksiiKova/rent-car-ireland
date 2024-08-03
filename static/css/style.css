@@ -1,3 +1,17 @@
+/* ----------------LOGO--------------- */
+.brand-logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 992px) {
+    .brand-logo {
+        height: 70px;
+    }
+  }
+
+/* ----------------END LOGO--------------- */
+
 .btn-primary {
     background-color: #0A210F;
     border-color: #6BA756;
