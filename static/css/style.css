@@ -14,13 +14,13 @@
 
 .btn-primary {
     background-color: #0A210F;
-    border-color: #6BA756;
+    border-color: rgba(107, 167, 86, .6);
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    background-color: #6BA756;
+    background-color: rgba(107, 167, 86, .6);
     border-color: #0A210F;
     color: #0A210F;
 }
@@ -46,13 +46,16 @@
 
 footer,
 footer a,
-footer a:visited {
+footer a:visited,
+footer a:hover {
     color: rgba(255, 255, 255, .55);
 }
 
-footer a:hover {
-    color: #6BA756;
-}
+@media screen and (min-width: 992px) {
+    footer a:hover {
+        color: #6BA756;
+    }
+  }
 
 a {
     color: #0A210F;
@@ -64,7 +67,7 @@ a {
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #6BA756;
+    background-color: rgba(107, 167, 86, .6);
     color: #0A210F;
 }
 
@@ -87,7 +90,8 @@ a {
 } */
 
 .badge {
-    background-color: #0A210F;;
+    background-color: rgba(107, 167, 86, .6);
+    color: #0A210F;
 }
 
 .page-item.active .page-link {

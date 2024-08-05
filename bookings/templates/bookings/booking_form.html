@@ -77,16 +77,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="accordion my-3" id="carAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    <div class="form-group col">
-                                        {{ form.car.label_tag }}
-                                        {{ form.car }}
-                                    </div>
+                                    {{ car.make }} {{ car.model }}
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -94,6 +90,9 @@
                                 <div class="accordion-body">
                                     <div class="row my-2 flex align-items-center">
                                         <div class="col-sm-6">
+                                            <div class="d-none">
+                                                {{ form.car }}
+                                            </div>
                                             <div>
                                                 Price per day: {{ car.price_per_day }}€
                                             </div>
@@ -196,7 +195,7 @@
                     <div class="row my-4">
                         <div class="col">
                             <label for="id_rules_agreement" class="custom-checkbox-container">
-                                {{ form.rules_agreement.label_tag }}
+                                Rules agreement:
                                 {{ form.rules_agreement }}
                                 <span class="checkmark"></span>
                             </label>
@@ -219,10 +218,12 @@
                         <button class="btn btn-primary mx-2" type="submit">Book Now</button>
                     </div>
                 </div>
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="termsModalLabel">Terms and Conditions</h4>
@@ -274,7 +275,7 @@
     </div>
 </div>
 <div class="modal fade" id="insuranceModal" tabindex="-1" aria-labelledby="insuranceModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center" id="insuranceModalLabel">Extra Insurance</h5>

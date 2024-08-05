@@ -17,16 +17,14 @@
                         <p>Price per day: €{{ car.price_per_day }}</p>
                         <div class="my-2">
                             {% if user.is_authenticated %}
-                            <a
-                                href="{% url 'booking_form' car.id %}?start_date={{ start_date|date:'d F Y' }}&end_date={{ end_date|date:'d F Y' }}&pick_up_time={{ pick_up_time }}&drop_off_time={{ drop_off_time }}&pickup_office={{ pickup_office }}&return_office={{ return_office }}">
-                                <button class="reserve-button btn btn-lg btn-primary">
-                                    Reserve €{{ car.total_cost }} for {{ car.rental_days }}
-                                    {% if car.rental_days == 1 %}
-                                    day
-                                    {% else %}
-                                    days
-                                    {% endif %}
-                                </button>
+                            <a class="reserve-button btn btn-lg btn-primary"
+                                href="{% url 'booking_form' car.id %}?start_date={{ start_date|date:'d F Y'|urlencode  }}&end_date={{ end_date|date:'d F Y'|urlencode  }}&pick_up_time={{ pick_up_time }}&drop_off_time={{ drop_off_time }}&pickup_office={{ pickup_office|urlencode }}&return_office={{ return_office|urlencode }}">
+                                Reserve €{{ car.total_cost }} for {{ car.rental_days }}
+                                {% if car.rental_days == 1 %}
+                                day
+                                {% else %}
+                                days
+                                {% endif %}
                             </a>
                             {% else %}
                             <a href="{% url 'account_login' %}" class="login-to-continue btn btn-primary">Login to

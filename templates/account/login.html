@@ -17,39 +17,37 @@
             <div class="row d-flex justify-content-center">
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
-                    <form class="login" method="POST" action="/accounts/login/">
-                        <p>
-                            <label for="id_login">Username:</label>
-                            <input class="w-100 px-2" type="text" name="login" placeholder="Username"
-                                autocomplete="username" maxlength="150" required id="id_login">
-                        </p>
-                        <p>
-                            <label for="id_password">Password:</label>
-                            <input class="w-100 px-2" type="password" name="password" placeholder="Password"
-                                autocomplete="current-password" required id="id_password">
-                        </p>
-                        <p class="text-start">
-                            <label class="custom-checkbox-container" for="id_remember">Remember Me:
+                    <p>
+                        <label for="id_login">Username:</label>
+                        <input class="w-100 px-2" type="text" name="login" placeholder="Username"
+                            autocomplete="username" maxlength="150" required id="id_login">
+                    </p>
+                    <p>
+                        <label for="id_password">Password:</label>
+                        <input class="w-100 px-2" type="password" name="password" placeholder="Password"
+                            autocomplete="current-password" required id="id_password">
+                    </p>
+                    <p class="text-start">
+                        <label class="custom-checkbox-container" for="id_remember">Remember Me:
 
-                                <input type="checkbox" name="remember" id="id_remember">
-                                <span class="checkmark"></span>
-                            </label>
-                        </p>
-                        {% if redirect_field_value %}
-                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                        {% endif %}
-                        <div class="text-center my-3">
-                            <button class="btn btn-primary right px-4 w-100"
-                                type="submit">{% trans "Sign In" %}</button>
-                        </div>
+                            <input type="checkbox" name="remember" id="id_remember">
+                            <span class="checkmark"></span>
+                        </label>
+                    </p>
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <div class="text-center my-3">
+                        <button class="btn btn-primary right px-4 w-100" type="submit">{% trans "Sign In" %}</button>
+                    </div>
 
-                    </form>
-                    <div class="text-center">{% blocktrans %} <a class="btn btn-light w-100"
-                            href="{{ signup_url }}">Create
-                            account</a>
-                        {% endblocktrans %}</div>
+                </form>
+                <div class="text-center">{% blocktrans %} <a class="btn btn-light w-100" href="{{ signup_url }}">Create
+                        account</a>
+                    {% endblocktrans %}</div>
             </div>
         </div>
 
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

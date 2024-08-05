@@ -16,16 +16,16 @@
                 <div>
                     {% if booking.can_leave_review %}
                     <h3 class="h5 text-center mb-4">Your booking completed! You can <a
-                            href="{% url 'leave_review' booking.id %}">leave a Review</a>!</h3>
+                            href="{% url 'leave_review' booking.id %}">leave a Review!</a></h3>
                     {% endif %}
                     {% if booking.status == 'confirmed' %}
                     <h3 class="h5 text-center mb-4">Your booking confirmed! You can leave a review the day
                         after your
-                        booking ends!</a></h3>
+                        booking ends!</h3>
                     {% endif %}
                     {% if booking.status == 'reviewed' %}
                     <h3 class="h5 text-center mb-4">Your booking completed! Thank you for your
-                        review!</a></h3>
+                        review!</h3>
                     {% endif %}
                 </div>
                 <div class="d-none d-sm-block col-4">
@@ -76,7 +76,7 @@
                     <div class="row flex justify-content-end">
                         <div class="col-auto bg-light p-1 rounded">
                             {{ booking.total_price}}€ for {{ booking.rental_days }}
-                            {% if car.rental_days == 1 %}
+                            {% if booking.rental_days == 1 %}
                             day
                             {% else %}
                             days
