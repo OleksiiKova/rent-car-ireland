@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+}
+
 /* ----------------LOGO--------------- */
 .brand-logo {
     height: 40px;
@@ -13,21 +17,38 @@
 /* ----------------END LOGO--------------- */
 
 .btn-primary {
-    background-color: #0A210F;
-    border-color: rgba(107, 167, 86, .6);
+    background-color: rgba(107, 167, 86, 1);
+    border-color: #0A210F;
+    color: #0A210F;
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    background-color: rgba(107, 167, 86, .6);
+    background-color: rgba(107, 167, 86, 0.6);
     border-color: #0A210F;
     color: #0A210F;
 }
 
 .btn-primary:focus,
-.btn-primary:active:focus {
+.btn-primary:active:focus,
+.btn-secondary:focus,
+.btn-secondary:active:focus {
     box-shadow: 0 0 0  rgba(10, 33, 15, .5);
+}
+
+.btn-secondary {
+    background-color: rgba(107, 167, 86, 0.4);
+    border-color: #0A210F;
+    color: #0A210F;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: rgba(107, 167, 86, 0.2);
+    border-color: #0A210F;
+    color: #0A210F;
 }
 
 .btn-link {
