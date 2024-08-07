@@ -331,12 +331,6 @@
         document.getElementById('rentalDays').value = rentalDays;
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const extraInsuranceCheckbox = document.querySelector('input[name="extra_insurance"]');
-        extraInsuranceCheckbox.addEventListener('change', updateTotalCost);
-        updateTotalCost();
-    });
-
     function toggleChildSeatOption(checkbox) {
         const childSeatOptionField = document.querySelector('select[name="child_seat_option"]');
         if (checkbox.checked) {
@@ -357,18 +351,20 @@
             modal.hide();
         });
 
+        const extraInsuranceCheckbox = document.querySelector('input[name="extra_insurance"]');
+        extraInsuranceCheckbox.addEventListener('change', updateTotalCost);
+        updateTotalCost();
+
         const okButton = document.getElementById('okButton');
         okButton.addEventListener('click', function () {
             const modal = bootstrap.Modal.getInstance(document.getElementById('insuranceModal'));
             modal.hide();
         });
 
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
         const childSeatCheckbox = document.querySelector('input[name="child_seat"]');
         const childSeatOptionField = document.querySelector('select[name="child_seat_option"]');
         toggleChildSeatOption(childSeatCheckbox);
+
     });
 </script>
 {% endblock %}

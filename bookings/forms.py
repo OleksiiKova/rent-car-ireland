@@ -121,9 +121,6 @@ class BookingForm(forms.ModelForm):
 
         return dob
 
-    class Media:
-        js = ('js/booking_form.js',)
-
 
 class SearchForm(forms.Form):
     """

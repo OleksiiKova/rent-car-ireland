@@ -32,5 +32,6 @@ urlpatterns = [
     path('booking/', include('bookings.urls')),
     path('update_car_list/', views.update_car_list, name='update_car_list'),
     path('', userprofile_views.home, name='home'),
-    path('update_pickup_time_choices/', views.update_pickup_time_choices, name='update_pickup_time_choices'),
+    path('update_pickup_time_choices/', views.update_pickup_time_choices,
+         name='update_pickup_time_choices'),
 ]

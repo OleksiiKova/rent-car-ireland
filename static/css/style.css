@@ -1,5 +1,6 @@
 h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat", sans-serif;
+    color: #0A210F;
 }
 
 /* ----------------LOGO--------------- */
@@ -105,11 +106,6 @@ a {
     color: #0A210F;
   }
 
-/* .alert-success {
-    background-color: #219831;
-    color: #0A210F;
-} */
-
 .badge {
     background-color: rgba(107, 167, 86, .6);
     color: #0A210F;
@@ -197,16 +193,11 @@ a {
   }
 /* ---------END Custom checkbox--------- */
 
-h1, h2, h3, h4, h5, h6 {
-    color: #0A210F;
-}
-
-
-.brand-container {
+/* .brand-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .navbar-text {
     margin-top: -10px;
@@ -399,12 +390,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  /* @media screen and (min-width: 1200px) {
-    .carousel-item {
-      flex: 0 0 calc(100% / 3);
-    }
-  } */
-
   .carousel-inner {
     padding: 1em;
   }
@@ -431,37 +416,4 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* ----------------END Review Carousel ----------------*/
-
-
-  /* ----------------Shrink the brand on small screens---------- */
-  /* .navbar .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.brand-container {
-    display: flex;
-    flex-direction: column;
-}
-
-@media (max-width: 350px) {
-    .navbar-brand {
-        flex-grow: 1;
-    }
-
-    .brand {
-        font-size: 1.2rem;
-    }
-
-    .navbar-text {
-        font-size: 0.8rem;
-    }
-
-    .navbar-toggler {
-        margin-left: auto;
-    }
-} */
-
-  /* ----------------END Shrink the brand on small screens---------- */
 

@@ -8,7 +8,8 @@ from offices.models import Office
 
 
 def create_test_data():
-    user = User.objects.create_user(username='testuser', password='testpassword')
+    user = User.objects.create_user(
+        username='testuser', password='testpassword')
 
     car = Car.objects.create(
         make='Toyota',
@@ -63,8 +64,8 @@ def create_test_data():
         booking=booking,
         rating=5,
         comment='Excellent service!',
-        created_at = timezone.now().date(),
+        created_at=timezone.now().date(),
         approved=True
         )
-    
+
     return user, car, office, booking, review

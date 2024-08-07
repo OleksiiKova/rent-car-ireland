@@ -26,7 +26,7 @@ class CarViewTests(TestCase):
 
     def test_car_search_view_get(self):
         """
-        Test that the car search view returns the correct response for 
+        Test that the car search view returns the correct response for
         GET requests.
         """
         response = self.client.get(self.car_search_url)

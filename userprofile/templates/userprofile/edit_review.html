@@ -58,65 +58,7 @@
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const starRating = (selector) => {
-            const labels = document.querySelectorAll(selector + ' label');
-            const inputs = document.querySelectorAll(selector + ' input');
-            labels.forEach((label) => {
-                label.addEventListener('mouseover', (event) => {
-                    const rating = event.target.previousElementSibling ? event.target
-                        .previousElementSibling.value : event.target.querySelector('input')
-                        .value;
-                    // updateStarsPreview(rating);
-                });
-                label.addEventListener('mouseout', () => {
-                    const currentRating = document.getElementById('rating-hidden').value ||
-                        0;
-                    updateStars(currentRating);
-                });
-            });
-            inputs.forEach((input) => {
-                input.addEventListener('change', (event) => {
-                    const rating = event.target.value;
-                    console.log('Выбран рейтинг:', rating); // Отладка
-                    updateStars(rating);
-                    document.getElementById('rating-hidden').value = rating;
-                });
-            });
-            // Initializing stars based on current value
-            const currentRating = document.getElementById('rating-hidden').value;
-            updateStars(currentRating);
-        };
 
-        const updateStars = (rating) => {
-            const labels = document.querySelectorAll('.star-rating label');
-            labels.forEach((label) => {
-                const input = label.querySelector('input');
-                const value = parseInt(input.value, 10);
-                if (value <= rating) {
-                    label.classList.add('checked');
-                } else {
-                    label.classList.remove('checked');
-                }
-            });
-        };
-
-        // const updateStarsPreview = (rating) => {
-        //     const labels = document.querySelectorAll('.star-rating label');
-        //     labels.forEach((label) => {
-        //         const input = label.querySelector('input');
-        //         const value = parseInt(input.value, 10);
-        //         if (value <= rating) {
-        //             label.classList.add('preview');
-        //         } else {
-        //             label.classList.remove('preview');
-        //         }
-        //     });
-        // };
-
-        starRating('.star-rating');
-    });
-</script>
+<script src="{% static 'js/rating.js' %}"></script>
 
 {% endblock %}
