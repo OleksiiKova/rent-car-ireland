@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import sys
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
@@ -159,14 +156,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRON_CLASSES = [
     "bookings.cron.UpdateBookingStatusCronJob",
 ]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
-
-cloudinary.config(
-    cloudinary_url=CLOUDINARY_URL
-)
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
