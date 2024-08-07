@@ -8,6 +8,7 @@
   - [Python](#python)
 - [Responsiveness and Device Testing](#responsiveness-and-device-testing)
 - [Browser Testing](#browser-testing)
+- [Lighthouse Testing](#lighthouse-testing)
 
 
 ## Code Validation
@@ -190,3 +191,5 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Sign In            |     92      |      100      |      100       | 100 | <details><summary>Sign In</summary><img src="static/images/readme_images/testing/lighthouse/mobile/sign-in.png"></details>                    |
 | Sign Up            |     93      |      100      |      100       | 100 | <details><summary>Sign Up</summary><img src="static/images/readme_images/testing/lighthouse/mobile/sign-up.png"></details>                    |
 | Sign Out            |     92      |      100      |      100       | 100 | <details><summary>Sign Out</summary><img src="static/images/readme_images/testing/lighthouse/mobile/sign-out.png"></details>                    |
+
+Some pages show a score of 78-79 for best practices in Lighthouse due to mixed content warnings caused by using Cloudinary.
