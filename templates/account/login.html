@@ -17,10 +17,23 @@
             <div class="row d-flex justify-content-center">
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <p>
                         <label for="id_login">Username:</label>
                         <input class="w-100 px-2" type="text" name="login" placeholder="Username"
-                            autocomplete="username" maxlength="150" required id="id_login">
+                            autocomplete="username" maxlength="150" required id="id_login"
+                            value="{{ request.POST.login }}">
                     </p>
                     <p>
                         <label for="id_password">Password:</label>
@@ -42,7 +55,6 @@
                     </div>
                     <p><a class="active-link secondaryAction text-nowrap"
                             href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></p>
-
                 </form>
                 <div class="text-center">{% blocktrans %} <a class="btn btn-light w-100" href="{{ signup_url }}">Create
                         account</a>
