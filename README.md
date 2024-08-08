@@ -2,17 +2,14 @@
 
 ## Table of Contents
 
-- [Overview](#Overview)
-- [UX](#UX)
-   * [Strategy](#Strategy)
-   * [Database structure](#Database-structure)
-   * [Design](#Design)
-- [Technologies](#Technologies)
-- [Testing](#Testing)
-   - [Automated testing]([Automated-testing])   
-   - [Manual testing](#Manual-testing)
-   - [Validation](#Validation)
-   - [Bugs](#Bugs)
+- [Overview](#overview)
+- [UX](#ux)
+   * [Strategy](#strategu)
+   * [Database structure](#database-structure)
+   * [Design](#design)
+- [Technologies](#technologies)
+- [Testing](#testing)
+
 
 <!-- - [Features](#Features)
    * [Welcome block](#Welcome-block)
@@ -102,7 +99,5 @@ This project was created using the following:
 - Am I Responsive - to show the website image on a range of devices
 
 ## Testing
-To ensure the robustness and reliability of the application, a comprehensive testing strategy was employed, combining both manual and automated testing methods.
 
-### Automated testing
-Leveraging Django's built-in testing framework, automated tests were written to cover critical aspects of the application's functionality. This includes unit tests, integration tests, and system tests to verify that the application behaves as expected under various conditions.
+For a comprehensive overview of the testing strategy, including detailed information on both automated and manual testing, please refer to the [Testing Documentation](TESTING.md).

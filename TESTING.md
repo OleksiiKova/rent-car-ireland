@@ -1,6 +1,8 @@
 # Table of Contents
 
 <!-- - [User Story Testing](#user-story-testing) -->
+- [Automated Testing](#automated-testing)
+- [Manual Testing](#manual-testing)
 - [Code Validation](#code-validation)
   - [HTML](#html)
   - [CSS](#css)
@@ -10,6 +12,97 @@
 - [Browser Testing](#browser-testing)
 - [Lighthouse Testing](#lighthouse-testing)
 - [User Story Testing](#user-story-testing)
+
+
+
+## Automated Testing
+
+To ensure the robustness and reliability of the application, a comprehensive testing strategy was employed, combining both manual and automated testing methods.
+
+Leveraging Django's built-in testing framework, automated tests were written to cover critical aspects of the application's functionality. This includes views and forms tests to verify that the application behaves as expected under various conditions.
+
+To run the tests, I executed the following command in the terminal:
+
+`python3 manage.py test`
+
+Total Count of Automated Tests: 41
+
+![screenshot](static/images/readme_images/testing/automated_testing/screen-terminal.png)  
+
+To create the coverage report, I run the following commands:
+
+`coverage run --source=name-of-app manage.py test`
+
+`coverage report`
+
+Below are the reports on automated tests.
+
+| App                                   | Screenshot                                   | 
+| ------------------------------------- | -------------------------------------------- | 
+| Bookings  | ![screenshot](static/images/readme_images/testing/automated_testing/report-bookings.png)   |
+| Car rental  | ![screenshot](static/images/readme_images/testing/automated_testing/report-car-rental.png)   |
+| Cars  | ![screenshot](static/images/readme_images/testing/automated_testing/report-cars.png)   |
+| Offices  | ![screenshot](static/images/readme_images/testing/automated_testing/report-offices.png)   |
+| Userprofile  | ![screenshot](static/images/readme_images/testing/automated_testing/report-userprofile.png)   |
+
+
+## Manual Testing
+
+To enhance quality and increase confidence in the correctness of the application, I conducted manual testing in addition to automated tests. This manual testing also targeted areas not covered by the automated tests, ensuring comprehensive validation.
+
+
+| Page                              | User Action                                                | Expected Result                                                              | Pass/Fail | Comments |
+|-----------------------------------|------------------------------------------------------------|------------------------------------------------------------------------------|-----------|----------|
+| Nav links                         |                                                            |                                                                              |           |          |
+|                                   | Click on Logo                                              | Redirection to Home page                                                     | Pass      |          |
+|                                   | Click on Home link in navbar                               | Redirection to Home page                                                     | Pass      |          |
+|                                   | Click on Booking link in navbar                            | Redirection to Booking page                                                  | Pass      |          |
+|                                   | Click on Locations link in navbar                          | Redirection to Locations page                                                | Pass      |          |
+|                                   | Click on My Profile link in navbar                         | Redirection to My Profile page                                               | Pass      |          |
+|                                   | Click on My Bookings link in navbar                        | Redirection to My Bookings page                                              | Pass      |          |
+|                                   | Click on My Reviews link in navbar                         | Redirection to My Reviews page                                               | Pass      |          |
+|                                   | Click on Sign In link in navbar                            | Redirection to Login page                                                    | Pass      |          |
+|                                   | Click on Sign Up link in navbar                            | Redirection to Sign Up page                                                  | Pass      |          |
+|                                   | Click on Log Out link in navbar                            | Redirection to Logout confirm page                                           | Pass      |          |
+| Home Page                         |                                                            |                                                                              |           |          |
+|                                   | Click on "Get A Quote Now" button in advantages section    | Redirection to Booking page                                                  | Pass      |          |
+|                                   | Click on "View All Reviews" button in the Reviews section  | Opens page with all customer reviews                                         | Pass      |          |
+|                                   | Click the forward arrow in the Reviews section             | Navigate to the next item in the carousel                                    | Pass      |          |
+|                                   | Click the backward arrow in the Reviews section            | Navigate to the previous item in the carousel                                | Pass      |          |
+|                                   | Click on the accordion buttons in the FAQ section          | Expand or collapse the associated content                                    | Pass      |          |
+| Our Cars page                     |                                                            |                                                                              |           |          |
+|                                   | Click on price button for each car                         | Redirect to Car Details and Reservations page                                | Pass      |          |
+|                                   | Click on Pagination nav number                             | Redirection to that pagination page                                          | Pass      |          |
+| Log In                            |                                                            |                                                                              |           |          |
+|                                   | Enter valid password                                       | Field will only accept password format                                       | Pass      |          |
+|                                   | Click Login button                                         | Redirects user to home page                                                  | Pass      |          |
+|                                   | Click Forgot password button                               | Redirects to page with message about email with pass reset link              | Pass      |          |
+| Register                          |                                                            |                                                                              |           |          |
+|                                   | Enter valid email address                                  | Field will only accept email address format                                  | Pass      |          |
+|                                   | Enter valid password (twice)                               | Field will only accept password format                                       | Pass      |          |
+|                                   | Click on Sign In button                                    | Redirects user to blank Login page                                           | Pass      |          |
+|                                   | Click on Sign Up button                                    | Redirects user to page with message about email confirmation and sends email | Pass      |          |
+| Forgot password                   |                                                            |                                                                              |           |          |
+|                                   | Enter new valid password (twice)                           | Field will only accept password format                                       | Pass      |          |
+|                                   | Click on Change Password button                            | Redirects user to Log In page and displays message that password changed     | Pass      |          |
+| Log Out                           |                                                            |                                                                              |           |          |
+|                                   | Click Logout button                                        | Logs out user, Redirects user to logout page                                 | Pass      |
+| Profile                           |                                                            |                                                                              |           |          |
+|                                   | Click on the Edit Booking button                           | Redirects to Edit Booking page                                               | Pass      |          |
+|                                   | Click on the Delete Booking button                         | Redirects to Delete Booking Confirmation page                                | Pass      |          |
+| Car Reservation page              |                                                            |                                                                              |           |          |
+|                                   | Fill form with valid data and click Confirm button         | Redirect to Profile page and notify that booking created                     | Pass      |          |
+|                                   | Fill form with invalid data and click Confirm button       | Shows error message and fields errors messages                               | Pass      |          |
+| Edit booking page                 |                                                            |                                                                              |           |          |
+|                                   | Change form with valid data and click Save Changes button  | Redirect to Profile page and notify that booking edited                      | Pass      |          |
+|                                   | Fill form with invalid data and click Confirm button       | Shows error message and fields errors messages                               | Pass      |          |
+|                                   | Attempt to access the Edit page after booking is completed | Redirect to Profile page and notify that booking is expired                  | Pass      |          |
+|                                   | Attempt to access the Edit page while logged out           | Redirect to Log In page                                                      | Pass      |          |
+|                                   | Attempt to access the Edit page with another User account  | Redirect to Profile page                                                     | Pass      |          |
+| Delete booking confirm page       |                                                            |                                                                              |           |          |
+|                                   | Click on No I don't button                                 | Redirect back to Profile page                                                | Pass      |          |
+|                                   | Click on Confirm button                                    | Deletes a booking, display alert, redirect to Profile page                   | Pass      |          |
+
 
 ## Code Validation
 
@@ -139,6 +232,7 @@ All Python files were processed using the [CI Python Linter](https://pep8ci.hero
 | <details><summary>wsgi.py</summary><img src="static/images/readme_images/testing/python_validations/project/wsgi.png"></details>        | <mark>PASS</mark>   |
 
 
+
 ## Responsiveness and Device Testing
 
 Throughout the development process, the website was rigorously tested across a range of devices, including desktops, laptops, smartphones, and tablets. This testing ensured that the website displayed correctly on screens of various sizes and orientations, both portrait and landscape. Additionally, the responsive design was validated using Google Chrome's developer tools to confirm that the layout remained structurally sound and adaptable across different screen dimensions. No issues were noted, affirming that the site functions as expected across diverse environments.
@@ -196,15 +290,24 @@ Some pages show a score of 78-79 for best practices in Lighthouse due to mixed c
 
 ## User Story Testing
 
-| User Story                                                                                                                                                                                                                        | Screenshot                                                                                                                                                                                              | Result           |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| As a new user I can create an account so that I can access the rental services.  | <details><summary>Create account</summary><img src="static/images/readme_images/testing/user_stories/create-account.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a registered user I can log in to my account so that I can view and manage my rentals.  | <details><summary>Sign In</summary><img src="static/images/readme_images/testing/user_stories/sign-in.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a registered user I can view and update my profile information so that my personal data is accurate and up-to-date.  | <details><summary>My profile</summary><img src="static/images/readme_images/testing/user_stories/my-profile.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a user I can search for available cars so that I can find a car that fits my needs.  | <details><summary>Car Search</summary><img src="static/images/readme_images/testing/user_stories/car-search.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a user I can filter cars by type, price so that I can narrow down my search to the most suitable options.  | <details><summary>Car Filter</summary><img src="static/images/readme_images/testing/user_stories/car-filter.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a user I can view detailed information about a car so that I can make an informed decision before booking.  | <details><summary>Detail Info</summary><img src="static/images/readme_images/testing/user_stories/create-account.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a new user I can create an account so that I can access the rental services.  | <details><summary>Create account</summary><img src="static/images/readme_images/testing/user_stories/create-account.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a new user I can create an account so that I can access the rental services.  | <details><summary>Create account</summary><img src="static/images/readme_images/testing/user_stories/create-account.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a new user I can create an account so that I can access the rental services.  | <details><summary>Create account</summary><img src="static/images/readme_images/testing/user_stories/create-account.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
-| As a new user I can create an account so that I can access the rental services.  | <details><summary>Create account</summary><img src="static/images/readme_images/testing/user_stories/create-account.png"></details>                                                                                                                                                                     | <mark>PASS<mark> |
+| User Story                                                                                                                                                                                                                        | Screenshot                                                                                                                                                                                              | 
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
+| As a new user I can create an account so that I can access the rental services.  | ![screenshot](static/images/readme_images/testing/user_stories/create-account.png)                                                                                                                                                                    | 
+| As a registered user I can log in to my account so that I can view and manage my rentals.  | ![screenshot](static/images/readme_images/testing/user_stories/sign-in.png)                                                                                                                                                           | 
+| As a registered user I can view and update my profile information so that my personal data is accurate and up-to-date.  | ![screenshot](static/images/readme_images/testing/user_stories/my-profile.png)                                                                                                                                                                 | 
+| As a user I can search for available cars so that I can find a car that fits my needs.  | ![screenshot](static/images/readme_images/testing/user_stories/car-search.png)                                                                                                                                                                    | 
+| As a user I can filter cars by type, price so that I can narrow down my search to the most suitable options.  | ![screenshot](static/images/readme_images/testing/user_stories/car-filter.png)                                                                                                                                                                 | 
+| As a user I can view detailed information about a car so that I can make an informed decision before booking.  | ![screenshot](static/images/readme_images/testing/user_stories/detail-info.png)                                                                                                                                                           |
+| As a user I can book a car for a specified period so that I can rent it for the time I need.  | ![screenshot](static/images/readme_images/testing/user_stories/book-car.png)                                                                                                                                                                   | 
+| As a registered user I can view my current and past bookings so that I can keep track of my rental history.  | ![screenshot](static/images/readme_images/testing/user_stories/my-bookings.png)                                                                                                                                                                 | 
+| As a registered user I can cancel an upcoming booking so that I can change my plans if necessary.  | ![screenshot](static/images/readme_images/testing/user_stories/delete-booking.png)                                                                                                                                                               | 
+| As a user I can contact customer support so that I can get help with any issues or questions regarding my rental.  | ![screenshot](static/images/readme_images/testing/user_stories/contact-us.png)                                                                                                                                                     |
+| As a admin I can add, update, or remove cars from the inventory so that the list of available cars is accurate.  | ![screenshot](static/images/readme_images/testing/user_stories/admin-add-car.png)                                                                                                                                                                   | 
+| As a admin I can manage user accounts so that I can maintain the integrity of the platform.  | ![screenshot](static/images/readme_images/testing/user_stories/admin-users.png)                                                                                                                                                                    | 
+| As a user I can leave a review and rating for a car I rented so that I can share my experience with other users.  | ![screenshot](static/images/readme_images/testing/user_stories/leave-review.png)                                                                                                                                                                   | 
+| As a user I can view reviews and ratings left by other users so that I can make an informed decision before renting a car.  | ![screenshot](static/images/readme_images/testing/user_stories/customer-reviews.png)                                                                                                                                                                | 
+| As a Site Owner I can store customer support form in the database so that I can review them.  | ![screenshot](static/images/readme_images/testing/user_stories/admin-messages.png)                                                                                                                                                                     | 
+| As a Site Owner I can mark user requests as "read" so that I can see how many I still need to process.  | ![screenshot](static/images/readme_images/testing/user_stories/admin-messages-read.png)                                                                                                                                                               | 
+| As a user I can view the location of each office on a Map so that I can easily find and navigate to the office.  | ![screenshot](static/images/readme_images/testing/user_stories/locations.png)                                                                                                                                                                   | 
+| As a admin I can add and update the office locations on Google so that users can see the accurate location of each office.  | ![screenshot](static/images/readme_images/testing/user_stories/admin-offices.png)                                                                                                                                                                 | 
+| As a user I can read and accept the terms and conditions before confirming my booking so that I am aware of the rental policies and my responsibilities.  | ![screenshot](static/images/readme_images/testing/user_stories/terms.png)                                                                                                                                                                     | 

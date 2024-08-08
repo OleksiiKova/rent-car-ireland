@@ -15,7 +15,6 @@
       <div class="row d-flex justify-content-center">
         <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
           {% csrf_token %}
-          <!-- Ошибки формы -->
           {% if form.non_field_errors %}
           <div class="alert alert-danger">
             {% for error in form.non_field_errors %}
@@ -24,7 +23,6 @@
           </div>
           {% endif %}
 
-          <!-- Поля формы -->
           <div class="form-group my-2">
             <label for="{{ form.username.id_for_label }}">Username:</label>
             {{ form.username|add_class:"w-100 px-2" }}

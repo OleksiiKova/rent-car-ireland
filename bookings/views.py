@@ -386,3 +386,7 @@ def get_car_details(request, car_id):
         return JsonResponse(data)
     except Car.DoesNotExist:
         return JsonResponse({'error': 'Car not found'}, status=404)
+
+import os
+print("EMAIL_HOST_USER:", os.environ.get("EMAIL_HOST_USER"))
+print("EMAIL_HOST_PASSWORD:", os.environ.get("EMAIL_HOST_PASSWORD"))
