@@ -417,3 +417,16 @@ a {
 
   /* ----------------END Review Carousel ----------------*/
 
+  /* ----------------Detail Car Info ------------------- */
+#carInfo p,
+#bookingInfo p,
+#customerInfo p {
+    margin: 0;
+}
+
+@media screen and (min-width: 992px) {
+    #carDetailImage {
+        width: 80%;
+    }
+}
+  /* ----------------END Detail Car Info --------------- */
