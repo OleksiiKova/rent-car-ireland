@@ -12,4 +12,6 @@ urlpatterns = [
          views.booking_form, name='booking_form'),
     path('booking_details/<int:booking_id>/',
          views.booking_details, name='booking_details'),
+    path('get_car_details/<int:car_id>/',
+         views.get_car_details, name='get_car_details'),
 ]

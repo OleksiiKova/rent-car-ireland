@@ -364,3 +364,25 @@ def booking_details(request, booking_id):
         return JsonResponse({'error': 'Booking not found'}, status=404)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+
+def get_car_details(request, car_id):
+    try:
+        car = Car.objects.get(id=car_id)
+        data = {
+            'car_model': car.model,
+            'car_make': car.make,
+            'car_year': car.year,
+            'car_type': car.type,
+            'car_fuel_type': car.fuel_type,
+            'car_transmission': car.transmission,
+            'car_seats': car.seats,
+            'car_doors': car.doors,
+            'car_air_conditioning': car.air_conditioning,
+            'car_navigation': car.navigation,
+            'car_price_per_day': car.price_per_day,
+            'car_image': car.image.url,
+        }
+        return JsonResponse(data)
+    except Car.DoesNotExist:
+        return JsonResponse({'error': 'Car not found'}, status=404)

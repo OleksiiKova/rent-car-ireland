@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container py-5">
     <h2 class="text-center">Car Search</h2>
+    <h3 class="text-center h6">Please fill out the initial booking information to see the list of available cars.</h3>
     <div class="d-flex justify-content-center align-items-center search-form my-4">
         <div class="col-12 col-lg-8 mt-2">
             <form method="POST" action="{% url 'booking' %}">
@@ -116,7 +117,63 @@
     {% endif %}
 </div>
 
+<!-- Modal Window Car Info-->
+<div class="modal fade" id="detailCar" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailCarLabel">Detail Car Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="carInfo">
+                    <!-- Car Info will be inserted here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.addEventListener('click', function (event) {
+            if (event.target.matches('.car-name')) {
+                event.preventDefault();
+    
+                var carId = event.target.getAttribute('data-car-id');
+    
+                // Fetch car details (This can be done via an AJAX request or other methods)
+                fetch(`/booking/get_car_details/${carId}/`)  // You need to create a view for this
+                    .then(response => response.json())
+                    .then(data => {
+
+                        // Populate modal with car details
+                        var carInfoElement = document.getElementById('carInfo');
+                        if (carInfoElement) {
+                            carInfoElement.innerHTML = `
+                                <p><strong>${data.car_make} ${data.car_model}</strong></p>
+                                <p><strong>Type:</strong> ${data.car_type}</p>
+                                <p><strong>Year:</strong> ${data.car_year}</p>
+                                <p><strong>Fuel Type:</strong> ${data.car_fuel_type}</p>
+                                <p><strong>Transmission:</strong> ${data.car_transmission}</p>
+                                <p><strong>Seats:</strong> ${data.car_seats}</p>
+                                <p><strong>Doors:</strong> ${data.car_doors}</p>
+                                <p><strong>Air Conditioning:</strong> ${data.car_air_conditioning ? 'Yes' : 'No'}</p>
+                                <p><strong>Navigation:</strong> ${data.car_navigation ? 'Yes' : 'No'}</p>
+                                <p><strong>Price per day:</strong> €${data.car_price_per_day}</p>
+                                <img src="${data.car_image}" alt="Car image" class="img-fluid" id="carDetailImage">
+                            `;
+                        } else {
+                            console.error('Element with id "carInfo" not found.');
+                        }
+                    })
+                    .catch(error => console.error('Error fetching car details:', error));
+            }
+        });
+    });
     /**
     * Handles updating the car list based on selected filters and user authentication status.
     * 
@@ -255,5 +312,7 @@
             }
         });
     });
+    
+
 </script>
 {% endblock %}
