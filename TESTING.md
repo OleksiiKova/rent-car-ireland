@@ -1,6 +1,5 @@
 # Table of Contents
 
-<!-- - [User Story Testing](#user-story-testing) -->
 - [Automated Testing](#automated-testing)
 - [Manual Testing](#manual-testing)
 - [Code Validation](#code-validation)
@@ -74,42 +73,83 @@ To enhance quality and increase confidence in the correctness of the application
 |                                   | Click on the email link                                    | Open a new email draft addressed to support@eirewheels.ie                    | Pass      |          |
 |                                   | Click on the map link                                      | Open a new tab displaying Google Maps with the location                      | Pass      |          |
 |                                   | Click on the phone number link                             | Open the default phone application with the number +353 1 234 5678           | Pass      |          |
-|                                   | Click on the "Privacy Policy" link                         | Open a modal window displaying the privacy policy content                    | Pass      |          |
-|                                   | Click on the "Terms and Conditions" link                   | Open a modal window displaying the terms and conditions content              | Pass      |          |
+|                                   | Click on the Privacy Policy link                           | Open a modal window displaying the privacy policy content                    | Pass      |          |
+|                                   | Click on the Terms and Conditions link                     | Open a modal window displaying the terms and conditions content              | Pass      |          |
 | Log In                            |                                                            |                                                                              |           |          |
 |                                   | Enter valid password                                       | Field will only accept password format                                       | Pass      |          |
-|                                   | Click the "Login" button                                   | Redirects user to home page                                                  | Pass      |          |
-|                                   | Click the "Create account" button                          | Redirects to Sign Up page                                                    | Pass      |          |
-|                                   | Click the "Forgot password?" button                         | Redirects to page with message about email with pass reset link              | Pass      |          |
+|                                   | Click the "Login" button                                   | Redirection to home page                                                     | Pass      |          |
+|                                   | Click the "Create account" button                          | Redirection to Sign Up page                                                  | Pass      |          |
+|                                   | Click the "Forgot password?" button                        | Redirection to Password reset page                                           | Pass      |          |
 | Register                          |                                                            |                                                                              |           |          |
 |                                   | Enter valid email address                                  | Field will only accept email address format                                  | Pass      |          |
 |                                   | Enter valid password (twice)                               | Field will only accept password format                                       | Pass      |          |
-|                                   | Click on Sign In button                                    | Redirects user to blank Login page                                           | Pass      |          |
-|                                   | Click on Sign Up button                                    | Redirects user to page with message about email confirmation and sends email | Pass      |          |
-| Forgot password                   |                                                            |                                                                              |           |          |
-|                                   |                      |                                         | Pass      |          |
+|                                   | Click on the "Sign In" button                              | Redirection to blank Login page                                              | Pass      |          |
+|                                   | Click on the "Sign Up" button                              | Redirection to page with message about email confirmation and sends email    | Pass      |          |
+| Password Reset                    |                                                            |                                                                              |           |          |
+|                                   | Click on the "Reset My password" button                    | Receive a confirmation message indicating that a password reset email sent   | Pass      |          |
+|                                   | Check the email account associated with the user’s account | Receive an email containing a password reset link                            | Pass      |          |
+|                                   | Click on the password reset link provided in the email     | Redirection to a change password page on the website                         | Pass      |          |
+| Change password                   |                                                            |                                                                              |           |          |
+|                                   | Enter a new password and confirm it by re-entering the same| Submit the form, see a confirmation message indicating that password updated | Pass      |          |
+|                                   | Attempt to log in using the newly set password             | Log in successfully with the new password                                    | Pass      |          |
 | Log Out                           |                                                            |                                                                              |           |          |
-|                                   | Click Logout button                                        | Logs out user, Redirects user to confirmation logout page                    | Pass      |
-| Our Cars page                     |                                                            |                                                                              |           |          |
-|                                   | Click on price button for each car                         | Redirect to Car Details and Reservations page                                | Pass      |          |
-|                                   | Click on Pagination nav number                             | Redirection to that pagination page                                          | Pass      |          |
-
-| Profile                           |                                                            |                                                                              |           |          |
-|                                   | Click on the Edit Booking button                           | Redirects to Edit Booking page                                               | Pass      |          |
-|                                   | Click on the Delete Booking button                         | Redirects to Delete Booking Confirmation page                                | Pass      |          |
-| Car Reservation page              |                                                            |                                                                              |           |          |
-|                                   | Fill form with valid data and click Confirm button         | Redirect to Profile page and notify that booking created                     | Pass      |          |
-|                                   | Fill form with invalid data and click Confirm button       | Shows error message and fields errors messages                               | Pass      |          |
-| Edit booking page                 |                                                            |                                                                              |           |          |
-|                                   | Change form with valid data and click Save Changes button  | Redirect to Profile page and notify that booking edited                      | Pass      |          |
-|                                   | Fill form with invalid data and click Confirm button       | Shows error message and fields errors messages                               | Pass      |          |
-|                                   | Attempt to access the Edit page after booking is completed | Redirect to Profile page and notify that booking is expired                  | Pass      |          |
-|                                   | Attempt to access the Edit page while logged out           | Redirect to Log In page                                                      | Pass      |          |
-|                                   | Attempt to access the Edit page with another User account  | Redirect to Profile page                                                     | Pass      |          |
-| Delete booking confirm page       |                                                            |                                                                              |           |          |
-|                                   | Click on No I don't button                                 | Redirect back to Profile page                                                | Pass      |          |
-|                                   | Click on Confirm button                                    | Deletes a booking, display alert, redirect to Profile page                   | Pass      |          |
-
+|                                   | Click the "Sign out" button                                | Redirection user  to a confirmation page for logging out                     | Pass      |          |
+|                                   | Click the "Sign out" button on the confirmation page       | Logged out of the account                                                    | Pass      |          |
+| Booking                           |                                                            |                                                                              |           |          |
+|                                   | Click on the dropdown menus for Pickup and Return Office   | Display a list of available offices                                          | Pass      |          |
+|                                   | Use the date and time picker to select a date and time     | The date and time should be selectable                                       | Pass      |          |
+|                                   | Click the "Search" button after selecting all fields       | The form submitted, the page displayed results of available cars             | Pass      |          |
+|                                   | Click the "Filter" button to open the filter options       | Displayed a list of filter options                                           | Pass      |          |
+|                                   | Select various filter options                              | The list of cars automatically update to reflect the selected filters        | Pass      |          |
+|                                   | Click the "Reset Filters" button                           | All applied filters should be cleared                                        | Pass      |          |
+|                                   | Click on the car name in a car listing                     | Open a modal window displaying detailed information about the selected car   | Pass      |          |
+|                                   | Click the "Close" button on the modal window               | Close the modal window and return to the search results page                 | Pass      |          |
+|                                   | Click the "Reserve" button for a car listing               | Redirection to the Booking form                                              | Pass      |          |
+| Booking Form                      |                                                            |                                                                              |           |          |
+|                                   | Navigate to the booking form after selecting a car         | The form automatically display the previously entered dates, times, offices  | Pass      |          |
+|                                   | Click on the accordion button for detailed car information | The accordion should expand to show detailed information about the car       | Pass      |          |
+|                                   | Enter the following details into the form fields           | Each field accept, validate the input according to its format requirements   | Pass      |          |
+|                                   | Check the "Child Seat" checkbox                            | A dropdown list become active, allowing to select the type of child seat     | Pass      |          |
+|                                   | Click on the More About Extra Insurance link               | Open a modal window with the info about Extra Insurance                      | Pass      |          |
+|                                   | Click the "X" (close) button in the modal window           | The modal should close                                                       | Pass      |          |
+|                                   | Check the "Extra Insurance" checkbox                       | The total rental amount automatically increase by €5 per day (max of €50)    | Pass      |          |
+|                                   | Click on the Read Terms and Conditions link                | Open a modal window with the terms and conditions                            | Pass      |          |
+|                                   | In the modal, click the "I have read and agree" button     | The modal close, and the checkbox should remain checked                      | Pass      |          |
+|                                   | Click the "X" (close) button in the modal window           | The modal should close without checking the checkbox                         | Pass      |          |
+|                                   | Click the "Book Now" button after completing fields        | Displayed a success message and the user redirected to the "My Bookings"     | Pass      |          |
+| Locations                         |                                                            |                                                                              |           |          |
+|                                   | Navigate to the locations page                             | The page should display a dropdown menu with a list of available offices     | Pass      |          |
+|                                   | Select an office from the dropdown menu                    | The page should update to display information about the selected office      | Pass      |          |
+|                                   | After selecting an office, check the displayed information | The page should show details about the office                                | Pass      |          |
+|                                   | Review the map displayed on the page                       | The map should correctly display the office location with a marker           | Pass      |          |
+|                                   | Click the link to Google Maps provided on the page         | Open a new browser window or tab with the Google Maps location of the office | Pass      |          |
+| My bookings                       |                                                            |                                                                              |           |          |
+|                                   | Navigate to the "My Bookings" page                         | The page should display a list of all bookings made by the user              | Pass      |          |
+|                                   | Click on the booking title in the list                     | A modal window should open displaying detailed information about the booking | Pass      |          |
+|                                   | Click the "Edit" button (booking that is not completed)    | Redirection to the Edit Booking page                                         | Pass      |          |
+|                                   | Click the "Delete" button (booking that is not completed)  | Redirection to the delete confirmation page                                  | Pass      |          |
+|                                   | Check a booking's status one day after the booking end date| The booking status change to "Completed", "Edit" and "Delete" no available   | Pass      |          |
+|                                   | Сheck the "Leave a Review" link (if booking "Completed")   | The "Leave a Review" link should be visible                                  | Pass      |          |
+|                                   | Click the "Leave a Review" link                            | Redirection to the "Leave a Review" page                                     | Pass      |          |
+| Leave a Review                    |                                                            |                                                                              |           |          |
+|                                   | Navigate to the "Leave Review" page                        | The page should display two fields: rating and comment                       | Pass      |          |
+|                                   | Submit the form without check a rating or writing a comment| The form should not be submitted                                             | Pass      |          |
+|                                   | Complete the form by checking a rating, entering a comment | The form should be successfully submitted                                    | Pass      |          |
+|                                   | Check the redirection after form submission                | The user should be redirected to the "My Reviews"                            | Pass      |          |
+|                                   | Check the status of the submitted review                   | The review status should be "Awaiting Approval"                              | Pass      |          |
+|                                   | Navigate to the "All Reviews" page                         | Only approved reviews should be visible on the "All Reviews" page            | Pass      |          |
+| My Reviews                        |                                                            |                                                                              |           |          |
+|                                   | Navigate to the "My Reviews" page                          | The page should display all reviews submitted by the user                    | Pass      |          |
+|                                   | Check the presence of "Edit" and "Delete" buttons          | Each review should have both "Edit" and "Delete" buttons available page      | Pass      |          |
+|                                   | Click the "Edit" button on a review                        | The user should be able to modify the rating and/or comment of the review    | Pass      |          |
+|                                   | Check the status of the edited review                      | The review should display a status of "Awaiting Approval"                    | Pass      |          |
+|                                   | Click the "Delete" button on any review                    | Redirection to the delete confirmation page                                  | Pass      |          |
+| My Profile                        |                                                            |                                                                              |           |          |
+|                                   | Navigate to the "My Profile" page                          | The page should display a form (all fields are non-mandatory)                | Pass      |          |
+|                                   | Fill in only any one field and leave the others blank      | The form successfully submitted with only the filled field(s) updated        | Pass      |          |
+|                                   | Fill in all available fields                               | The form should be successfully submitted with all fields updated            | Pass      |          |
+|                                   | Leave all fields blank and submit the form                 | The form should still be submitted successfully with no data updated         | Pass      |          |
+|                                   | Navigate to the "Booking Form" after filling in My profile | Data entered in the "My Profile" populate the fields in the "Booking Form"   | Pass      |          |
 
 ## Code Validation
 
@@ -135,6 +175,8 @@ All HTML pages were validated using the [W3C HTML Validator](https://validator.w
 | <details><summary>Sign In</summary><img src="static/images/readme_images/testing/html_validations/login.png"></details>                  | <mark>PASS</mark>   |
 | <details><summary>Sign Up</summary><img src="static/images/readme_images/testing/html_validations/signup.png"></details>                 | <mark>PASS</mark>   |
 | <details><summary>Log Out</summary><img src="static/images/readme_images/testing/html_validations/logout.png"></details>                 | <mark>PASS</mark>   |
+| <details><summary>Reset Password</summary><img src="static/images/readme_images/testing/html_validations/password-reset.png"></details>  | <mark>PASS</mark>   |
+| <details><summary>Change Password</summary><img src="static/images/readme_images/testing/html_validations/change-password.png"></details>| <mark>PASS</mark>   |
 
 ### CSS
 
