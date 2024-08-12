@@ -2,9 +2,11 @@
 
 {% block content %}
 <div class="container py-5 px-4">
+    <!-- Page title -->
     <h2 class="text-center">Our Locations</h2>
     <div class="row my-4">
         <div class="col-12 text-center">
+            <!-- Dropdown to select an office -->
             <select id="officeSelect" class="form-select">
                 {% for office in object_list %}
                 <option value="{{ office.id }}" data-name="{{ office.name }}" data-phone="{{ office.phone_number }}"
@@ -19,22 +21,27 @@
     </div>
     <div class="row mt-3" id="officeInformation">
         <div class="col-lg-4 text-center text-lg-start">
+            <!-- Display office name -->
             <p class="mb-0" id="officeName"></p>
         </div>
         <div class="col-lg-4 text-center">
+            <!-- Display office phone number -->
             <p class="mb-0" id="officePhone">
             </p>
         </div>
         <div class="col-lg-4 text-center text-lg-end">
+            <!-- Display office hours -->
             <p class="mb-0" id="officeHours">
             </p>
         </div>
     </div>
     <div class="row mt-3">
+        <!-- Container for the map -->
         <div id="map"></div>
     </div>
     <div class="row mt-3">
         <div class="col-12 text-center">
+            <!-- Link to open the location in Google Maps -->
             <a id="googleMapLink" href="#" target="_blank">Open in Google Maps</a>
         </div>
     </div>
@@ -45,6 +52,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const officeSelect = document.getElementById('officeSelect');
         let defaultLat, defaultLng;
+        let hasDublinAirport = false;
 
         // Find the option with "Dublin Airport" and set it as selected
         for (let i = 0; i < officeSelect.options.length; i++) {
@@ -53,10 +61,20 @@
                 officeSelect.selectedIndex = i;
                 defaultLat = parseFloat(option.getAttribute('data-lat'));
                 defaultLng = parseFloat(option.getAttribute('data-lng'));
+                hasDublinAirport = true;
                 break;
             }
         }
 
+        // If "Dublin Airport" was not found, select the first option as default
+        if (!hasDublinAirport && officeSelect.options.length > 0) {
+            officeSelect.selectedIndex = 0;
+            const firstOption = officeSelect.options[0];
+            defaultLat = parseFloat(firstOption.getAttribute('data-lat'));
+            defaultLng = parseFloat(firstOption.getAttribute('data-lng'));
+        }
+
+        // Initialize the map with the default location
         const map = L.map('map').setView([defaultLat, defaultLng], 10);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,6 +83,7 @@
 
         const marker = L.marker([defaultLat, defaultLng]).addTo(map);
 
+        // Update office information and map view based on selected office
         function updateOfficeInfo() {
             const selectedOption = officeSelect.options[officeSelect.selectedIndex];
             const name = selectedOption.getAttribute('data-name');
@@ -74,10 +93,12 @@
             const lat = parseFloat(selectedOption.getAttribute('data-lat'));
             const lng = parseFloat(selectedOption.getAttribute('data-lng'));
 
+            // Update office details displayed on the page
             document.getElementById('officeName').textContent = name;
             document.getElementById('officePhone').textContent = phone;
             document.getElementById('officeHours').textContent = `Mon - Sun: ${opening} - ${closing}`;
 
+            // Update map and Google Maps link if valid coordinates are provided
             if (!isNaN(lat) && !isNaN(lng)) {
                 map.setView([lat, lng], 15);
                 marker.setLatLng([lat, lng]);
@@ -87,9 +108,10 @@
             }
         }
 
+        // Add event listener to update office info when selection changes
         officeSelect.addEventListener('change', updateOfficeInfo);
 
-        // Update info for the initially selected office
+        // Initialize info for the initially selected office
         updateOfficeInfo();
     });
 </script>

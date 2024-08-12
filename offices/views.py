@@ -18,5 +18,5 @@ class OfficeList(generic.ListView):
         template_name (str): The name of the template to use for rendering the
                              view.
     """
-    queryset = Office.objects.all()
+    queryset = Office.objects.all().order_by('name')
     template_name = "offices/office_list.html"

@@ -173,26 +173,40 @@ class SearchForm(forms.Form):
 
     def _set_default_offices(self):
         """
-        Sets default offices to Dublin Airport if it exists.
+        Sets default offices to Dublin Airport if it exists; otherwise, set to
+        the first available office.
         """
         dublin_airport = Office.objects.filter(name='Dublin Airport').first()
         if dublin_airport:
             self.fields['pickup_office'].initial = dublin_airport.id
             self.fields['return_office'].initial = dublin_airport.id
+        else:
+            first_office = Office.objects.first()
+            if first_office:
+                self.fields['pickup_office'].initial = first_office.id
+                self.fields['return_office'].initial = first_office.id
 
     def _set_time_choices(self):
         """
-        Sets the choices for pick-up and drop-off times.
+        Sets the choices for pick-up and drop-off times based on the selected office.
         """
-        dublin_airport = Office.objects.filter(name='Dublin Airport').first()
-        self.fields['pick_up_time'].choices = (
-            self.generate_pick_up_time_choices(
-                dublin_airport.opening_time, dublin_airport.closing_time
-            ) if dublin_airport else []
-        )
-        self.fields['drop_off_time'].choices = (
-            self.generate_drop_off_time_choices()
-        )
+        # Retrieve the initial office
+        initial_office_id = self.fields['pickup_office'].initial
+        selected_office = Office.objects.filter(id=initial_office_id).first()
+
+        if selected_office:
+            self.fields['pick_up_time'].choices = (
+                self.generate_pick_up_time_choices(
+                    selected_office.opening_time, selected_office.closing_time
+                )
+            )
+            self.fields['drop_off_time'].choices = (
+                self.generate_drop_off_time_choices()
+            )
+        else:
+            # Handle the case where no valid office is found, if necessary
+            self.fields['pick_up_time'].choices = []
+            self.fields['drop_off_time'].choices = []
 
     def generate_pick_up_time_choices(
         self, opening_time=None, closing_time=None
