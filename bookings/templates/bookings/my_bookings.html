@@ -80,7 +80,7 @@
                     </div>
                     <div class="row flex justify-content-end">
                         <!-- Display total price and rental days -->
-                        <div class="col-auto bg-light p-1 rounded">
+                        <div class="col-auto p-1 rounded px-2" id="price-badge">
                             {{ booking.total_price}}€ for {{ booking.rental_days }}
                             {% if booking.rental_days == 1 %}
                             day
@@ -94,7 +94,7 @@
             {% endfor %}
             {% else %}
 
-            <!-- Message when no bookings are available -->
+            <!-- Message when no bookings -->
             <p>You have no bookings.</p>
             {% endif %}
         </div>

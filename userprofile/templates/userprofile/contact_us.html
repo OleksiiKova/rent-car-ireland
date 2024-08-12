@@ -4,38 +4,54 @@
 
 {% block content %}
 <div class="container py-5">
+    <!-- Heading for Contact Us Page -->
     <h2 class="text-center">Contact Us</h2>
+
     <div class="row justify-content-center my-4">
         <div class="col-lg-6">
+            <!-- Introduction Text -->
             <p class="">If you have any questions, comments, or feedback, please don't hesitate to reach out
                 to us. We are here to help
                 and will respond to your inquiries as soon as possible.
             </p>
+
+            <!-- Contact Form -->
             <form method="post">
                 {% csrf_token %}
+
+                <!-- Name Field -->
                 <div class="mb-3">
                     <label for="id_name" class="form-label">Name</label>
                     {{ form.name|add_class:"form-control" }}
                     {% if form.name.errors %}
+                    <!-- Display Name Field Errors -->
                     <div class="text-danger">{{ form.name.errors }}</div>
                     {% endif %}
                 </div>
+
+                <!-- Email Field -->
                 <div class="mb-3">
                     <label for="id_email" class="form-label">Email</label>
                     {{ form.email|add_class:"form-control" }}
                     {% if form.email.errors %}
+                    <!-- Display Email Field Errors -->
                     <div class="text-danger">{{ form.email.errors }}</div>
                     {% endif %}
                     <p class="text-muted">It is important to write the correct email address so that we can respond to
                         your message.</p>
                 </div>
+
+                <!-- Message Field -->
                 <div class="mb-3">
                     <label for="id_message" class="form-label">Message</label>
                     {{ form.message|add_class:"form-control" }}
                     {% if form.message.errors %}
+                    <!-- Display Message Field Errors -->
                     <div class="text-danger">{{ form.message.errors }}</div>
                     {% endif %}
                 </div>
+
+                <!-- Submit Button -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Send</button>
                 </div>

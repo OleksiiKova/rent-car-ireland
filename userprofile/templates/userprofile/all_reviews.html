@@ -6,14 +6,18 @@
 
 {% block content %}
 <div class="container py-5">
+    <!-- Customer Reviews Section -->
     <section id="all-reviews" class="">
         <h2 class="text-center">Customer Reviews</h2>
         <div class="row justify-content-center mx-1">
             <div class="col-lg-8 my-3 p-0">
+                <!-- Loop through all reviews -->
                 {% for review in reviews %}
                 <div class="border my-4 p-2">
                     <div class="d-flex justify-content-between">
+                        <!-- Review creation date -->
                         <p class="text-muted mb-0">Created: {{ review.created_at|date:"d M Y" }}</p>
+                        <!-- Review rating display -->
                         <div class="review-rating d-flex">
                             {% for i in 5|times %}
                             {% if i <= review.rating %}
@@ -24,8 +28,10 @@
                             {% endfor %}
                         </div>
                     </div>
+                    <!-- Review comment -->
                     <div class="p-2">{{ review.comment }}</div>
                     <div class="d-flex justify-content-end">
+                        <!-- Review author display -->
                         <div class="text-muted text-end">
                             {% if user.is_authenticated and review.user == user %}
                             This is your review
@@ -37,6 +43,7 @@
                             {% endif %}
                             {% endif %}
                         </div>
+                        <!-- Edit and Delete options for the review owner -->
                         <div class="d-flex">
                             {% if user.is_authenticated and review.user == user %}
                             <a href="{% url 'edit_review' review.id %}" data-bs-toggle="tooltip"
@@ -51,14 +58,18 @@
             </div>
         </div>
     </section>
+
+    <!-- Pagination Controls -->
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+            <!-- Previous Page Link -->
             {% if page_obj.has_previous %}
             <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
             </li>
             {% endif %}
 
+            <!-- Page Number Links -->
             {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
             <li class="page-item active"><a href="?page={{ num }}" class="page-link">{{ num }}</a></li>
@@ -73,6 +84,7 @@
             {% endif %}
             {% endfor %}
 
+            <!-- Next Page Link -->
             {% if page_obj.has_next %}
             <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
             </li>

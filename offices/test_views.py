@@ -16,7 +16,6 @@ class OfficeListViewTest(TestCase):
         self.client = Client()
         self.office_list_url = reverse('locations')
 
-        # Create sample Office objects
         self.office1 = Office.objects.create(
             name="Headquarters",
             phone_number="123-456-7890",

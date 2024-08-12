@@ -7,13 +7,19 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
+            <!-- Heading and Booking Details -->
             <h2 class="text-center">Edit the Review for Booking {{ booking.car }} </h2>
             <p class="text-center">From {{ booking.start_date}} to {{ booking.end_date}}</p>
+
+            <!-- Review Edit Form -->
             <form method="post" class="my-4">
                 {% csrf_token %}
+
+                <!-- Star Rating Input -->
                 <div class="text-center text-sm-end">
                     <div class="form-group">
                         <div class="star-rating">
+                            <!-- Star Rating Options -->
                             <label for="id_rating_0">
                                 <input type="radio" name="rating" value="1" id="id_rating_0">
                                 ★
@@ -36,7 +42,11 @@
                             </label>
                         </div>
                     </div>
+
+                    <!-- Comment Field -->
                     <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
+
+                    <!-- Anonymous Review Checkbox -->
                     <div>
                         <label for="id_is_anonymous" class="custom-checkbox-container">
                             Leave anonymously
@@ -44,7 +54,11 @@
                             <span class="checkmark"></span>
                         </label>
                     </div>
+
+                    <!-- Hidden Input for Rating (pre-filled with current rating) -->
                     <input type="hidden" name="rating" id="rating-hidden" value="{{ review.rating }}">
+
+                    <!-- Buttons for Cancel and Save -->
                     <div class="row d-flex justify-content-aroud text-center my-4">
                         <div class="col-6">
                             <a class="btn btn-light" href="{% url 'my_reviews' %}">Cancel</a>

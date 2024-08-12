@@ -18,7 +18,6 @@ class CarViewTests(TestCase):
         )
         self.client.login(username='testuser', password='testpassword')
 
-        # Update the URL names to match those defined in urls.py
         self.car_search_url = reverse('booking')
         self.update_pickup_time_choices_url = reverse(
             'update_pickup_time_choices')

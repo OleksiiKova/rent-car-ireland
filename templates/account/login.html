@@ -31,13 +31,13 @@
                     {% endif %}
                     <p>
                         <label for="id_login">Username:</label>
-                        <input class="w-100 px-2" type="text" name="login" placeholder="Username"
+                        <input class="form-control w-100 px-2" type="text" name="login" placeholder="Username"
                             autocomplete="username" maxlength="150" required id="id_login"
                             value="{{ request.POST.login }}">
                     </p>
                     <p>
                         <label for="id_password">Password:</label>
-                        <input class="w-100 px-2" type="password" name="password" placeholder="Password"
+                        <input class="form-control w-100 px-2" type="password" name="password" placeholder="Password"
                             autocomplete="current-password" required id="id_password">
                     </p>
                     <p class="text-start">

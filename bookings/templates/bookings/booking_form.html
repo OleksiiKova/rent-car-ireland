@@ -19,19 +19,19 @@
                         <!-- Office, Date, and Time for pickup -->
                         <div class="col-sm-4">
                             <div class="row flex">
-                                <div class="col-3 col-sm-12">Office:</div>
+                                <label class="col-3 col-sm-12" for="id_pickup_office">Office:</label>
                                 <div class="col-auto col-sm-12">{{ form.pickup_office }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
-                                <div class="col-3 col-sm-12">Date:</div>
+                                <label class="col-3 col-sm-12" for="id_start_date">Date:</label>
                                 <div class="col-auto col-sm-12">{{ form.start_date }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
-                                <div class="col-3 col-sm-12">Time:</div>
+                                <label class="col-3 col-sm-12" for="id_pick_up_time">Time:</label>
                                 <div class="col-auto col-sm-12">{{ form.pick_up_time }}</div>
                             </div>
                         </div>
@@ -43,19 +43,19 @@
                         <!-- Office, Date, and Time for return -->
                         <div class="col-sm-4">
                             <div class="row flex">
-                                <div class="col-3 col-sm-12">Office:</div>
+                                <label class="col-3 col-sm-12" for="id_return_office">Office:</label>
                                 <div class="col-auto col-sm-12">{{ form.return_office }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
-                                <div class="col-3 col-sm-12"> Date:</div>
+                                <label class="col-3 col-sm-12" for="id_end_date">Date:</label>
                                 <div class="col-auto col-sm-12">{{ form.end_date }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
-                                <div class="col-3 col-sm-12">Time:</div>
+                                <label class="col-3 col-sm-12" for="id_drop_off_time">Time:</label>
                                 <div class="col-auto col-sm-12">{{ form.drop_off_time }}</div>
                             </div>
                         </div>
@@ -122,31 +122,31 @@
                     <div class="row my-4">
                         <div class="col">
                             {{ form.first_name.label_tag }}
-                            {{ form.first_name|add_class:"w-100 px-2" }}
+                            {{ form.first_name|add_class:"form-control w-100 px-2" }}
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class="col">
                             {{ form.last_name.label_tag }}
-                            {{ form.last_name|add_class:"w-100 px-2" }}
+                            {{ form.last_name|add_class:"form-control w-100 px-2" }}
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class="col">
                             {{ form.email.label_tag }}
-                            {{ form.email|add_class:"w-100 px-2" }}
+                            {{ form.email|add_class:"form-control w-100 px-2" }}
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class="col">
                             {{ form.phone_number.label_tag }}
-                            {{ form.phone_number|add_class:"w-100 px-2" }}
+                            {{ form.phone_number|add_class:"form-control w-100 px-2" }}
                         </div>
                     </div>
                     <div class="row my-4">
                         <div class="col">
                             {{ form.date_of_birth.label_tag }}
-                            {{ form.date_of_birth|add_class:"w-100 px-2" }}
+                            {{ form.date_of_birth|add_class:"form-control w-100 px-2" }}
                             <p class="text-muted age-limit fst-italic">Age: 23 - 70</p>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                                 {{ form.child_seat }}
                                 <span class="checkmark"></span>
                             </label>
-                            {{ form.child_seat_option|add_class:"w-100 px-2 mt-2" }}
+                            {{ form.child_seat_option|add_class:"form-control w-100 px-2 mt-2" }}
                         </div>
                     </div>
 

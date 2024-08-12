@@ -1,69 +1,65 @@
+/* --------------- General ----------------- */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat", sans-serif;
     color: #0A210F;
 }
 
-/* -----------------LOGO------------------ */
-.brand-logo {
-    height: 40px;
-    margin-right: 10px;
+a {
+    color: #0A210F;
+}
+
+a:hover {
+    color: #6BA756;
+}
+
+.content-container {
+    margin-top: 66px;
 }
 
 @media screen and (min-width: 992px) {
-    .brand-logo {
-        height: 70px;
+    .content-container {
+        margin-top: 96px;
     }
-  }
-
-/* ----------------END LOGO--------------- */
-
-.btn-primary {
-    background-color: rgba(107, 167, 86, 1);
-    border-color: #0A210F;
-    color: #0A210F;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
-    background-color: rgba(107, 167, 86, 0.6);
-    border-color: #0A210F;
-    color: #0A210F;
-}
-
-.btn-primary:focus,
-.btn-primary:active:focus,
-.btn-secondary:focus,
-.btn-secondary:active:focus {
-    box-shadow: 0 0 0  rgba(10, 33, 15, .5);
-}
-
-.btn-secondary {
-    background-color: rgba(107, 167, 86, 0.4);
-    border-color: #0A210F;
-    color: #0A210F;
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active {
-    background-color: rgba(107, 167, 86, 0.2);
-    border-color: #0A210F;
-    color: #0A210F;
-}
-
-.btn-link {
+/* ----------------- Icons ------------------ */
+#advantages i {
     color: #6BA756;
 }
 
-.btn-link:hover {
-    color: #6BA756;
+/* ----------------- Alerts ------------------ */
+.errorlist {
+    color: #dc3545;
 }
 
+.alert-error {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+/* ----------------- Navigation and Footer ------------------ */
 .navbar,
 .dropdown-menu,
 .footer {
     background-color: #0A210F;
+}
+
+.navbar-text {
+    margin-top: -10px;
+}
+
+.navbar-nav .nav-item .nav-link img {
+    margin-right: 8px;
+}
+
+.mobile-divider,
+.dropdown-divider {
+    border-bottom: 1px solid #ddd;
+}
+
+.mobile-divider {
+    margin: 8px 25%;
 }
 
 footer,
@@ -77,17 +73,84 @@ footer a:hover {
     footer a:hover {
         color: #6BA756;
     }
-  }
+}
 
-a {
+/* -----------------LOGO------------------ */
+.brand-logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 992px) {
+    .brand-logo {
+        height: 70px;
+    }
+}
+
+/* ----------------- Buttons ------------------ */
+.btn-primary {
+    background-color: rgba(107, 167, 86, 1);
+    border-color: #0A210F;
     color: #0A210F;
 }
 
-.my-bookings-container a:hover,
-.my-reviews-container a:hover {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus,
+.btn-primary:not(.btn-check) + .btn:active,
+.btn-primary:first-child:active,
+.btn-primary:focus-visible {
+    background-color: rgba(107, 167, 86, 0.6);
+    border-color: #0A210F;
+    color: #0A210F;
+}
+
+.btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary:focus-visible,
+.btn-secondary:focus,
+.btn-secondary:active:focus,
+.btn-secondary:focus-visible,
+.btn-link:focus-visible {
+    box-shadow: 0 0 0 rgba(10, 33, 15, .5);
+}
+
+.btn-secondary {
+    background-color: rgba(107, 167, 86, 0.4);
+    border-color: #0A210F;
+    color: #0A210F;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary:not(.btn-check) + .btn:active,
+.btn-secondary:first-child:active,
+.btn-secondary:focus-visible {
+    background-color: rgba(107, 167, 86, 0.2);
+    border-color: #0A210F;
+    color: #0A210F;
+}
+
+.btn-link {
+    color: #0A210F;
+    padding: 0;
+}
+
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:not(.btn-check)+.btn:active,
+.btn-link:focus-visible,
+:not(.btn-check)+.btn:active {
     color: #6BA756;
 }
 
+.btn-light {
+    border-color: rgba(107, 167, 86, 0.4);
+}
+
+/* ----------------- Accordion ------------------ */
 .accordion-button:not(.collapsed) {
     background-color: rgba(107, 167, 86, .6);
     color: #0A210F;
@@ -98,19 +161,22 @@ a {
     box-shadow: 0 0 0 .25rem rgba(10, 33, 15, .5);
 }
 
-#advantages i {
-    color: #6BA756;
+/* ----------------- Booking page ------------------ */
+.age-limit {
+    margin-bottom: 0;
+    font-size: 0.75rem;
 }
-
-.changeable_booking_info input[type="checkbox"]:checked {
-    color: #0A210F;
-  }
 
 .badge {
-    background-color: rgba(107, 167, 86, .6);
+    background-color: rgba(107, 167, 86, .4);
     color: #0A210F;
 }
 
+#price-badge {
+    background-color: rgba(107, 167, 86, .2);
+}
+
+/* ----------------- Pagination ------------------ */
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
@@ -140,11 +206,11 @@ a {
     box-shadow: 0 0 0 .25rem rgba(13, 73, 21, .25);
 }
 
-.errorlist {
-    color: #dc3545;
+/* ----------------- Custom Checkbox ------------------ */
+.changeable_booking_info input[type="checkbox"]:checked {
+    color: #0A210F;
 }
 
-/* ---------Custom checkbox--------- */
 .custom-checkbox-container input[type="checkbox"] {
     opacity: 0;
     width: 0;
@@ -191,25 +257,6 @@ a {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
-/* ---------END Custom checkbox--------- */
-
-.navbar-text {
-    margin-top: -10px;
-}
-
-.navbar-nav .nav-item .nav-link img {
-    margin-right: 8px;
-}
-
-.mobile-divider,
-.dropdown-divider {
-    border-bottom: 1px solid #ddd;
-}
-
-.mobile-divider {
-    margin: 8px 25%;
-}
-
 
 /* ----------------Locations page ---------------- */
 #map { 
@@ -222,18 +269,6 @@ a {
 #officeHours {
     font-size: 1.25rem;
 }
-/* ----------------END Locations page ---------------- */
-
-.content-container {
-    margin-top: 66px;
-}
-
-@media screen and (min-width: 992px) {
-    .content-container {
-        margin-top: 96px;
-    }
-  }
-
 
 /* -----------------Car list---------------------- */
 .image-container {
@@ -280,28 +315,7 @@ a {
     color: #574e49;
 }
 
-.btn-link {
-    padding: 0;
-}
-
-.btn-link:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.alert-error {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-}
-
-.age-limit {
-    margin-bottom: 0;
-    font-size: 0.75rem;
-}
-
-
-/* -------------------Stars in review ----------------*/
+/* ----------------- Star Rating ------------------ */
 .star-rating {
     display: inline-flex;
     flex-direction: row;
@@ -326,8 +340,6 @@ a {
 .star-rating label.preview:hover ~ label {
     color: gold;
 }
-/* --------------END Stars in review END -------------*/
-
 
 /* -------------------Review page-------------------- */
 .comment-field {
@@ -372,16 +384,16 @@ a {
 
 @media screen and (min-width: 576px) {
     .carousel-inner {
-      display: flex;
+        display: flex;
     }
     .carousel-item {
-      display: flex;
-      display: block;
-      margin-right: 0;
-      flex: 0 0 calc(100% / 2);
+        display: flex;
+        display: block;
+        margin-right: 0;
+        flex: 0 0 calc(100% / 2);
     }
     .img-wrapper {
-      height: 21vw;
+        height: 21vw;
     }
 }
 
@@ -395,7 +407,7 @@ a {
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     font-size: 0.9em;
 }
-  
+
 .carousel-control-prev,
 .carousel-control-next {
     width: 6vh;
@@ -411,8 +423,6 @@ a {
 .carousel-control-next:hover {
     opacity: 0.8;
 }
-/* ----------------END Review Carousel ----------------*/
-/* -----------------END Review page------------------- */
 
 /* ----------------Detail Car Info ------------------- */
 #carInfo p,
@@ -426,4 +436,17 @@ a {
         width: 80%;
     }
 }
-/* ----------------END Detail Car Info --------------- */
+
+/* ----------------Forms ------------------- */
+.form-control:focus,
+.form-select:focus {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #6BA756;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(107, 167, 86, .2);
+}
+
+label {
+    font-weight: 500;
+}

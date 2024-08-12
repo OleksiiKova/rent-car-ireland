@@ -98,7 +98,14 @@ def calc_rental_info(car, start_date, end_date, pick_up_time, drop_off_time):
     return None, None
 
 
-def handle_post_request(request, initial_data, car, car_id, rental_days, total_cost):
+def handle_post_request(
+    request,
+    initial_data,
+    car,
+    car_id,
+    rental_days,
+    total_cost
+):
     """
     Handles the POST request for the booking form.
 
@@ -128,14 +135,15 @@ def handle_post_request(request, initial_data, car, car_id, rental_days, total_c
                 'rental_days': rental_days,
                 'total_cost': total_cost,
             })
-                
+
         # Check if the car is still available
         try:
             car = Car.objects.get(id=car_id, availability=True)
         except Car.DoesNotExist:
             messages.add_message(
                 request, messages.ERROR,
-                'Sorry, this car is no longer available. Please choose another car.'
+                'Sorry, this car is no longer available. '
+                'Please choose another car.'
             )
             return render(request, 'bookings/booking_form.html', {
                 'form': form,
@@ -402,7 +410,3 @@ def get_car_details(request, car_id):
         return JsonResponse(data)
     except Car.DoesNotExist:
         return JsonResponse({'error': 'Car not found'}, status=404)
-
-import os
-print("EMAIL_HOST_USER:", os.environ.get("EMAIL_HOST_USER"))
-print("EMAIL_HOST_PASSWORD:", os.environ.get("EMAIL_HOST_PASSWORD"))

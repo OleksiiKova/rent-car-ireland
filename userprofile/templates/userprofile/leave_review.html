@@ -7,10 +7,15 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
+            <!-- Heading and Booking Information -->
             <h2 class="text-center">Leave a Review for Booking {{ booking.car }} </h2>
             <p class="text-center">From {{ booking.start_date}} to {{ booking.end_date}}</p>
+
+            <!-- Review Form -->
             <form method="post" class="my-4">
                 {% csrf_token %}
+
+                <!-- Star Rating -->
                 <div class="text-center text-sm-end">
                     <div class="form-group">
                         <div class="star-rating">
@@ -36,7 +41,11 @@
                             </label>
                         </div>
                     </div>
+
+                    <!-- Comment Field -->
                     <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
+
+                    <!-- Anonymous Checkbox -->
                     <div>
                         <label for="id_is_anonymous" class="custom-checkbox-container">
                             Leave anonymously
@@ -44,7 +53,11 @@
                             <span class="checkmark"></span>
                         </label>
                     </div>
+
+                    <!-- Hidden Rating Input -->
                     <input type="hidden" name="rating" id="rating-hidden" required="False" value="">
+
+                    <!-- Submit Button -->
                     <div class="my-2 text-center">
                         <button type="submit" class="btn btn-primary">Submit Review</button>
                     </div>
@@ -54,6 +67,7 @@
     </div>
 </div>
 
+<!-- JavaScript for Rating Handling -->
 <script src="{% static 'js/rating.js' %}"></script>
 
 {% endblock %}

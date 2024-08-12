@@ -6,11 +6,11 @@
 <div class="container py-5">
     <!-- Page header -->
     <h2 class="text-center">Car Search</h2>
-    <h3 class="text-center h6">Please fill out the initial booking information to see the list of available cars.</h3>
 
     <!-- Search form -->
-    <div class="d-flex justify-content-center align-items-center search-form my-4">
+    <div class="d-flex justify-content-center align-items-center search-form">
         <div class="col-12 col-lg-8 mt-2">
+            <h3 class="text-center h6">Please fill out the initial booking information to see the list of available cars.</h3>
             <form method="POST" action="{% url 'booking' %}">
                 {% csrf_token %}
                 <!-- Display form errors -->
@@ -28,16 +28,16 @@
                 <!-- Form fields for search -->
                 <div class="form-row">
                     <div class="col-md-3">
-                        <p>Pick up Office</p>
+                        <label for="id_pickup_office">Pick up Office</label>
                         {{ form.pickup_office }}
                     </div>
                     <div class="col-md-3 p-0">
-                        <p>Return Office</p>
+                        <label for="id_return_office">Return Office</label>
                         {{ form.return_office }}
                     </div>
                 </div>
-                <p>Start time</p>
-                <div class="form-row mb-0">
+                <label for="id_start_date">Start time</label>
+                <div class="form-row">
                     <div class="col-md-3">
                         {{ form.start_date }}
                     </div>
@@ -45,9 +45,8 @@
                         {{ form.pick_up_time }}
                     </div>
                 </div>
-                <p class="text-muted text-center">Start time depends on the office's operating hours.</p>
-                <p>End time</p>
-                <div class="form-row mb-0">
+                <label for="id_end_date">End time</label>
+                <div class="form-row">
                     <div class="col-md-3">
                         {{ form.end_date }}
                     </div>
@@ -55,9 +54,8 @@
                         {{ form.drop_off_time }}
                     </div>
                 </div>
-                <p class="text-muted text-center">End time can be any time. To return the car, just place the keys in the mailbox.</p>
                 <div class="d-flex justify-content-center">
-                    <button class="btn btn-primary my-4" type="submit">Search</button>
+                    <button class="btn btn-primary my-2" type="submit">Search</button>
                 </div>
             </form>
         </div>
@@ -113,7 +111,7 @@
                         </select>
                     </div>
                     <div class="">
-                        <button id="reset-filters" class="btn-small btn-secondary mx-2">Reset Filters</button>
+                        <button id="reset-filters" class="btn btn-sm btn-secondary mx-2">Reset Filters</button>
                     </div>
                 </div>
             </div>

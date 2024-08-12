@@ -25,7 +25,7 @@
 
           <div class="form-group my-2">
             <label for="{{ form.username.id_for_label }}">Username*:</label>
-            {{ form.username|add_class:"w-100 px-2" }}
+            {{ form.username|add_class:"form-control w-100 px-2" }}
             {% if form.username.errors %}
             <p class="error-message">{{ form.username.errors }}</p>
             {% endif %}
@@ -33,7 +33,7 @@
 
           <div class="form-group my-2">
             <label for="{{ form.email.id_for_label }}">Email*:</label>
-            {{ form.email|add_class:"w-100 px-2" }}
+            {{ form.email|add_class:"form-control w-100 px-2" }}
             {% if form.email.errors %}
             <p class="error-message">{{ form.email.errors }}</p>
             {% endif %}
@@ -42,7 +42,7 @@
           <div class="form-group my-2">
             <p class="mt-4 mb-0">Your password must contain at least 8 characters and can’t be entirely numeric.</p>
             <label for="{{ form.password1.id_for_label }}">Password*:</label>
-            {{ form.password1|add_class:"w-100 px-2" }}
+            {{ form.password1|add_class:"form-control w-100 px-2" }}
             {% if form.password1.errors %}
             <p class="error-message">{{ form.password1.errors }}</p>
             {% endif %}
@@ -50,7 +50,7 @@
 
           <div class="form-group  my-2">
             <label for="{{ form.password2.id_for_label }}">Password (again)*:</label>
-            {{ form.password2|add_class:"w-100 px-2" }}
+            {{ form.password2|add_class:"form-control w-100 px-2" }}
             {% if form.password2.errors %}
             <p class="error-message">{{ form.password2.errors }}</p>
             {% endif %}
@@ -59,7 +59,7 @@
             <button class="btn btn-primary right w-100" type="submit">{% trans "Sign Up" %}</button>
           </div>
         </form>
-        <div class="text-center mt-3">{% blocktrans %}
+        <div class="text-center">{% blocktrans %}
           <p>If you already
             have an account, please Sign in</p>
           <a class="btn btn-light w-100" href="{{ login_url }}">Sign in</a>

@@ -4,15 +4,19 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
+            <!-- Heading for the Delete Review Page -->
             <h2 class="text-center">Delete Review</h2>
+
+            <!-- Confirmation Message for Deleting Review -->
             <p class="text-center my-4">Are you sure you want to delete the review for booking {{ booking.car }} from
                 {{ booking.start_date|date:"d M Y" }}
                 to {{ booking.end_date|date:"d M Y" }}?</p>
             <form method="POST">
                 {% csrf_token %}
+                <!-- Button Group for Cancel and Delete Actions -->
                 <div class="row d-flex justify-content-aroud text-center my-4">
                     <div class="col-6">
-                        <a class="btn btn-secondary" href="{% url 'my_reviews' %}">Cancel</a>
+                        <a class="btn btn-light" href="{% url 'my_reviews' %}">Cancel</a>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-danger">Delete</button>

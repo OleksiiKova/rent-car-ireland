@@ -15,9 +15,13 @@
 <html class="h-100" lang="en">
 
 <head>
+    <!-- Page Title -->
     <title>Car Rental</title>
+
+    <!-- Viewport Meta Tag for Responsive Design -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Meta tags for search engines -->
+
+    <!-- Meta Tags for SEO -->
     <meta name="description" content="Car Rental Services at all airports in Ireland">
     <meta name="keywords"
         content="car rent, rental Ireland, EireWheels, rental in airport, cheapest rental Ireland, rent a car">
@@ -26,39 +30,45 @@
     <!-- Favicon for the website -->
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
 
-    <!-- Google Fonts CSS -->    
+    <!-- Google Fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheets -->
-    <!-- Font Awesome CSS -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Bootstrap icons -->
+    <!-- Bootstrap Icons for Additional Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Map (LeafletJS) CSS -->
+    <!-- Bootstrap CSS for Responsive Layout and Components -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- LeafletJS CSS for Maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-    <!-- Custom CSS -->
+    <!-- Custom Stylesheet for Site-Specific Styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top text-light ">
         <div class="container-fluid">
+            <!-- Brand Logo -->
             <a class="navbar-brand logo" href="{% url 'home' %}">
                 <img src="{% static 'images/logo.png' %}" alt="EireWheels Logo" class="brand-logo">
             </a>
+            <!-- Navbar Toggler for Mobile View -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Collapsible Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-uppercase text-center">
+                    <!-- Navigation Links -->
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Home</a>
@@ -76,9 +86,10 @@
                             href="{% url 'contact_us' %}">Contact Us</a>
                     </li>
 
-                    <!-- Divider -->
+                    <!-- Mobile Divider -->
                     <li class="nav-item mobile-divider d-lg-none"></li>
 
+                    <!-- Authenticated User Links (Mobile View) -->
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link d-lg-none {% if request.path == my_profile_url %}active{% endif %}"
@@ -98,6 +109,7 @@
                     {% endif %}
 
                 </ul>
+                <!-- Authenticated User Dropdown (Desktop View) -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown d-none d-lg-block">
@@ -111,6 +123,7 @@
                             {% endif %}
                             {{ user.username }}
                         </a>
+                        <!-- Dropdown Menu -->
                         <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="userDropdown">
                             <li><a class="nav-link text-uppercase {% if request.path == my_profile_url %}active{% endif %}"
                                     href="{% url 'my_profile' %}">My Profile</a></li>
@@ -126,13 +139,14 @@
                         </ul>
                     </li>
                     {% else %}
+                    <!-- Authentication Links -->
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_login' %}">Sign In</a>
+                        <a class="nav-link text-uppercase {% if request.path == login_url %}active{% endif %}"
+                            aria-current="page" href="{% url 'account_login' %}">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="nav-link text-uppercase {% if request.path == signup_url %}active{% endif %}"
+                            aria-current="page" href="{% url 'account_signup' %}">Sign Up</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -140,6 +154,7 @@
         </div>
     </nav>
 
+    <!-- Main Content Area -->
     <main class="flex-shrink-0 main-bg">
         <div class="content-container">
             <!-- Displaying Django messages -->
@@ -156,7 +171,7 @@
                 </div>
             </div>
 
-            <!-- Displaying Content -->
+            <!-- Page Specific Content -->
             <div class="">
                 {% block content %}
                 <!-- Content Goes here -->
@@ -165,7 +180,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer class="footer mt-auto py-3">
         <div class="container">
             <div class="row d-flex justify-content-between text-center">
@@ -190,6 +205,7 @@
                     <p class="mb-0">&copy; 2024 EireWheels - For educational purposes</p>
                 </div>
                 <div class="col-md-6 text-md-end">
+                    <!-- Footer Links -->
                     <a href="#" data-bs-toggle="modal" data-bs-target="#privacyPolicyModal">Privacy Policy</a>
                     <span class="text-light mx-2">|</span>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#termsConditionsModal">Terms and
@@ -344,12 +360,18 @@
             </div>
         </div>
     </footer>
-    
+
+    <!-- JavaScript Libraries and Files -->
+    <!-- jQuery Library: A fast, small, and feature-rich JavaScript library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap Bundle JS: Includes Bootstrap's JavaScript components and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript File: Contains site-specific JavaScript code -->
     <script src="{% static 'js/script.js' %}"></script>
 
-    <!-- Font awesome kit -->
+    <!-- Font Awesome Kit: Provides additional icons for use throughout the site -->
     <script src="https://kit.fontawesome.com/1e754c32b5.js" crossorigin="anonymous"></script>
 </body>
 

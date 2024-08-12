@@ -50,7 +50,6 @@ def my_profile_view(request):
             return redirect('my_profile')
 
         else:
-            # If the form is invalid, collect form errors
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(
@@ -105,9 +104,6 @@ def leave_review(request, booking_id):
     """
     booking = get_object_or_404(Booking, pk=booking_id)
 
-    # if not booking.can_leave_review():
-    #     return redirect(reverse('my_bookings'))
-
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -132,7 +128,6 @@ def leave_review(request, booking_id):
                 )
     else:
         if booking.review_left:
-            # Redirect if the review has already been left
             return redirect(reverse('my_reviews'))
         form = ReviewForm()
         return render(request, 'userprofile/leave_review.html', {

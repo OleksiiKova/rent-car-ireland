@@ -14,21 +14,28 @@
             <div class="review-card my-2 p-2 my-md-4 p-md-4 {% if not review.approved %}
             faded {% endif %}">
                 {% if not review.approved %}
+                <!-- Approval Status -->
                 <p class="approval text-end">
                     This Review is awaiting approval
                 </p>
                 {% endif %}
+
+                <!-- Review Header and Actions -->
                 <div class="d-flex justify-content-between">
                     <div>
                         <h2 class="h4">Review for booking {{ review.booking.car }}</h2>
                     </div>
                     <div class="d-flex">
+                        <!-- Edit Review Button -->
                         <a href="{% url 'edit_review' review.id %}" data-bs-toggle="tooltip"
                             data-bs-title="Edit Review"><i class="bi bi-pen-fill mx-2"></i></a>
+                        <!-- Delete Review Button -->
                         <a href="{% url 'delete_review' review.id %}" data-bs-toggle="tooltip"
                             data-bs-title="Delete Review"><i class="bi bi-trash-fill"></i></a>
                     </div>
                 </div>
+
+                <!-- Review Date and Rating -->
                 <p>From {{ review.booking.start_date|date:"d M Y" }}
                     to {{ review.booking.end_date|date:"d M Y" }}</p>
                 <div class="d-flex justify-content-between">
@@ -43,6 +50,8 @@
                         {% endfor %}
                     </div>
                 </div>
+
+                <!-- Review Author -->
                 <div class="author">
                     {% if review.is_anonymous %}
                     As anonymous
@@ -50,8 +59,9 @@
                     As {{ review.user.username }}
                     {% endif %}
                 </div>
-                <p class="comment-field border p-2">{{ review.comment }}</p>
 
+                <!-- Review Comment -->
+                <p class="comment-field border p-2">{{ review.comment }}</p>
             </div>
             {% empty %}
             <p>You have not left any reviews yet.</p>

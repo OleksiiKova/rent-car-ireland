@@ -188,9 +188,9 @@ class SearchForm(forms.Form):
 
     def _set_time_choices(self):
         """
-        Sets the choices for pick-up and drop-off times based on the selected office.
+        Sets the choices for pick-up and drop-off times based on the selected
+        office.
         """
-        # Retrieve the initial office
         initial_office_id = self.fields['pickup_office'].initial
         selected_office = Office.objects.filter(id=initial_office_id).first()
 
@@ -204,7 +204,6 @@ class SearchForm(forms.Form):
                 self.generate_drop_off_time_choices()
             )
         else:
-            # Handle the case where no valid office is found, if necessary
             self.fields['pick_up_time'].choices = []
             self.fields['drop_off_time'].choices = []
 
