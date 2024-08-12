@@ -7,23 +7,13 @@
    * [Strategy](#strategu)
    * [Database structure](#database-structure)
    * [Design](#design)
+- [Features](#Features)
+   * 
 - [Technologies](#technologies)
 - [Testing](#testing)
 
 
-<!-- - [Features](#Features)
-   * [Welcome block](#Welcome-block)
-   * [Menu](#Menu)
-   * [Game](#Game)
-   * [Finish game](#Finish-game)
-   * [Leaderboard](#Leaderboard)
-   * [Rules of the game](#Rules-of-the-game)
 
-- [Deployment](#Deployment)
-   * [Create Repository](#Create-Repository)
-   * [Clone my repository from GitHub to VSCode](#Clone-my-repository-from-GitHub-to-VSCode)
-   * [Creating the Heroku app](#Creating-the-Heroku-app)
-- [Credits](#Credits) -->
 
 ### Overview
 EireWheels Car Rental is a web application for car rental developed with Django. The project allows users to view available cars at various airports in Ireland, book them, and manage rentals. This website was created as a learning exercise for my fourth portfolio project at Code Institute.

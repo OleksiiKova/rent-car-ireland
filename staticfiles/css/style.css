@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #0A210F;
 }
 
-/* ----------------LOGO--------------- */
+/* -----------------LOGO------------------ */
 .brand-logo {
     height: 40px;
     margin-right: 10px;
@@ -144,22 +144,22 @@ a {
     color: #dc3545;
 }
 
-  /* ---------Custom checkbox--------- */
-  .custom-checkbox-container input[type="checkbox"] {
+/* ---------Custom checkbox--------- */
+.custom-checkbox-container input[type="checkbox"] {
     opacity: 0;
     width: 0;
-    height: 0;
-  }
+    height: 0;  
+}
   
-  .custom-checkbox-container {
+.custom-checkbox-container {
     position: relative;
     display: inline-block;
     padding-left: 35px;
     cursor: pointer;
     user-select: none;
-  }
+}
   
-  .custom-checkbox-container input[type="checkbox"] + .checkmark {
+.custom-checkbox-container input[type="checkbox"] + .checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -168,20 +168,20 @@ a {
     background-color: #eee;
     border: 2px solid #ccc;
     border-radius: 4px;
-  }
+}
   
-  .custom-checkbox-container input[type="checkbox"]:checked + .checkmark {
+.custom-checkbox-container input[type="checkbox"]:checked + .checkmark {
     background-color: #0A210F;
     border-color: #0A210F;
-  }
+}
   
-  .checkmark:after {
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
+}
   
-  .custom-checkbox-container input[type="checkbox"]:checked + .checkmark:after {
+.custom-checkbox-container input[type="checkbox"]:checked + .checkmark:after {
     display: block;
     left: 6px;
     top: 2px;
@@ -190,14 +190,8 @@ a {
     border: solid #fff;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
-  }
+}
 /* ---------END Custom checkbox--------- */
-
-/* .brand-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
 
 .navbar-text {
     margin-top: -10px;
@@ -207,12 +201,17 @@ a {
     margin-right: 8px;
 }
 
-.mobile-divider {
+.mobile-divider,
+.dropdown-divider {
     border-bottom: 1px solid #ddd;
-    margin: 8px 0;
-    width: 100px;
 }
 
+.mobile-divider {
+    margin: 8px 25%;
+}
+
+
+/* ----------------Locations page ---------------- */
 #map { 
     height: 400px; 
     width: 100%; 
@@ -223,6 +222,7 @@ a {
 #officeHours {
     font-size: 1.25rem;
 }
+/* ----------------END Locations page ---------------- */
 
 .content-container {
     margin-top: 66px;
@@ -233,6 +233,7 @@ a {
         margin-top: 96px;
     }
   }
+
 
 /* -----------------Car list---------------------- */
 .image-container {
@@ -300,9 +301,7 @@ a {
 }
 
 
-
-/* ----------------Stars in review ----------------*/
-
+/* -------------------Stars in review ----------------*/
 .star-rating {
     display: inline-flex;
     flex-direction: row;
@@ -322,18 +321,15 @@ a {
 }
 
 .star-rating label.checked,
-.star-rating label.preview {
-    color: gold;
-}
-
+.star-rating label.preview,
 .star-rating label.preview:hover,
 .star-rating label.preview:hover ~ label {
     color: gold;
 }
+/* --------------END Stars in review END -------------*/
 
 
-/* ----------------END Stars in review END ----------------*/
-
+/* -------------------Review page-------------------- */
 .comment-field {
     height: 150px;
     overflow-y: auto;
@@ -358,7 +354,6 @@ a {
 }
 
 /* ----------------Review Carousel ----------------*/
-
 .carousel-item .row {
     width: 100%;
 }
@@ -375,7 +370,7 @@ a {
     }
 }
 
-  @media screen and (min-width: 576px) {
+@media screen and (min-width: 576px) {
     .carousel-inner {
       display: flex;
     }
@@ -388,20 +383,21 @@ a {
     .img-wrapper {
       height: 21vw;
     }
-  }
+}
 
-  .carousel-inner {
+.carousel-inner {
     padding: 1em;
-  }
-  .card {
+}
+
+.card {
     margin: 0 0.5em;
     border-radius: 0;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     font-size: 0.9em;
-  }
+}
   
-  .carousel-control-prev,
-  .carousel-control-next {
+.carousel-control-prev,
+.carousel-control-next {
     width: 6vh;
     height: 6vh;
     background-color: #e1e1e1;
@@ -409,15 +405,16 @@ a {
     top: 50%;
     transform: translateY(-50%);
     opacity: 0.5;
-  }
-  .carousel-control-prev:hover,
-  .carousel-control-next:hover {
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
     opacity: 0.8;
-  }
+}
+/* ----------------END Review Carousel ----------------*/
+/* -----------------END Review page------------------- */
 
-  /* ----------------END Review Carousel ----------------*/
-
-  /* ----------------Detail Car Info ------------------- */
+/* ----------------Detail Car Info ------------------- */
 #carInfo p,
 #bookingInfo p,
 #customerInfo p {
@@ -429,4 +426,4 @@ a {
         width: 80%;
     }
 }
-  /* ----------------END Detail Car Info --------------- */
+/* ----------------END Detail Car Info --------------- */
