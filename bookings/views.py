@@ -98,7 +98,7 @@ def calc_rental_info(car, start_date, end_date, pick_up_time, drop_off_time):
     return None, None
 
 
-def handle_post_request(request, initial_data, car, rental_days, total_cost):
+def handle_post_request(request, initial_data, car, car_id, rental_days, total_cost):
     """
     Handles the POST request for the booking form.
 
@@ -121,6 +121,21 @@ def handle_post_request(request, initial_data, car, rental_days, total_cost):
             messages.add_message(
                 request, messages.ERROR,
                 'You must agree to the rules before booking!'
+            )
+            return render(request, 'bookings/booking_form.html', {
+                'form': form,
+                'car': car,
+                'rental_days': rental_days,
+                'total_cost': total_cost,
+            })
+                
+        # Check if the car is still available
+        try:
+            car = Car.objects.get(id=car_id, availability=True)
+        except Car.DoesNotExist:
+            messages.add_message(
+                request, messages.ERROR,
+                'Sorry, this car is no longer available. Please choose another car.'
             )
             return render(request, 'bookings/booking_form.html', {
                 'form': form,
@@ -210,9 +225,10 @@ def booking_form(request, car_id):
     if request.user.is_authenticated:
         initial_data.update(get_user_profile_data(request.user))
 
+    car = Car.objects.get(id=car_id)
     if request.method == 'POST':
         return handle_post_request(
-            request, initial_data, car, rental_days, total_cost
+            request, initial_data, car, car_id, rental_days, total_cost
         )
     else:
         form = BookingForm(initial=initial_data)

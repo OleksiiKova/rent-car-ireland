@@ -141,14 +141,14 @@
     </nav>
 
     <main class="flex-shrink-0 main-bg">
-        <!-- displaying Django messages -->
         <div class="content-container">
+            <!-- Displaying Django messages -->
             <div class="row">
                 <div class="col-md-8 offset-md-2 text-center">
                     {% if messages %}
                     {% for message in messages %}
                     <div
-                        class="mt-3 alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                        class="mt-3 alert mb-0 {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
                         {{ message }}
                     </div>
                     {% endfor %}
@@ -156,6 +156,7 @@
                 </div>
             </div>
 
+            <!-- Displaying Content -->
             <div class="">
                 {% block content %}
                 <!-- Content Goes here -->
