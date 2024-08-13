@@ -11,7 +11,8 @@
    * [Responsive Navbar](#responsive-navbar)
    * [Footer](#footer)
    * [Home Page](#home-page)
-   * [Our Locations][#our-locations]
+   * [Car Search](#car-search)
+   * [Our Locations](#our-locations)
 - [Technologies](#technologies)
 - [Testing](#testing)
 
@@ -145,8 +146,39 @@ Have questions? We’ve got answers! Here are some of the most common queries we
 
 ![](static/images/readme_images/features/faq.png)
 
+### Car Search
 
-### Our Locations Page
+#### Search Form 
+
+Users can search for available cars.
+
+![](static/images/readme_images/features/car-search.png)
+
+#### Filters and Sorting
+
+Refine search results using various filters and sort the list of cars by price per day.
+Filters and sorting options dynamically update the list of available cars.
+
+![](static/images/readme_images/features/car-filter.png)
+
+#### Car Details
+
+View detailed information about each car.
+
+![](static/images/readme_images/features/car-detail.png)
+
+#### Reservations
+
+Authenticated users can reserve a car by:
+- Clicking the Reserve button to book the car with selected rental details.
+- If not authenticated, users are prompted to Login to continue.
+
+![](static/images/readme_images/features/car-reserve.png)
+
+
+
+
+### Our Locations
 
 Discover our convenient car rental offices located at airports across Ireland. 
 
