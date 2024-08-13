@@ -7,12 +7,20 @@
    * [Strategy](#strategu)
    * [Database structure](#database-structure)
    * [Design](#design)
-- [Features](#features)
+- [Existing Features](#existing-features)
    * [Responsive Navbar](#responsive-navbar)
    * [Footer](#footer)
    * [Home Page](#home-page)
    * [Car Search](#car-search)
+   * [Booking Form](#booking-form)
+   * [My Bookings](#my-bookings)
+   * [Review Form](#review-form)
+   * [My Reviews](#my-reviews)
+   * [All Customer Reviews](#all-customer-reviews)
    * [Our Locations](#our-locations)
+   * [Contact Us](#contact-us)
+   * [Technical Features](#technical-features)
+- [Future Features](#future-features)
 - [Technologies](#technologies)
 - [Testing](#testing)
 
@@ -53,7 +61,7 @@ The following colour palette was used from [Coolors](https://coolors.co/):
 
 The website is designed to be clear and simple. To create a wireframe I used Balsamiq software. PDF file with my wireframe you cand find [here](static/images/readme_images/car_rental.pdf).
 
-## Features
+## Existing Features
 
 ### Account Management
 
@@ -150,7 +158,13 @@ Have questions? We’ve got answers! Here are some of the most common queries we
 
 #### Search Form 
 
-Users can search for available cars.
+Users can search for available cars using a comprehensive search form.
+
+- Pick-Up Time Choices (Dynamic): The available pick-up times are populated based on the selected office's operating hours. This ensures that users can only select times when the office is open.
+- Drop-Off Time Choices (Flexible): Users can select any time for dropping off the car. The system allows drop-off at any time of day without the need for office interaction, in line with the company’s policy.
+- Time Validation: The form includes validation to ensure logical consistency between dates and times
+   + End Date Validation: Ensures that the end date cannot be earlier than the start date.
+   + Same-Day Time Validation: On the same day, the drop-off time cannot be earlier than or the same as the pick-up time. This prevents selecting a return time before or at the same time as the pick-up time on the same day.
 
 ![](static/images/readme_images/features/car-search.png)
 
@@ -165,7 +179,7 @@ Filters and sorting options dynamically update the list of available cars.
 
 View detailed information about each car.
 
-![](static/images/readme_images/features/car-detail.png)
+![](static/images/readme_images/features/car-details.png)
 
 #### Reservations
 
@@ -175,8 +189,116 @@ Authenticated users can reserve a car by:
 
 ![](static/images/readme_images/features/car-reserve.png)
 
+### Booking Form
 
+- Booking Information: Displays unchangeable details for pickup and return office, date, and time. Users are informed that they need to perform a new search to change these details.
+- Car information is displayed in an expandable accordion section, showing details such as make, model, price per day, type, transmission, fuel type, seats, doors, and additional features (e.g., air conditioning, navigation, image).
+- Personal Details: Users can enter or update personal information, including first name, last name, email, phone number, and date of birth with age limits specified.
+- Child Seat: Option to select a free child seat and specify details if chosen.
+- Optional Insurance: Users can opt for extra insurance with additional details provided in a modal.
+- Rules Agreement: Users must agree to terms and conditions before finalizing the booking, with a link to read them in a modal.
+- Price Calculation:
+- Total Price Display: Shows the final price based on rental days and selected insurance options. The price updates dynamically based on user input.
+- Booking Actions:
+   + New Search: Option to start a new search with confirmation via a modal that warns of losing current progress.
+   + Book Now: Submit the booking with a button that confirms the selection.
 
+#### Modals
+
+- Confirmation Modal: Asks for confirmation before starting a new search, ensuring users are aware of the progress loss.
+- Terms and Conditions Modal: Provides detailed terms and conditions of the rental service for users to review before agreeing.
+- Extra Insurance Modal: Explains the benefits and costs associated with extra insurance, allowing users to make an informed choice.
+
+#### Form Interaction
+
+- Dynamic Total Cost Update: Calculates and displays the total cost in real-time based on the selected insurance option.
+- Child Seat Option Toggle: Enables or disables the child seat option field based on whether the checkbox is selected.
+- Age Validation: Ensures the user’s age is between 23 and 70 years.
+
+![](static/images/readme_images/features/booking-form.png)
+
+### My Bookings
+
+- Booking List:
+   + Status Indicators: Displays booking statuses such as confirmed, completed, or reviewed.
+   + Car Image: Shows the image of the car associated with each booking.
+
+- Booking Status Messages:
+   + Review Prompt: If the user can leave a review, a prompt will appear with a link to the review page.
+   + Confirmation Message: Indicates that the booking is confirmed and informs when reviews can be left.
+   + Thank You Message: Displays a thank you message if the review has already been left.
+
+- Booking Details: 
+   + Each booking has a clickable link that opens a modal with detailed booking information (car Information, booking Information, customer Information).
+   + Accordion Component: Uses Bootstrap accordion components to organize detailed booking information in a collapsible format.
+
+- Booking Management: For bookings, users have options to edit or delete the booking.
+
+- Tooltips: Provides additional context for actions like editing and deleting bookings.
+
+![](static/images/readme_images/features/my-bookings.png)
+
+### Review Form
+
+The review functionality consists of two key pages: one for leaving a new review and another for editing an existing review. Both pages share similar features but cater to different user actions.
+
+- Booking Information Display: Both pages display the car and booking dates at the top of the page to provide context for the review.
+- Review Form:
+   + Star Rating: Users can rate their experience using a 1 to 5-star rating system. Each star rating option is represented as a radio button, where users can select their rating.
+   + Comment Field: Provides a text area for users to write additional comments about their experience.
+   + Anonymous Option: Users have the option to leave their review anonymously by checking a checkbox.
+
+#### Usage
+- Leave a Review: Users can rate their booking experience, provide comments, and optionally submit the review anonymously.
+- Edit a Review: Users can update their existing review by modifying the rating and comments, and choose to leave the review anonymously.
+
+![](static/images/readme_images/features/leave-review.png)
+
+### My Reviews
+
+The "My Reviews" page allows users to view, edit, and delete their submitted reviews. It provides a list of all reviews left by the user, with relevant details and actions.
+
+- Reviews List:
+   + Displays a list of reviews submitted by the user.
+   + Each review includes detailed information about the booking and the review itself.
+
+- Review Details:
+   + Booking Information: Shows the car and booking dates for each review.
+   + Review Date: Indicates when the review was created.
+   + Star Rating: Displays the rating given in the review using stars.
+   + Review Author: Shows the username of the reviewer or indicates if the review is anonymous.
+   + Review Comment: Displays the content of the review comment.
+
+- Review Status:
+   + Approval Status: Reviews awaiting approval are highlighted with a message indicating their pending status.
+
+- Review Actions:
+   + Edit: Allows users to edit their review.
+   + Delete: Provides an option to delete their review.
+
+- Tooltips: Provides additional context for actions like editing and deleting reviews.
+
+![](static/images/readme_images/features/my-reviews.png)
+
+### All Customer Reviews
+
+The "Customer Reviews" page displays a list of reviews submitted by customers. It allows users to view detailed feedback and interact with reviews based on their ownership and authentication status.
+
+- Review Display:
+   + Approval Status: Only reviews that have been approved are displayed. Unapproved reviews are hidden from the public view.
+   + Review Date: Shows when the review was created.
+   + Star Rating: Displays the review rating using stars.
+   + Review Comment: Shows the textual content of the review.
+   + Review Author: Identifies the author of the review, displaying "By anonymous" if the review is anonymous, or the username of the reviewer.
+
+- Review Actions: Allows the review owner to edit or delete their review. These options are visible only to the logged-in user who submitted the review.
+
+- Pagination:
+   + Previous and Next Page Links: Provides navigation between pages of reviews.
+   + Page Number Links: Displays clickable page numbers for direct navigation.
+   + Ellipsis for Truncated Page Ranges: Shows ellipses when there are skipped page numbers in the pagination range.
+
+![](static/images/readme_images/features/all-reviews.png)
 
 ### Our Locations
 
@@ -189,6 +311,25 @@ Discover our convenient car rental offices located at airports across Ireland.
 Ready to find the nearest airport office? Use the dropdown menu to select your location and get all the information you need.
 
 ![](static/images/readme_images/features/locations.png)
+
+### Contact Us
+
+Users can send inquiries or comments through a user-friendly contact form.
+
+![](static/images/readme_images/features/contact-us.png)
+
+### Technical Features
+
+- Automated Email Verification: This feature is crucial for confirming user identities and securing the registration process.
+- Password Recovery: Users can reset their passwords by using the 'Forgot Password' option. After entering their email address, they receive a link to create a new password, ensuring secure access recovery.
+- CSRF Protection: CSRF tokens are implemented to defend against cross-site request forgery, safeguarding user information.
+- Notification System: Users receive real-time notifications for various actions such as booking confirmations or error messages.
+
+## Future Features
+
+- Car Inventory Management: Future enhancements will include a feature to manage car availability across different airports. This system will allow for tracking and updating the inventory, ensuring that various car models are available in multiple locations, with potentially limited options at less frequented airports.
+- Secure Online Payment: This system will enable smooth and secure online transactions.
+
 
 ## Technologies
 
