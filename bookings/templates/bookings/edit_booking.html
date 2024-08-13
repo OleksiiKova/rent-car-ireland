@@ -22,7 +22,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <!-- Unchangeable booking info -->
-                <div class="unchangeable_booking_info border px-3">
+                <div class="unchangeable-booking-info border px-3">
                     <!-- Pickup details -->
                     <div class="row d-flex my-3 justify-content-center">
                         <p class="my-1 text-decoration-underline">Pick Up:</p>
@@ -30,19 +30,22 @@
                         <div class="col-sm-4">
                             <div class="row flex">
                                 <label class="col-3 col-sm-12" for="id_pickup_office">Office:</label>
-                                <div class="col-auto col-sm-12">{{ form.pickup_office }}</div>
+                                <div class="col-auto col-sm-12" data-bs-toggle="tooltip"
+                                data-bs-title="If you need to change this data, please perform a new search.">{{ form.pickup_office }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
                                 <label class="col-3 col-sm-12" for="id_start_date">Date:</label>
-                                <div class="col-auto col-sm-12">{{ form.start_date }}</div>
+                                <div class="col-auto col-sm-12" data-bs-toggle="tooltip"
+                                data-bs-title="If you need to change this data, please perform a new search.">{{ form.start_date }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
                                 <label class="col-3 col-sm-12" for="id_pick_up_time">Time:</label>
-                                <div class="col-auto col-sm-12">{{ form.pick_up_time }}</div>
+                                <div class="col-auto col-sm-12" data-bs-toggle="tooltip"
+                                data-bs-title="If you need to change this data, please perform a new search.">{{ form.pick_up_time }}</div>
                             </div>
                         </div>
                     </div>
@@ -53,19 +56,22 @@
                         <div class="col-sm-4">
                             <div class="row flex">
                                 <label class="col-3 col-sm-12" for="id_return_office">Office:</label>
-                                <div class="col-auto col-sm-12">{{ form.return_office }}</div>
+                                <div class="col-auto col-sm-12" data-bs-toggle="tooltip"
+                                data-bs-title="If you need to change this data, please perform a new search.">{{ form.return_office }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
                                 <label class="col-3 col-sm-12" for="id_end_date">Date:</label>
-                                <div class="col-auto col-sm-12">{{ form.end_date }}</div>
+                                <div class="col-auto col-sm-12" data-bs-toggle="tooltip"
+                                data-bs-title="If you need to change this data, please perform a new search.">{{ form.end_date }}</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="row flex">
                                 <label class="col-3 col-sm-12" for="id_drop_off_time">Time:</label>
-                                <div class="col-auto col-sm-12">{{ form.drop_off_time }}</div>
+                                <div class="col-auto col-sm-12" data-bs-toggle="tooltip"
+                                data-bs-title="If you need to change this data, please perform a new search.">{{ form.drop_off_time }}</div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +79,7 @@
                     <div class="accordion my-3" id="carAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button collapsed accordion-booking-form" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     {{ car.make }} {{ car.model }}
                                 </button>
@@ -118,7 +124,7 @@
                     </div>
                 </div>
                 <!-- Changeable booking info -->
-                <div class="changeable_booking_info border my-2 px-3">
+                <div class="changeable-booking-info border my-2 px-3">
                     <div class="row my-4">
                         <div class="col">
                             {{ form.first_name.label_tag }}
