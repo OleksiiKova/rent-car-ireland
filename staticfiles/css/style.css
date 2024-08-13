@@ -4,6 +4,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #0A210F;
 }
 
+body {
+    background-color: rgba(107, 167, 86, 0.1);
+}
+
 a {
     color: #0A210F;
 }
@@ -100,7 +104,8 @@ footer a:hover {
 .btn-primary:active:focus,
 .btn-primary:not(.btn-check) + .btn:active,
 .btn-primary:first-child:active,
-.btn-primary:focus-visible {
+.btn-primary:focus-visible,
+:not(.btn-check)+.btn-primary:active {
     background-color: rgba(107, 167, 86, 0.6);
     border-color: #0A210F;
     color: #0A210F;
@@ -142,7 +147,7 @@ footer a:hover {
 .btn-link:focus,
 .btn-link:not(.btn-check)+.btn:active,
 .btn-link:focus-visible,
-:not(.btn-check)+.btn:active {
+:not(.btn-check)+.btn-link:active {
     color: #6BA756;
 }
 
@@ -150,15 +155,19 @@ footer a:hover {
     border-color: rgba(107, 167, 86, 0.4);
 }
 
+.nav-link:focus-visible {
+    box-shadow: 0 0 0 .25rem rgba(107, 167, 86, .2);
+}
+
 /* ----------------- Accordion ------------------ */
 .accordion-button:not(.collapsed) {
-    background-color: rgba(107, 167, 86, .6);
+    background-color: rgba(107, 167, 86, .4);
     color: #0A210F;
 }
 
 .accordion-button:focus {
-    border-color: #0A210F;
-    box-shadow: 0 0 0 .25rem rgba(10, 33, 15, .5);
+    border-color: #6BA756;
+    box-shadow: none;
 }
 
 /* ----------------- Booking page ------------------ */
@@ -207,7 +216,7 @@ footer a:hover {
 }
 
 /* ----------------- Custom Checkbox ------------------ */
-.changeable_booking_info input[type="checkbox"]:checked {
+.changeable-booking-info input[type="checkbox"]:checked {
     color: #0A210F;
 }
 
@@ -449,4 +458,18 @@ footer a:hover {
 
 label {
     font-weight: 500;
+}
+
+.bg-white-form {
+    background-color: #fff;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+}
+
+.unchangeable-booking-info {
+    background-color: rgb(242, 242, 242);
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+}
+
+.accordion-booking-form {
+    background-color: rgb(242, 242, 242);
 }

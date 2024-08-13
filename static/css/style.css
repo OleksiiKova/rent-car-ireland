@@ -460,10 +460,7 @@ label {
     font-weight: 500;
 }
 
-.my-bookings-item,
-.review-card,
-.all-reviews-item,
-.changeable-booking-info {
+.bg-white-form {
     background-color: #fff;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
 }

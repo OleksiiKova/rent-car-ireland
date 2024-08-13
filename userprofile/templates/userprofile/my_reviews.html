@@ -11,7 +11,7 @@
     <div class="row justify-content-center mx-1">
         <div class="col-lg-8">
             {% for review in reviews %}
-            <div class="review-card my-2 p-2 my-md-4 p-md-4 {% if not review.approved %}
+            <div class="bg-white-form my-2 p-2 my-md-4 p-md-4 {% if not review.approved %}
             faded {% endif %}">
                 {% if not review.approved %}
                 <!-- Approval Status -->
