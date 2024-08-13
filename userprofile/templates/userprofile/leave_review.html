@@ -12,11 +12,11 @@
             <p class="text-center">From {{ booking.start_date}} to {{ booking.end_date}}</p>
 
             <!-- Review Form -->
-            <form method="post" class="my-4">
+            <form method="post" class="my-2 my-md-4">
                 {% csrf_token %}
 
                 <!-- Star Rating -->
-                <div class="text-center text-sm-end">
+                <div class="text-end">
                     <div class="form-group">
                         <div class="star-rating">
                             <label for="id_rating_0">
@@ -43,10 +43,10 @@
                     </div>
 
                     <!-- Comment Field -->
-                    <div> {{ form.comment|add_class:"w-100 p-4" }}</div>
+                    <div> {{ form.comment|add_class:"form-control w-100 p-3" }}</div>
 
                     <!-- Anonymous Checkbox -->
-                    <div>
+                    <div class="my-2">
                         <label for="id_is_anonymous" class="custom-checkbox-container">
                             Leave anonymously
                             {{ form.is_anonymous }}
@@ -58,7 +58,7 @@
                     <input type="hidden" name="rating" id="rating-hidden" required="False" value="">
 
                     <!-- Submit Button -->
-                    <div class="my-2 text-center">
+                    <div class="my-4 text-center">
                         <button type="submit" class="btn btn-primary">Submit Review</button>
                     </div>
                 </div>

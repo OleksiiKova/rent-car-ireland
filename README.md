@@ -7,8 +7,11 @@
    * [Strategy](#strategu)
    * [Database structure](#database-structure)
    * [Design](#design)
-- [Features](#Features)
-   * 
+- [Features](#features)
+   * [Responsive Navbar](#responsive-navbar)
+   * [Footer](#footer)
+   * [Home Page](#home-page)
+   * [Our Locations][#our-locations]
 - [Technologies](#technologies)
 - [Testing](#testing)
 
@@ -48,6 +51,112 @@ The following colour palette was used from [Coolors](https://coolors.co/):
 #### Wireframes
 
 The website is designed to be clear and simple. To create a wireframe I used Balsamiq software. PDF file with my wireframe you cand find [here](static/images/readme_images/car_rental.pdf).
+
+## Features
+
+### Account Management
+
+- Account Creation: New users can sign up, with email confirmation required to ensure security and prevent spam.
+
+![](static/images/readme_images/features/sign-up.png)
+
+- Login System: Existing users can log in to access their profiles and manage their bookings.
+
+![](static/images/readme_images/features/sign-in.png)
+
+- Password Recovery: If users forget their password, they can reset it through a secure process.
+
+![](static/images/readme_images/features/reset-password.png)
+
+### Responsive Navbar
+
+EireWheels boasts a sophisticated and user-friendly navigation bar that enhances your browsing experience across all devices.
+
+- Seamless Branding: The navbar proudly displays our brand logo, ensuring a consistent and professional identity. The logo is visible on all devices, enhancing brand recognition.
+
+- Mobile-First Design: Optimized for mobile, the navbar includes a responsive toggler button that collapses the menu for a cleaner view on smaller screens. The intuitive toggle feature allows users to easily access the menu without clutter.
+
+- Dynamic Navigation Links: The navigation bar includes clearly defined links to essential pages like Home, Booking, Locations, and Contact Us. These links dynamically highlight based on the current page, providing users with clear navigation cues.
+
+- User Authentication: For authenticated users, the navbar provides additional personalized options. On desktop, a dropdown menu reveals links to the user’s profile, bookings, and reviews, along with a logout option. On mobile, these options are accessible directly from the menu, ensuring seamless access regardless of device.
+
+- Sign in and Sign up: For new users or those not yet signed in, easy access to sign-in and sign-up pages is provided, ensuring a smooth onboarding experience.
+
+![](static/images/readme_images/features/navbar-desktop.png)
+
+![](static/images/readme_images/features/navbar-mobile.png)
+
+### Footer
+
+The footer of our website is thoughtfully designed to provide users with essential information and easy access to important policies.
+
+- Contact Information: Stay connected with us through various channels. Our footer includes direct links to email support, our physical address, and a phone number for immediate assistance. Whether you're reaching out for support or visiting us in Dublin, our contact details are conveniently placed.
+
+- Location Details: Find us effortlessly on Google Maps with a direct link to our location. Our address is clearly stated, making it easy for you to visit us or plan your journey.
+
+- Copyright Notice: The footer proudly displays the copyright notice, affirming that all content is owned by EireWheels. The notice reflects our commitment to providing quality service for educational purposes.
+
+- Legal Information: Access our Privacy Policy and Terms and Conditions directly from the footer. These links open modals that provide comprehensive details about your privacy rights, data protection, and the terms of service. This ensures transparency and easy access to critical information without navigating away from the page.
+
+![](static/images/readme_images/features/footer-desktop.png)
+
+![](static/images/readme_images/features/footer-mobile.png)
+
+### Home Page
+
+#### "Why Choose Us?" section
+
+Discover the unparalleled benefits of choosing our services for your travel needs.
+
+![](static/images/readme_images/features/why-choose-us.png)
+
+#### "How It Works" section
+
+Booking a rental car with us is simple and seamless. Follow these easy steps to get started.
+
+![](static/images/readme_images/features/how-it-works.png)
+
+#### "What Our Customers Are Saying" section
+
+We value the feedback from our customers and are proud to share their experiences with you. Here’s what some of them have to say about our service:
+
+Customer Reviews
+- Step into our review carousel and discover real stories from those who have traveled with us:
+
+- Ratings & Feedback: Our carousel showcases a range of customer reviews, complete with ratings and comments. Each review is dated and highlights the experiences of our users.
+
+- Authentic Experiences: Whether it's praise for our seamless service or suggestions for improvement, our reviews offer genuine insights into what makes our service stand out.
+
+- User-Friendly Carousel: Navigate through the reviews easily with our interactive carousel. Use the previous and next controls to explore different testimonials.
+
+- Want to read more? View All Reviews and see why our customers choose us for their travel needs!
+
+![](static/images/readme_images/features/customer-reviews.png)
+
+#### "About us" section
+
+We are committed to delivering an exceptional car rental service that caters to both business and leisure travelers in Ireland. Whether you're here for a short visit or an extended stay, our diverse fleet of vehicles is designed to meet your every need.
+
+![](static/images/readme_images/features/about-us.png)
+
+#### Frequently Asked Questions
+
+Have questions? We’ve got answers! Here are some of the most common queries we receive.
+
+![](static/images/readme_images/features/faq.png)
+
+
+### Our Locations Page
+
+Discover our convenient car rental offices located at airports across Ireland. 
+
+- Dynamic Dropdown: Easily switch between different airport locations to view relevant information.
+- Detailed Office Info: Get comprehensive details about each airport office, including contact information and operating hours.
+- Interactive Map: Our map, powered by Leaflet, shows the selected airport office's location with a marker..
+- Google Maps: Click the link to open the location in Google Maps.
+Ready to find the nearest airport office? Use the dropdown menu to select your location and get all the information you need.
+
+![](static/images/readme_images/features/locations.png)
 
 ## Technologies
 

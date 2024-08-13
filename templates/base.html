@@ -115,12 +115,7 @@
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            {% if user.profile.photo %}
-                            <img src="{{ user.profile.photo.url }}" alt="User Photo" class="rounded-circle" width="30"
-                                height="30">
-                            {% else %}
                             <i class="fa-solid fa-user"></i>
-                            {% endif %}
                             {{ user.username }}
                         </a>
                         <!-- Dropdown Menu -->
@@ -182,7 +177,7 @@
 
     <!-- Footer Section -->
     <footer class="footer mt-auto py-3">
-        <div class="container">
+        <div class="container-fluid px-3">
             <div class="row d-flex justify-content-between text-center">
                 <!-- Contact Information -->
                 <div class="">
