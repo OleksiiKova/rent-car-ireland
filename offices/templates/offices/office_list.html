@@ -3,10 +3,11 @@
 {% block content %}
 <div class="container py-5 px-4">
     <!-- Page title -->
-    <h2 class="text-center">Our Locations</h2>
+    <h1 class="text-center">Our Locations</h1>
     <div class="row my-4">
-        <div class="col-12 text-center">
+        <div class="col-12">
             <!-- Dropdown to select an office -->
+            <label for="officeSelect" class="my-1">Choose an office:</label>
             <select id="officeSelect" class="form-select">
                 {% for office in object_list %}
                 <option value="{{ office.id }}" data-name="{{ office.name }}" data-phone="{{ office.phone_number }}"

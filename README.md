@@ -1,5 +1,11 @@
 # EireWheels Car Rental
 
+EireWheels Car Rental is an advanced, full-stack web application crafted for educational purposes, showcasing a streamlined car rental solution for users in Ireland. This responsive site, built with Django, offers a user-friendly interface for managing vehicle rentals across various airports.
+
+### [Link to the EireWheels live website](https://car-rental-ireland-4e20ecc4b192.herokuapp.com/)
+
+![](static/images/readme_images/am-i-responsive-black.png)
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -20,25 +26,22 @@
    * [Our Locations](#our-locations)
    * [Contact Us](#contact-us)
    * [Technical Features](#technical-features)
-- [Future Features](#future-features)
+- [Features Left to Implement](#features-left-to-implement)
 - [Technologies](#technologies)
 - [Testing](#testing)
 
-
-
-
 ### Overview
-EireWheels Car Rental is a web application for car rental developed with Django. The project allows users to view available cars at various airports in Ireland, book them, and manage rentals. This website was created as a learning exercise for my fourth portfolio project at Code Institute.
+EireWheels Car Rental is a web application developed using Django, designed to streamline the car rental experience for users in Ireland. The platform enables users to browse available vehicles at different airports across the country, book them with ease, and manage their rentals efficiently. This project was developed as part of my fourth portfolio project at Code Institute to demonstrate my proficiency in web development.
 
-#### First Time User
-- As a person who is visiting Ireland for vacation and is looking for a convenient car rental service.
-- As a person who is searching for clear information about available cars and rental services.
-- As a person who prefers to make bookings online rather than speaking with others.
+#### First-Time User
+- Vacationer Seeking Convenience: A person visiting Ireland for a vacation who needs a reliable and convenient car rental option.
+- Information Seeker: A user searching for clear and comprehensive information about available cars and rental services.
+- Online Booking Enthusiast: A user who prefers to handle bookings online instead of engaging in direct conversations with rental staff.
 
 #### Returning User
-- As a returning user, I would like to review all my previous car rental bookings.
-- As a returning user who already has an account, I would like to quickly and easily make a reservation for a specific car.
-- As a returning user, I would like to see updates to the available vehicles and services on the site so that I can find new and interesting options (for example, new car models).
+- Booking History Reviewer: A returning user who wishes to access and review their previous car rental bookings for reference or record-keeping.
+- Efficient Reservation Maker: A returning user with an existing account who wants to quickly and easily reserve a specific vehicle without unnecessary delays.
+- Updated Vehicle Finder: A returning user interested in checking for new updates, including newly available car models or changes in rental services, to discover fresh options and enhancements.
 
 ## UX
 
@@ -325,7 +328,7 @@ Users can send inquiries or comments through a user-friendly contact form.
 - CSRF Protection: CSRF tokens are implemented to defend against cross-site request forgery, safeguarding user information.
 - Notification System: Users receive real-time notifications for various actions such as booking confirmations or error messages.
 
-## Future Features
+## Features Left to Implement
 
 - Car Inventory Management: Future enhancements will include a feature to manage car availability across different airports. This system will allow for tracking and updating the inventory, ensuring that various car models are available in multiple locations, with potentially limited options at less frequented airports.
 - Secure Online Payment: This system will enable smooth and secure online transactions.

@@ -4,7 +4,7 @@
 {% trans "Email Address" %}
 {% endblock head_title %}
 {% block content %}
-<h2>{% trans "Email Address" %}</h2>
+<h1>{% trans "Email Address" %}</h1>
 {% if emailaddresses %}
 {% if current_emailaddress %}
 <p>
@@ -26,7 +26,7 @@
 {% else %}
 {% include "account/snippets/warn_no_email.html" %}
 {% endif %}
-<h2>{% trans "Change Email Address" %}</h2>
+<h1>{% trans "Change Email Address" %}</h1>
 <form method="post" action="{% url 'account_email' %}">
     {% csrf_token %}
     {{ form.as_p }}

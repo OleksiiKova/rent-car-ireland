@@ -5,12 +5,12 @@
 {% block content %}
 <div class="container py-5">
     <!-- Page header -->
-    <h2 class="text-center">Car Search</h2>
+    <h1 class="text-center">Car Search</h1>
 
     <!-- Search form -->
     <div class="d-flex justify-content-center align-items-center search-form">
         <div class="col-12 col-lg-8 mt-2">
-            <h3 class="text-center h6">Please fill out the initial booking information to see the list of available cars.</h3>
+            <h2 class="text-center h6">Please fill out the initial booking information to see the list of available cars.</h2>
             <form method="POST" action="{% url 'booking' %}">
                 {% csrf_token %}
                 <!-- Display form errors -->
@@ -41,6 +41,7 @@
                     <div class="col-md-3">
                         {{ form.start_date }}
                     </div>
+                    <label class="d-none" for="id_pick_up_time">Start time</label>
                     <div class="col-md-3 p-0">
                         {{ form.pick_up_time }}
                     </div>
@@ -50,6 +51,7 @@
                     <div class="col-md-3">
                         {{ form.end_date }}
                     </div>
+                    <label class="d-none" for="id_drop_off_time">End time</label>
                     <div class="col-md-3 p-0">
                         {{ form.drop_off_time }}
                     </div>
@@ -129,7 +131,7 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailCarLabel">Detail Car Information</h5>
+                <h2 class="modal-title h4" id="detailCarLabel">Detail Car Information</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
