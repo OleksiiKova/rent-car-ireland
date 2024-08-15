@@ -9,15 +9,18 @@ EireWheels Car Rental is an advanced, full-stack web application crafted for edu
 ## Table of Contents
 
 - [Overview](#overview)
+- [Agile Methodology](#agile-methodology)
 - [UX](#ux)
    * [Strategy](#strategu)
    * [Database structure](#database-structure)
    * [Design](#design)
 - [Existing Features](#existing-features)
+   * [Account Management](#account-management)
+   * [CRUD Functionality](#crud-functionality)
    * [Responsive Navbar](#responsive-navbar)
    * [Footer](#footer)
    * [Home Page](#home-page)
-   * [Car Search](#car-search)
+   * [Car Search Page](#car-search-page)
    * [Booking Form](#booking-form)
    * [My Bookings](#my-bookings)
    * [Review Form](#review-form)
@@ -43,6 +46,26 @@ EireWheels Car Rental is a web application developed using Django, designed to s
 - Efficient Reservation Maker: A returning user with an existing account who wants to quickly and easily reserve a specific vehicle without unnecessary delays.
 - Updated Vehicle Finder: A returning user interested in checking for new updates, including newly available car models or changes in rental services, to discover fresh options and enhancements.
 
+[Back To Top](#table-of-contents)
+
+
+## Agile Methodology
+
+This project was executed using Agile Methodology, leveraging GitHub Issues to document and manage User Stories. You can view these issues [here](https://github.com/OleksiiKova/rent-car-ireland/issues).
+
+Each User Story included Acceptance Criteria.
+
+The MoSCoW Method of Prioritization was also employed to categorize each User Story as 'Must Have', 'Should Have', or 'Could Have'. Some features classified as "Won't Have" were deferred to the Backlog for future consideration. It was crucial to focus on crafting User Stories that would achieve the Minimum Viable Product (MVP).
+
+Overall, utilizing Agile Methodology proved highly advantageous. It facilitated a more organized development process and improved time management. Although I did not set specific durations for each iteration, moving Tasks from the 'To Do' column to 'Done' was particularly satisfying and provided a clear sense of progress.
+
+<details><summary>Click to view a screenshot of the Kanban</summary><img src="static/images/readme_images/kanban-1.png">
+<img src="static/images/readme_images/kanban-2.png"></details>
+
+<br>
+
+[Back To Top](#table-of-contents)
+
 ## UX
 
 ### Strategy
@@ -64,21 +87,39 @@ The following colour palette was used from [Coolors](https://coolors.co/):
 
 The website is designed to be clear and simple. To create a wireframe I used Balsamiq software. PDF file with my wireframe you cand find [here](static/images/readme_images/car_rental.pdf).
 
+[Back To Top](#table-of-contents)
+
 ## Existing Features
 
 ### Account Management
 
 - Account Creation: New users can sign up, with email confirmation required to ensure security and prevent spam.
-
-![](static/images/readme_images/features/sign-up.png)
+   <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/sign-up.png"></details>
+   <br>
 
 - Login System: Existing users can log in to access their profiles and manage their bookings.
-
-![](static/images/readme_images/features/sign-in.png)
+   <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/sign-in.png"></details>
+   <br>
 
 - Password Recovery: If users forget their password, they can reset it through a secure process.
+   <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/reset-password.png"></details>
 
-![](static/images/readme_images/features/reset-password.png)
+### CRUD Functionality
+As part of the project requirements, the application provides front-end CRUD (Create, Read, Update, Delete) functionality for the following features:
+
+#### Bookings
+- Create: Users can make new bookings through the front-end interface.
+- Read: Users can view their existing bookings and details about them.
+- Update: Users can modify details of their existing bookings.
+- Delete: Users can cancel or remove their bookings.
+
+#### Reviews
+- Create: Users can submit new reviews through the front-end interface.
+- Read: Users can view their own reviews and read reviews submitted by others.
+- Update: Users can edit their own reviews.
+- Delete: Users can delete their own reviews.
+
+These features allow users to manage their bookings and reviews directly from the front end, without requiring access to the admin panel.
 
 ### Responsive Navbar
 
@@ -94,9 +135,13 @@ EireWheels boasts a sophisticated and user-friendly navigation bar that enhances
 
 - Sign in and Sign up: For new users or those not yet signed in, easy access to sign-in and sign-up pages is provided, ensuring a smooth onboarding experience.
 
-![](static/images/readme_images/features/navbar-desktop.png)
+Landing page on desktop
 
-![](static/images/readme_images/features/navbar-mobile.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/navbar-desktop.png"></details>
+<br>
+Landing page on mobile
+
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/navbar-mobile.png"></details>
 
 ### Footer
 
@@ -110,9 +155,12 @@ The footer of our website is thoughtfully designed to provide users with essenti
 
 - Legal Information: Access our Privacy Policy and Terms and Conditions directly from the footer. These links open modals that provide comprehensive details about your privacy rights, data protection, and the terms of service. This ensures transparency and easy access to critical information without navigating away from the page.
 
-![](static/images/readme_images/features/footer-desktop.png)
+Landing page on desktop
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/footer-desktop.png"></details>
 
-![](static/images/readme_images/features/footer-mobile.png)
+<br>
+Landing page on mobile
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/footer-mobile.png"></details>
 
 ### Home Page
 
@@ -120,13 +168,13 @@ The footer of our website is thoughtfully designed to provide users with essenti
 
 Discover the unparalleled benefits of choosing our services for your travel needs.
 
-![](static/images/readme_images/features/why-choose-us.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/why-choose-us.png"></details>
 
 #### "How It Works" section
 
 Booking a rental car with us is simple and seamless. Follow these easy steps to get started.
 
-![](static/images/readme_images/features/how-it-works.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/how-it-works.png"></details>
 
 #### "What Our Customers Are Saying" section
 
@@ -143,21 +191,21 @@ Customer Reviews
 
 - Want to read more? View All Reviews and see why our customers choose us for their travel needs!
 
-![](static/images/readme_images/features/customer-reviews.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/customer-reviews.png"></details>
 
 #### "About us" section
 
 We are committed to delivering an exceptional car rental service that caters to both business and leisure travelers in Ireland. Whether you're here for a short visit or an extended stay, our diverse fleet of vehicles is designed to meet your every need.
 
-![](static/images/readme_images/features/about-us.png)
+   <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/about-us.png"></details>
 
 #### Frequently Asked Questions
 
 Have questions? We’ve got answers! Here are some of the most common queries we receive.
 
-![](static/images/readme_images/features/faq.png)
+   <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/faq.png"></details>
 
-### Car Search
+### Car Search Page
 
 #### Search Form 
 
@@ -169,20 +217,20 @@ Users can search for available cars using a comprehensive search form.
    + End Date Validation: Ensures that the end date cannot be earlier than the start date.
    + Same-Day Time Validation: On the same day, the drop-off time cannot be earlier than or the same as the pick-up time. This prevents selecting a return time before or at the same time as the pick-up time on the same day.
 
-![](static/images/readme_images/features/car-search.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/car-search.png"></details>
 
 #### Filters and Sorting
 
 Refine search results using various filters and sort the list of cars by price per day.
 Filters and sorting options dynamically update the list of available cars.
 
-![](static/images/readme_images/features/car-filter.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/car-filter.png"></details>
 
 #### Car Details
 
 View detailed information about each car.
 
-![](static/images/readme_images/features/car-details.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/car-details.png"></details>
 
 #### Reservations
 
@@ -190,7 +238,7 @@ Authenticated users can reserve a car by:
 - Clicking the Reserve button to book the car with selected rental details.
 - If not authenticated, users are prompted to Login to continue.
 
-![](static/images/readme_images/features/car-reserve.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/car-reserve.png"></details>
 
 ### Booking Form
 
@@ -218,28 +266,29 @@ Authenticated users can reserve a car by:
 - Child Seat Option Toggle: Enables or disables the child seat option field based on whether the checkbox is selected.
 - Age Validation: Ensures the user’s age is between 23 and 70 years.
 
-![](static/images/readme_images/features/booking-form.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/booking-form.png"></details>
 
 ### My Bookings
 
-- Booking List:
-   + Status Indicators: Displays booking statuses such as confirmed, completed, or reviewed.
-   + Car Image: Shows the image of the car associated with each booking.
+The "My Bookings" section is divided into two tabs: Active Bookings and Past Bookings. Each booking has a clickable link that opens a modal with detailed booking information (car, booking and customer informations). Uses Bootstrap accordion components to organize detailed booking information in a collapsible format.
 
-- Booking Status Messages:
-   + Review Prompt: If the user can leave a review, a prompt will appear with a link to the review page.
-   + Confirmation Message: Indicates that the booking is confirmed and informs when reviews can be left.
-   + Thank You Message: Displays a thank you message if the review has already been left.
+#### Active Bookings Tab
 
-- Booking Details: 
-   + Each booking has a clickable link that opens a modal with detailed booking information (car Information, booking Information, customer Information).
-   + Accordion Component: Uses Bootstrap accordion components to organize detailed booking information in a collapsible format.
+Displays bookings that are currently active or scheduled for the future.
+   - Review Prompt: If the user can leave a review, a prompt will appear with a link to the review page.
+   - Confirmation Message: Indicates that the booking is confirmed and informs when reviews can be left.
+   - For bookings, users have options to edit or delete the booking.
+   - Tooltips: Provides additional context for actions like editing and deleting bookings.
 
-- Booking Management: For bookings, users have options to edit or delete the booking.
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/my-bookings-active.png"></details>
 
-- Tooltips: Provides additional context for actions like editing and deleting bookings.
+#### Past Bookings Tab
 
-![](static/images/readme_images/features/my-bookings.png)
+Displays bookings that have been completed or reviewed.
+   - Review Prompt: Displays a link to leave a review if the user has not yet done so.
+   - Thank You Message: Appears if the review has already been submitted. 
+
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/my-bookings-past.png"></details>
 
 ### Review Form
 
@@ -255,7 +304,7 @@ The review functionality consists of two key pages: one for leaving a new review
 - Leave a Review: Users can rate their booking experience, provide comments, and optionally submit the review anonymously.
 - Edit a Review: Users can update their existing review by modifying the rating and comments, and choose to leave the review anonymously.
 
-![](static/images/readme_images/features/leave-review.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/leave-review.png"></details>
 
 ### My Reviews
 
@@ -281,7 +330,7 @@ The "My Reviews" page allows users to view, edit, and delete their submitted rev
 
 - Tooltips: Provides additional context for actions like editing and deleting reviews.
 
-![](static/images/readme_images/features/my-reviews.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/my-reviews.png"></details>
 
 ### All Customer Reviews
 
@@ -301,7 +350,7 @@ The "Customer Reviews" page displays a list of reviews submitted by customers. I
    + Page Number Links: Displays clickable page numbers for direct navigation.
    + Ellipsis for Truncated Page Ranges: Shows ellipses when there are skipped page numbers in the pagination range.
 
-![](static/images/readme_images/features/all-reviews.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/all-reviews.png"></details>
 
 ### Our Locations
 
@@ -313,13 +362,13 @@ Discover our convenient car rental offices located at airports across Ireland.
 - Google Maps: Click the link to open the location in Google Maps.
 Ready to find the nearest airport office? Use the dropdown menu to select your location and get all the information you need.
 
-![](static/images/readme_images/features/locations.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/locations.png"></details>
 
 ### Contact Us
 
 Users can send inquiries or comments through a user-friendly contact form.
 
-![](static/images/readme_images/features/contact-us.png)
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/contact-us.png"></details>
 
 ### Technical Features
 
@@ -328,11 +377,13 @@ Users can send inquiries or comments through a user-friendly contact form.
 - CSRF Protection: CSRF tokens are implemented to defend against cross-site request forgery, safeguarding user information.
 - Notification System: Users receive real-time notifications for various actions such as booking confirmations or error messages.
 
+[Back To Top](#table-of-contents)
+
 ## Features Left to Implement
 
 - Car Inventory Management: Future enhancements will include a feature to manage car availability across different airports. This system will allow for tracking and updating the inventory, ensuring that various car models are available in multiple locations, with potentially limited options at less frequented airports.
-- Secure Online Payment: This system will enable smooth and secure online transactions.
 
+[Back To Top](#table-of-contents)
 
 ## Technologies
 
@@ -372,10 +423,16 @@ This project was created using the following:
 - Coolors.co - used to choose the colours
 - Design.com - used to create logo
 - Am I Responsive - to show the website image on a range of devices
+- Lighthouse - used for performance auditing and optimization
+- Wave (wave.webaim.org) - used for accessibility testing and ensuring compliance with accessibility standards
+
+[Back To Top](#table-of-contents)
 
 ## Testing
 
 For a comprehensive overview of the testing strategy, including detailed information on both automated and manual testing, please refer to the [Testing Documentation](TESTING.md).
+
+[Back To Top](#table-of-contents)
 
 ## Deployment
 
@@ -516,5 +573,5 @@ Follow these steps to deploy your application to Heroku:
 
 By following these steps, you can ensure a successful deployment of your application on Heroku and maintain its proper functionality in a production environment.
 
-
+[Back To Top](#table-of-contents)
 

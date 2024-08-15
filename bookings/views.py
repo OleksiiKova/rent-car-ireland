@@ -136,7 +136,6 @@ def handle_post_request(
                 'total_cost': total_cost,
             })
 
-        # Check if the car is still available
         try:
             car = Car.objects.get(id=car_id, availability=True)
         except Car.DoesNotExist:
@@ -252,21 +251,44 @@ def booking_form(request, car_id):
 @login_required
 def my_bookings(request):
     """
-    Displays the list of bookings for the logged-in user.
+    Handles the request to display a list of the user's bookings.
 
-    Args:
-        request (HttpRequest): The HTTP request object.
+    This function retrieves both active and past bookings for the currently
+    authenticated user and passes these to the `bookings/my_bookings.html`
+    template for rendering.
+
+    Active bookings include those with a status of 'confirmed' and are
+    sorted by start date in descending order.
+
+    Past bookings include those with statuses of 'completed' or 'reviewed',
+    and are also sorted by start date in descending order.
+
+    Parameters:
+    request (HttpRequest): The request object containing the current user's
+    data.
 
     Returns:
-        HttpResponse: The rendered template with user bookings.
+    HttpResponse: Renders the `bookings/my_bookings.html` template with
+    context containing lists of active and past bookings.
     """
-    user_bookings = (
+    user = request.user
+
+    active_bookings = (
         Booking.objects
-        .filter(user=request.user)
-        .order_by('-created_at')
+        .filter(user=user, status='confirmed')
+        .order_by('-start_date')
     )
+    past_bookings = (
+        Booking.objects
+        .filter(user=user, status__in=['completed', 'reviewed'])
+        .order_by('-start_date')
+    )
+
     return render(
-        request, 'bookings/my_bookings.html', {'bookings': user_bookings}
+        request, 'bookings/my_bookings.html', {
+            'active_bookings': active_bookings,
+            'past_bookings': past_bookings
+        }
     )
 
 
@@ -391,6 +413,23 @@ def booking_details(request, booking_id):
 
 
 def get_car_details(request, car_id):
+    """
+    Retrieves and returns details of a specific car in JSON format.
+
+    This function looks up a car by its ID and returns its details, including
+    model, make, year, type, fuel type, transmission, number of seats, number
+    of doors, air conditioning availability, navigation system, price per day,
+    and image URL. If the car with the given ID does not exist, it returns a
+    JSON response with an error message and a 404 status code.
+
+    Parameters:
+    request (HttpRequest): The request object containing the HTTP request data.
+    car_id (int): The ID of the car to retrieve details for.
+
+    Returns:
+    JsonResponse: A JSON response containing the car details or an error
+    message if the car is not found.
+    """
     try:
         car = Car.objects.get(id=car_id)
         data = {

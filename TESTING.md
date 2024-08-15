@@ -9,6 +9,7 @@
   - [Python](#python)
 - [Responsiveness and Device Testing](#responsiveness-and-device-testing)
 - [Browser Testing](#browser-testing)
+- [Accessibility](#accessibility)
 - [Lighthouse Testing](#lighthouse-testing)
 - [User Story Testing](#user-story-testing)
 
@@ -289,6 +290,19 @@ Throughout the development process, the website was rigorously tested across a r
 ## Browser Testing
 
 The website was tested across Google Chrome, Safari, and Microsoft Edge, and no issues were found.
+
+## Accessibility
+
+Using the Wave Accessibility tool for continuous development and final testing involves the following checks:
+
+- Ensure all forms are equipped with proper labels or aria-labels.
+- Verify that color contrast ratios comply with the WCAG 2.1 Contrast Guidelines.
+- Check that heading levels are correctly used to represent content hierarchy.
+- Confirm that content is structured within landmarks to facilitate navigation with assistive technology.
+- Provide descriptive alternative text or titles for non-text elements.
+- Set the lang attribute for HTML pages.
+- Implement ARIA properties following WCAG 2.1 best practices.
+- Adhere to established coding standards for WCAG 2.1 compliance.
 
 ## Lighthouse Testing
 
