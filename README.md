@@ -11,12 +11,15 @@ EireWheels Car Rental is an advanced, full-stack web application crafted for edu
 - [Overview](#overview)
 - [Agile Methodology](#agile-methodology)
 - [UX](#ux)
-   * [Strategy](#strategu)
-   * [Database structure](#database-structure)
-   * [Design](#design)
+   * [Strategy](#strategy)
+   * [Scope](#scope)
+   * [Structure](#structure)
+   * [Skeleton](#skeleton)
+   * [Surface](#surface)
 - [Existing Features](#existing-features)
    * [Account Management](#account-management)
    * [CRUD Functionality](#crud-functionality)
+   * [Heroku Scheduler](#heroku-scheduler)
    * [Responsive Navbar](#responsive-navbar)
    * [Footer](#footer)
    * [Home Page](#home-page)
@@ -32,6 +35,10 @@ EireWheels Car Rental is an advanced, full-stack web application crafted for edu
 - [Features Left to Implement](#features-left-to-implement)
 - [Technologies](#technologies)
 - [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
+   * [Media](#media)
+   * [Content and Resources](#content-and-resources)
 
 ## Overview
 EireWheels Car Rental is a web application developed using Django, designed to streamline the car rental experience for users in Ireland. The platform enables users to browse available vehicles at different airports across the country, book them with ease, and manage their rentals efficiently. This project was developed as part of my fourth portfolio project at Code Institute to demonstrate my proficiency in web development.
@@ -53,16 +60,32 @@ EireWheels Car Rental is a web application developed using Django, designed to s
 
 This project was executed using Agile Methodology, leveraging GitHub Issues to document and manage User Stories. You can view these issues [here](https://github.com/OleksiiKova/rent-car-ireland/issues).
 
-Each User Story included Acceptance Criteria.
+The project utilized a fundamental Kanban Board setup, featuring columns like Backlog, To Do, In Progress, and Done. This structure offered a clear and systematic approach to monitor task progress, facilitating easier visualization and management of the workflow throughout the development cycle.
+
+[Kanban view](https://github.com/users/OleksiiKova/projects/3/views/1)
+
+<details><summary>Click to view a screenshot of the Kanban view</summary><img src="static/images/readme_images/kanban-1.png"></details>
+<br>
+
+I also use GitHub's Table view to organize and visualize tasks, providing a clear and structured overview of the project's progress and priorities.
+
+[Table view](https://github.com/users/OleksiiKova/projects/3/views/5)
+
+<details><summary>Click to view a screenshot of the Table view</summary><img src="static/images/readme_images/kanban-2.png"></details>
+<br>
+Each User Story includes Acceptance Criteria and Tasks, which I occasionally needed to adjust after the fact, as I wasn’t always certain what was required to meet the intended Acceptance Criteria at the outset.
+I break down the development into Epics and User Stories, making the project manageable and ensuring each feature closely aligns with user needs.
+
+#### Epics:
+
+1. [EPIC: Account and Security management](https://github.com/OleksiiKova/rent-car-ireland/issues/23)
+2. [EPIC: Car Search and Booking (CRUD)](https://github.com/OleksiiKova/rent-car-ireland/issues/24)
+3. [EPIC: Admin and Customer Support](https://github.com/OleksiiKova/rent-car-ireland/issues/25)
+4. [EPIC: Reviews and Ratings (CRUD)](https://github.com/OleksiiKova/rent-car-ireland/issues/26)
 
 The MoSCoW Method of Prioritization was also employed to categorize each User Story as 'Must Have', 'Should Have', or 'Could Have'. Some features classified as "Won't Have" were deferred to the Backlog for future consideration. It was crucial to focus on crafting User Stories that would achieve the Minimum Viable Product (MVP).
 
 Overall, utilizing Agile Methodology proved highly advantageous. It facilitated a more organized development process and improved time management. Although I did not set specific durations for each iteration, moving Tasks from the 'To Do' column to 'Done' was particularly satisfying and provided a clear sense of progress.
-
-<details><summary>Click to view a screenshot of the Kanban</summary><img src="static/images/readme_images/kanban-1.png">
-<img src="static/images/readme_images/kanban-2.png"></details>
-
-<br>
 
 [Back To Top](#table-of-contents)
 
@@ -70,12 +93,40 @@ Overall, utilizing Agile Methodology proved highly advantageous. It facilitated 
 
 ### Strategy
 
-### Database structure
+The EireWheels Car Rental Service aims to deliver a seamless and satisfying experience for all customers through a modern, user-friendly website. Key features include an online booking system, detailed vehicle inventory, and comprehensive contact information with an interactive map. The site will also showcase the company's story and the advantages of choosing our service. Additionally, we highlight that our offices are conveniently located at all major airports across Ireland, ensuring easy access wherever you travel.
+
+### Scope
+
+Functional Specifications:
+Key functionalities include user registration and authentication, car inventory management by administrators, profile creation and booking management for customers, and search and filter capabilities for available vehicles. Additional features include viewing and managing bookings, leaving and reading reviews, and accessing customer support.
+
+Content Requirements:
+Content such as vehicle descriptions, rental terms, company information, travel tips, and FAQs will be developed to engage users and provide valuable resources. This content will help users make informed decisions about their car rentals and enhance their overall experience on the site.
+
+### Structure
+
+The goal is to ensure intuitive, seamless interactions that guide users through their journey on the platform. The information architecture is designed to organize and structure content and functionalities in a way that makes sense to users, ensuring they can easily find information and perform tasks.
+
+The navbar prominently displays our brand logo, maintaining a consistent and professional identity across all devices, which enhances brand recognition. Optimized for mobile, the navbar includes a responsive toggler button that collapses the menu for a cleaner view on smaller screens. This intuitive design allows users to easily access the menu without clutter. The navigation bar features clearly defined links to essential pages such as Home, Booking, Locations, and Contact Us, with dynamic highlighting based on the current page for clear navigation cues. For authenticated users, the navbar offers additional personalized options, including a dropdown menu on desktop with links to the user’s profile, bookings, reviews, and a logout option. On mobile, these options are directly accessible from the menu, ensuring seamless access across devices. For new users or those not yet signed in, the navbar provides easy access to sign-in and sign-up pages, ensuring a smooth onboarding experience.
+
+Call to Action (CTA) Placement:
+Key CTAs are strategically placed to optimize conversions. On the Home page, the "Get a Quote Now" button is prominently featured, encouraging users to start the booking process immediately. This button is designed to catch the user’s attention with its prime placement and standout design. On the Booking page, once the list of available vehicles is displayed, the "Reserve" button is given greater prominence through a larger size, making it easy for users to take the next step in securing their rental. This design approach ensures that the most critical actions are easily accessible, driving user engagement and conversions.
+
+The footer of our website is designed to offer users quick access to essential information, including contact details, location information, and important policies. It features direct links to email support, our physical address, and a phone number for immediate assistance, making it easy to connect with us or plan a visit to our Dublin location. Additionally, the footer includes a Google Maps link for easy navigation, along with a copyright notice that affirms EireWheels' ownership of all content. Users can also access our Privacy Policy and Terms and Conditions through modals, ensuring transparency and convenient access to legal information.
+
+### Skeleton
+
+#### Wireframes
+
+The website is designed to be clear and simple. To create a wireframe I used Balsamiq software. During the design phase, some elements were modified to enhance the user experience.
+PDF file with my wireframe you cand find [here](static/images/readme_images/car_rental.pdf).
+
+#### Database structure
 After deciding on the project's features, I used Lucidchart to plan the database structure. The diagram below serves as an initial guide, illustrating the types of data and their relationships.
 
 ![](static/images/readme_images/database_diagram.png)
 
-### Design
+### Surface
 
 #### Colours
 
@@ -83,9 +134,10 @@ The following colour palette was used from [Coolors](https://coolors.co/):
 
 ![](static/images/readme_images/colour_palette.png)
 
-#### Wireframes
+#### Typography
 
-The website is designed to be clear and simple. To create a wireframe I used Balsamiq software. PDF file with my wireframe you cand find [here](static/images/readme_images/car_rental.pdf).
+- Headings: Used the "Montserrat" font-family for all heading levels to ensure a modern and clean look.
+- Body Text: Utilized the default Bootstrap font settings for all other text to maintain consistency and readability across the site.
 
 [Back To Top](#table-of-contents)
 
@@ -120,6 +172,14 @@ As part of the project requirements, the application provides front-end CRUD (Cr
 - Delete: Users can delete their own reviews.
 
 These features allow users to manage their bookings and reviews directly from the front end, without requiring access to the admin panel.
+
+### Heroku Scheduler
+
+One of the key features implemented in this project is the use of Heroku Scheduler to automate the status update of car bookings. To simulate a real-world scenario where bookings transition from "confirmed" to "completed," the scheduler is configured to run a daily task that updates the status of bookings to "completed" the day after their scheduled end date.
+
+Given that this project is developed for educational purposes, the approach taken is to model an imaginary scenario where all bookings, once confirmed, automatically reach the "completed" status the day after their scheduled end date, as if they were fulfilled. In a real-world application, this method would not be suitable, as the status of a booking would typically change only after the actual service has been completed (i.e., after payment, car pickup, and return). However, for the purpose of this project, this simulation provides a simple yet effective way to demonstrate the flow and lifecycle of a booking from start to finish.
+
+<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/heroku-scheduler.png"></details>
 
 ### Responsive Navbar
 
@@ -416,15 +476,19 @@ This project was created using the following:
 - Django Template Language - templating engine
 - GitHub - for storing the code and for the projects Kanban board
 - Heroku - for hosting and deployement of this project
+- Heroku Scheduler - used to automate routine tasks, such as updating booking statuses to "completed" after the scheduled end date
 - Google Chrome Developer Tools - used during testing, debugging and making the website responsive
 - Google Fonts - used to import fonts
 - Git - version control tool
 - Font Awesome - used for the icons on the website
-- Coolors.co - used to choose the colours
-- Design.com - used to create logo
 - Am I Responsive - to show the website image on a range of devices
 - Lighthouse - used for performance auditing and optimization
-- Wave (wave.webaim.org) - used for accessibility testing and ensuring compliance with accessibility standards
+- [Wave](wave.webaim.org) - used for accessibility testing and ensuring compliance with accessibility standards
+- [OpenArt](openart.ai) - used for creating images
+- [Insmind](www.insmind.com) - used for creating transparent backgrounds for images
+- [LeafletJS](https://github.com/TravelTimN/ci-ifd-lead/blob/main/week4-leafletjs/leaflet.md) - used for embedding and interacting with maps on Locations page
+- [Design.com](www.design.com) - used for creating logo
+- [Coolors.co](https://coolors.co/) - used to choose the colours
 
 [Back To Top](#table-of-contents)
 
@@ -572,6 +636,26 @@ Follow these steps to deploy your application to Heroku:
 - Redeploy as needed to reflect updates or fixes.
 
 By following these steps, you can ensure a successful deployment of your application on Heroku and maintain its proper functionality in a production environment.
+
+[Back To Top](#table-of-contents)
+
+## Credits
+ 
+### Media
+
+- Images: All images for the website were created using [OpenArt](https://openart.ai/).
+- Logo: Used [Design.com](www.design.com) for creating logo for the website.
+- Transparent Backgrounds: To ensure consistency, transparent backgrounds for the car images were created using [Insmind](https://www.insmind.com/).
+
+### Content and Resources
+
+- [Django Documentation](https://www.djangoproject.com/): The official documentation for Django, a high-level Python web framework. It provides comprehensive guides, tutorials, and reference material to help you develop powerful web applications with Django.
+
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/): The official documentation for Bootstrap 5.3, a popular front-end framework for developing responsive and mobile-first websites. This guide includes instructions for getting started, as well as detailed explanations of Bootstrap components and utilities.
+
+- [Bootstrap 5 Crash Course Tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9joIM91nLzd_qaH_AimmdAR): A YouTube playlist by The Net Ninja that offers a crash course in Bootstrap 5. This tutorial series covers the basics of Bootstrap, including layout, components, and customization, ideal for beginners.
+
+- [LeafletJS](https://github.com/TravelTimN/ci-ifd-lead/blob/main/week4-leafletjs/leaflet.md): An open-source JavaScript library for interactive maps. LeafletJS is used for embedding and interacting with maps on web pages, offering a lightweight and flexible solution for creating dynamic map visualizations.
 
 [Back To Top](#table-of-contents)
 

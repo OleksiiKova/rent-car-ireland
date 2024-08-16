@@ -28,6 +28,7 @@ def parse_date(date_str):
         ValueError: If the date format is not supported.
     """
     try:
+        # Attempt to parse the date string using the specified format
         return datetime.strptime(date_str, "%d %B %Y").date()
     except ValueError:
         raise ValueError(f"Date format for '{date_str}' is not supported.")
@@ -44,6 +45,7 @@ def get_office_by_id(office_id):
         Office: The Office object if found, otherwise None.
     """
     try:
+        # Fetch the office based on the provided ID
         return Office.objects.get(id=office_id)
     except Office.DoesNotExist:
         return None
@@ -125,6 +127,7 @@ def handle_post_request(
         booking = form.save(commit=False)
         booking.user = request.user
         if not booking.rules_agreement:
+            # Display an error if the user hasn't agreed to the rules
             messages.add_message(
                 request, messages.ERROR,
                 'You must agree to the rules before booking!'
@@ -137,8 +140,10 @@ def handle_post_request(
             })
 
         try:
+            # Ensure the car is still available
             car = Car.objects.get(id=car_id, availability=True)
         except Car.DoesNotExist:
+            # Display an error if the car is no longer available
             messages.add_message(
                 request, messages.ERROR,
                 'Sorry, this car is no longer available. '
@@ -207,6 +212,7 @@ def booking_form(request, car_id):
     return_office_id = request.GET.get('return_office')
 
     try:
+        # Parse start and end dates from the query parameters
         start_date = parse_date(start_date_str)
         end_date = parse_date(end_date_str)
     except ValueError as e:
@@ -215,6 +221,7 @@ def booking_form(request, car_id):
     pickup_office = get_office_by_id(pickup_office_id)
     return_office = get_office_by_id(return_office_id)
 
+    # Calculate rental days and total cost based on input data
     rental_days, total_cost = calc_rental_info(
         car, start_date, end_date, pick_up_time, drop_off_time
     )
@@ -234,6 +241,7 @@ def booking_form(request, car_id):
 
     car = Car.objects.get(id=car_id)
     if request.method == 'POST':
+        # Handle the form submission if the request is POST
         return handle_post_request(
             request, initial_data, car, car_id, rental_days, total_cost
         )
@@ -273,11 +281,16 @@ def my_bookings(request):
     """
     user = request.user
 
+    # Fetch active bookings (status: confirmed) and sort by start date
+    # (descending)
     active_bookings = (
         Booking.objects
         .filter(user=user, status='confirmed')
         .order_by('-start_date')
     )
+
+    # Fetch past bookings (status: completed or reviewed) and sort by start
+    # date (descending)
     past_bookings = (
         Booking.objects
         .filter(user=user, status__in=['completed', 'reviewed'])
@@ -308,6 +321,8 @@ def edit_booking(request, booking_id):
     car = booking.car
 
     if request.method == 'POST':
+        # If the form is submitted (POST), create a form instance with the
+        # POST data
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
             if not booking.rules_agreement:
@@ -326,6 +341,8 @@ def edit_booking(request, booking_id):
             )
             return redirect('my_bookings')
     else:
+        # If it's a GET request, create a form instance with the current
+        # booking data
         form = BookingForm(instance=booking)
         form.initial['rules_agreement'] = False
 
@@ -372,6 +389,7 @@ def booking_details(request, booking_id):
         booking = get_object_or_404(Booking, id=booking_id)
         car = booking.car
 
+        # Prepare booking details in a dictionary to be returned as JSON
         data = {
             'car_model': car.model,
             'car_make': car.make,
@@ -432,6 +450,7 @@ def get_car_details(request, car_id):
     """
     try:
         car = Car.objects.get(id=car_id)
+        # Prepare car details in a dictionary to be returned as JSON
         data = {
             'car_model': car.model,
             'car_make': car.make,

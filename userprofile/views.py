@@ -30,6 +30,7 @@ def my_profile_view(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
+        # If profile doesn't exist, create a new one with default values
         user_profile = UserProfile.objects.create(
             user=request.user,
             email=request.user.email,
@@ -39,6 +40,7 @@ def my_profile_view(request):
             phone=''
         )
 
+    # Create a form instance with the user's profile
     form = UserProfileForm(instance=user_profile)
 
     if request.method == 'POST':
@@ -181,6 +183,7 @@ def edit_review(request, review_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
+            # Mark the review as not approved
             review.approved = False
             form.save()
             messages.add_message(
