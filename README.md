@@ -489,6 +489,7 @@ This project was created using the following:
 - [LeafletJS](https://github.com/TravelTimN/ci-ifd-lead/blob/main/week4-leafletjs/leaflet.md) - used for embedding and interacting with maps on Locations page
 - [Design.com](www.design.com) - used for creating logo
 - [Coolors.co](https://coolors.co/) - used to choose the colours
+- [Squoosh](https://squoosh.app/) - used to reduce the size of an image without significant loss of quality
 
 [Back To Top](#table-of-contents)
 
