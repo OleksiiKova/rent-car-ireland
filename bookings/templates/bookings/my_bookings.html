@@ -50,7 +50,7 @@
                             <img src="{{ booking.car.image.url }}" class="img-fluid" alt="Car image">
                         </div>
                         <div class="col-sm-8">
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex juaria-labelstify-content-between">
                                 <div>
                                     <h4 class="h5">
                                         <!-- Link to open booking details modal -->
@@ -63,9 +63,9 @@
                                 {% if booking.status == 'confirmed' %}
                                 <div class="d-flex">
                                     <!-- Links for editing and deleting booking -->
-                                    <a href="{% url 'edit_booking' booking.id %}" data-bs-toggle="tooltip"
+                                    <a href="{% url 'edit_booking' booking.id %}" ="Edit Booking" data-bs-toggle="tooltip"
                                         data-bs-title="Edit Booking"><i class="bi bi-pen-fill mx-2"></i></a>
-                                    <a href="{% url 'delete_booking' booking.id %}" data-bs-toggle="tooltip"
+                                    <a href="{% url 'delete_booking' booking.id %}" aria-label="Delete Booking" data-bs-toggle="tooltip"
                                         data-bs-title="Delete Booking"><i class="bi bi-trash-fill"></i></a>
                                 </div>
                                 {% endif %}

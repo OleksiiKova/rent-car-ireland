@@ -27,10 +27,10 @@
                     </div>
                     <div class="d-flex">
                         <!-- Edit Review Button -->
-                        <a href="{% url 'edit_review' review.id %}" data-bs-toggle="tooltip"
+                        <a href="{% url 'edit_review' review.id %}" aria-label="Edit Review" data-bs-toggle="tooltip"
                             data-bs-title="Edit Review"><i class="bi bi-pen-fill mx-2"></i></a>
                         <!-- Delete Review Button -->
-                        <a href="{% url 'delete_review' review.id %}" data-bs-toggle="tooltip"
+                        <a href="{% url 'delete_review' review.id %}" aria-label="Delete Review" data-bs-toggle="tooltip"
                             data-bs-title="Delete Review"><i class="bi bi-trash-fill"></i></a>
                     </div>
                 </div>
