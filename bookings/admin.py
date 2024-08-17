@@ -23,6 +23,13 @@ class BookingAdmin(SummernoteModelAdmin):
         list_filter (tuple): Fields by which the list can be filtered,
                               including car and creation date.
     """
-    list_display = ('user', 'car', 'start_date', 'end_date', 'created_at')
-    search_fields = ['user']
+    list_display = ('full_name', 'car', 'start_date',
+                    'end_date', 'created_at')
+    search_fields = ['full_name', 'first_name', 'last_name', 'car']
     list_filter = ('car', 'created_at')
+
+    def full_name(self, obj):
+        """Return the full name by combining first and last name."""
+        return f"{obj.first_name} {obj.last_name}"
+
+    full_name.short_description = 'Full Name'
