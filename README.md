@@ -352,6 +352,8 @@ Displays bookings that have been completed or reviewed.
 
 ### Review Form
 
+The review form becomes available only the day after the booking is completed, when the booking status changes from confirmed to completed. This status update is managed by the Heroku scheduler, which checks and updates the booking status daily. This approach ensures that only users who have actually used the service can leave a review, maintaining the integrity and authenticity of the feedback.
+
 The review functionality consists of two key pages: one for leaving a new review and another for editing an existing review. Both pages share similar features but cater to different user actions.
 
 - Booking Information Display: Both pages display the car and booking dates at the top of the page to provide context for the review.

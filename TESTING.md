@@ -12,6 +12,7 @@
 - [Accessibility](#accessibility)
 - [Lighthouse Testing](#lighthouse-testing)
 - [User Story Testing](#user-story-testing)
+- [Bugs](#bugs)
 
 
 
@@ -45,6 +46,7 @@ Below are the reports on automated tests.
 | Offices  | ![screenshot](static/images/readme_images/testing/automated_testing/report-offices.png)   |
 | Userprofile  | ![screenshot](static/images/readme_images/testing/automated_testing/report-userprofile.png)   |
 
+[Back To Top](#table-of-contents)
 
 ## Manual Testing
 
@@ -151,6 +153,8 @@ To enhance quality and increase confidence in the correctness of the application
 |                                   | Fill in all available fields                               | The form should be successfully submitted with all fields updated            | Pass      |          |
 |                                   | Leave all fields blank and submit the form                 | The form should still be submitted successfully with no data updated         | Pass      |          |
 |                                   | Navigate to the "Booking Form" after filling in My profile | Data entered in the "My Profile" populate the fields in the "Booking Form"   | Pass      |          |
+
+[Back To Top](#table-of-contents)
 
 ## Code Validation
 
@@ -281,15 +285,19 @@ All Python files were processed using the [CI Python Linter](https://pep8ci.hero
 | <details><summary>urls.py</summary><img src="static/images/readme_images/testing/python_validations/project/urls.png"></details>        | <mark>PASS</mark>   |
 | <details><summary>wsgi.py</summary><img src="static/images/readme_images/testing/python_validations/project/wsgi.png"></details>        | <mark>PASS</mark>   |
 
-
+[Back To Top](#table-of-contents)
 
 ## Responsiveness and Device Testing
 
 Throughout the development process, the website was rigorously tested across a range of devices, including desktops, laptops, smartphones, and tablets. This testing ensured that the website displayed correctly on screens of various sizes and orientations, both portrait and landscape. Additionally, the responsive design was validated using Google Chrome's developer tools to confirm that the layout remained structurally sound and adaptable across different screen dimensions. No issues were noted, affirming that the site functions as expected across diverse environments.
 
+[Back To Top](#table-of-contents)
+
 ## Browser Testing
 
 The website was tested across Google Chrome, Safari, and Microsoft Edge, and no issues were found.
+
+[Back To Top](#table-of-contents)
 
 ## Accessibility
 
@@ -303,6 +311,8 @@ Using the Wave Accessibility tool for continuous development and final testing i
 - Set the lang attribute for HTML pages.
 - Implement ARIA properties following WCAG 2.1 best practices.
 - Adhere to established coding standards for WCAG 2.1 compliance.
+
+[Back To Top](#table-of-contents)
 
 ## Lighthouse Testing
 
@@ -349,6 +359,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Sign Up            |     95      |      100      |      100       | 100 | <details><summary>Sign Up</summary><img src="static/images/readme_images/testing/lighthouse/mobile/sign-up.png"></details>                    |
 | Sign Out            |     95      |      100      |      100       | 100 | <details><summary>Sign Out</summary><img src="static/images/readme_images/testing/lighthouse/mobile/sign-out.png"></details>                    |
 
+[Back To Top](#table-of-contents)
 
 ## User Story Testing
 
@@ -375,3 +386,11 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | As a user I can read and accept the terms and conditions before confirming my booking so that I am aware of the rental policies and my responsibilities.  | ![screenshot](static/images/readme_images/testing/user_stories/terms.png)                                                                                                                                                                     | 
 | As a user who has forgotten their password, I can be able to reset my password, so that I can regain access to my account.  | ![screenshot](static/images/readme_images/testing/user_stories/reset-password.png)                                                                                                                                                                     |
 | As a newly registered user I can verify my email address, so that I can complete my registration and access my account.  | ![screenshot](static/images/readme_images/testing/user_stories/verification-email.png)                                                                                                                                                                     |
+
+[Back To Top](#table-of-contents)
+
+## Bugs
+
+All known bugs and issues have been thoroughly addressed and resolved. The application is currently functioning as intended, with no outstanding errors reported.
+
+[Back To Top](#table-of-contents)

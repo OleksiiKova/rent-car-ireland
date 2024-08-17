@@ -1,11 +1,10 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Booking
 
 # Register your models here.
-admin.site.register(Booking)
-
-
-class BookingAdmin(admin.ModelAdmin):
+@admin.register(Booking)
+class BookingAdmin(SummernoteModelAdmin):
     """
     Admin configuration for the Booking model.
 
@@ -13,4 +12,6 @@ class BookingAdmin(admin.ModelAdmin):
     specifying which fields to display in the list view and other
     administrative options.
     """
-    list_display = ('user', 'car', 'start_date', 'end_date')
+    list_display = ('user', 'start_date', 'end_date')
+    search_fields = ['car']
+    list_filter = ('car',)
