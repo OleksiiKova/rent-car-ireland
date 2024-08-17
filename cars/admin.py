@@ -4,7 +4,7 @@ from .models import Car
 
 
 # Register your models here.
-@admin.site.register(Car)
+@admin.register(Car)
 class CarAdmin(SummernoteModelAdmin):
     """
     Admin interface configuration for the Car model.
