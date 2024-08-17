@@ -1,7 +1,7 @@
-from django.db import models
-from datetime import datetime
-from cloudinary.models import CloudinaryField
 import math
+from datetime import datetime
+from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 # Create your models here.

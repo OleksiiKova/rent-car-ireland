@@ -1,8 +1,8 @@
+from datetime import datetime, timedelta
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from datetime import datetime, timedelta
 from django.utils import timezone
 from offices.models import Office
 from .forms import BookingForm

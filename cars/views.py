@@ -1,9 +1,9 @@
+from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.contrib import messages
-from datetime import datetime
 from bookings.forms import SearchForm
 from offices.models import Office
 from userprofile.models import UserProfile

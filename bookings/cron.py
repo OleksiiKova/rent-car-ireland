@@ -1,6 +1,6 @@
 from django_cron import CronJobBase, Schedule
-from .models import Booking
 from django.utils import timezone
+from .models import Booking
 
 
 class UpdateBookingStatusCronJob(CronJobBase):

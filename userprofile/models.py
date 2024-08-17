@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from bookings.models import Booking
 from django.core.validators import MinValueValidator, MaxValueValidator
+from bookings.models import Booking
 
 
 # Create your models here.

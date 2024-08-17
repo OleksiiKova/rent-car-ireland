@@ -1,7 +1,7 @@
+from datetime import datetime, timedelta
 from django.test import TestCase
 from django import forms
 from django.utils import timezone
-from datetime import datetime, timedelta
 from .models import Booking, Office, Car
 from offices.models import Office
 from cars.models import Car

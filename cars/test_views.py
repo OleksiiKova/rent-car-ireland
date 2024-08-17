@@ -1,8 +1,8 @@
+from datetime import datetime, time, timedelta
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils import timezone
-from datetime import datetime, time, timedelta
 from .models import Car
 from userprofile.test_data import create_test_data
 from bookings.forms import SearchForm

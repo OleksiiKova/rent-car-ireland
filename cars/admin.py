@@ -30,5 +30,5 @@ class CarAdmin(SummernoteModelAdmin):
     def car_name(self, obj):
         """Return the make and model of the car combined."""
         return f"{obj.make} {obj.model}"
-    
+
     car_name.short_description = 'Car Name'

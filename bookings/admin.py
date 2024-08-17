@@ -31,5 +31,5 @@ class BookingAdmin(SummernoteModelAdmin):
     def full_name(self, obj):
         """Return the full name by combining first and last name."""
         return f"{obj.first_name} {obj.last_name}"
-    
+
     full_name.short_description = 'Full Name'

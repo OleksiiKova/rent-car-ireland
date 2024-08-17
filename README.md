@@ -1,6 +1,6 @@
 # EireWheels Car Rental
 
-EireWheels Car Rental is an advanced, full-stack web application crafted for educational purposes, showcasing a streamlined car rental solution for users in Ireland. This responsive site, built with Django, offers a user-friendly interface for managing vehicle rentals across various airports.
+EireWheels Car Rental is an advanced full-stack web application designed for educational purposes, demonstrating a streamlined car rental solution for users in Ireland. This responsive site, built with Django, features a user-friendly interface for managing vehicle rentals at various airports across the country.
 
 ### [Link to the EireWheels live website](https://car-rental-ireland-4e20ecc4b192.herokuapp.com/)
 
@@ -41,17 +41,17 @@ EireWheels Car Rental is an advanced, full-stack web application crafted for edu
    * [Content and Resources](#content-and-resources)
 
 ## Overview
-EireWheels Car Rental is a web application developed using Django, designed to streamline the car rental experience for users in Ireland. The platform enables users to browse available vehicles at different airports across the country, book them with ease, and manage their rentals efficiently. This project was developed as part of my fourth portfolio project at Code Institute to demonstrate my proficiency in web development.
+EireWheels Car Rental is a web application developed using Django, aimed at streamlining the car rental experience for users in Ireland. The platform allows users to browse available vehicles at various airports across the country, book them with ease, and manage their rentals efficiently. This project was created as part of my fourth portfolio project at Code Institute to showcase my proficiency in web development.
 
 #### First-Time User
-- Vacationer Seeking Convenience: A person visiting Ireland for a vacation who needs a reliable and convenient car rental option.
+- Vacationer Seeking Convenience: A visitor to Ireland looking for a reliable and convenient car rental option.
 - Information Seeker: A user searching for clear and comprehensive information about available cars and rental services.
-- Online Booking Enthusiast: A user who prefers to handle bookings online instead of engaging in direct conversations with rental staff.
+- Online Booking Enthusiast: A user who prefers managing bookings online rather than interacting directly with rental staff.
 
 #### Returning User
-- Booking History Reviewer: A returning user who wishes to access and review their previous car rental bookings for reference or record-keeping.
-- Efficient Reservation Maker: A returning user with an existing account who wants to quickly and easily reserve a specific vehicle without unnecessary delays.
-- Updated Vehicle Finder: A returning user interested in checking for new updates, including newly available car models or changes in rental services, to discover fresh options and enhancements.
+- Booking History Reviewer: A returning user who wishes to review their previous car rental bookings for reference or record-keeping.
+- Efficient Reservation Maker: A returning user with an existing account who wants to quickly reserve a specific vehicle without unnecessary delays.
+- Updated Vehicle Finder: A returning user interested in discovering newly available car models or updates to the rental services.
 
 [Back To Top](#table-of-contents)
 
@@ -83,7 +83,7 @@ I break down the development into Epics and User Stories, making the project man
 3. [EPIC: Admin and Customer Support](https://github.com/OleksiiKova/rent-car-ireland/issues/25)
 4. [EPIC: Reviews and Ratings (CRUD)](https://github.com/OleksiiKova/rent-car-ireland/issues/26)
 
-The MoSCoW Method of Prioritization was also employed to categorize each User Story as 'Must Have', 'Should Have', or 'Could Have'. Some features classified as "Won't Have" were deferred to the Backlog for future consideration. It was crucial to focus on crafting User Stories that would achieve the Minimum Viable Product (MVP).
+The MoSCoW Method of Prioritization was also employed to categorize each User Story as 'Must Have', 'Should Have', or 'Could Have'. Some features classified as 'Won't Have' were deferred to the Backlog for future consideration. It was crucial to focus on crafting User Stories that would achieve the Minimum Viable Product (MVP).
 
 Overall, utilizing Agile Methodology proved highly advantageous. It facilitated a more organized development process and improved time management. Although I did not set specific durations for each iteration, moving Tasks from the 'To Do' column to 'Done' was particularly satisfying and provided a clear sense of progress.
 
@@ -105,9 +105,9 @@ Content such as vehicle descriptions, rental terms, company information, travel 
 
 ### Structure
 
-The goal is to ensure intuitive, seamless interactions that guide users through their journey on the platform. The information architecture is designed to organize and structure content and functionalities in a way that makes sense to users, ensuring they can easily find information and perform tasks.
+The goal is to ensure intuitive and seamless interactions that guide users through their journey on the platform. The information architecture is designed to organize and structure content and functionalities logically, ensuring they can easily find information and perform tasks.
 
-The navbar prominently displays our brand logo, maintaining a consistent and professional identity across all devices, which enhances brand recognition. Optimized for mobile, the navbar includes a responsive toggler button that collapses the menu for a cleaner view on smaller screens. This intuitive design allows users to easily access the menu without clutter. The navigation bar features clearly defined links to essential pages such as Home, Booking, Locations, and Contact Us, with dynamic highlighting based on the current page for clear navigation cues. For authenticated users, the navbar offers additional personalized options, including a dropdown menu on desktop with links to the user’s profile, bookings, reviews, and a logout option. On mobile, these options are directly accessible from the menu, ensuring seamless access across devices. For new users or those not yet signed in, the navbar provides easy access to sign-in and sign-up pages, ensuring a smooth onboarding experience.
+The navbar prominently displays our brand logo, maintaining a consistent and professional identity across all devices, which enhances brand recognition. Optimized for mobile devices, the navbar includes a responsive toggler button that collapses the menu for a cleaner view on smaller screens. This intuitive design allows users to easily access the menu without clutter. The navigation bar features clearly defined links to essential pages such as Home, Booking, Locations, and Contact Us, with dynamic highlighting based on the current page for clear navigation cues. For authenticated users, the navbar offers additional personalized options, including a dropdown menu on desktop with links to the user’s profile, bookings, reviews, and a logout option. On mobile devices, these options are directly accessible from the menu, ensuring seamless access across devices. For new users or those not yet signed in, the navbar provides easy access to sign-in and sign-up pages, ensuring a smooth onboarding experience.
 
 Call to Action (CTA) Placement:
 Key CTAs are strategically placed to optimize conversions. On the Home page, the "Get a Quote Now" button is prominently featured, encouraging users to start the booking process immediately. This button is designed to catch the user’s attention with its prime placement and standout design. On the Booking page, once the list of available vehicles is displayed, the "Reserve" button is given greater prominence through a larger size, making it easy for users to take the next step in securing their rental. This design approach ensures that the most critical actions are easily accessible, driving user engagement and conversions.
@@ -118,7 +118,7 @@ The footer of our website is designed to offer users quick access to essential i
 
 #### Wireframes
 
-The website is designed to be clear and simple. To create a wireframe I used Balsamiq software. During the design phase, some elements were modified to enhance the user experience.
+The website is designed to be clear and simple. To create the wireframe I used Balsamiq software. During the design phase, some elements were modified to enhance the user experience.
 PDF file with my wireframe you cand find [here](static/images/readme_images/car_rental.pdf).
 
 #### Database structure
@@ -136,8 +136,8 @@ The following colour palette was used from [Coolors](https://coolors.co/):
 
 #### Typography
 
-- Headings: Used the "Montserrat" font-family for all heading levels to ensure a modern and clean look.
-- Body Text: Utilized the default Bootstrap font settings for all other text to maintain consistency and readability across the site.
+- Headings: The "Montserrat" font-family is used for all heading levels to ensure a modern and clean look.
+- Body Text: The default Bootstrap font settings are utilized for all other text to maintain consistency and readability across the site.
 
 [Back To Top](#table-of-contents)
 
@@ -303,7 +303,7 @@ Authenticated users can reserve a car by:
 ### Booking Form
 
 - Booking Information: Displays unchangeable details for pickup and return office, date, and time. Users are informed that they need to perform a new search to change these details.
-- Car information is displayed in an expandable accordion section, showing details such as make, model, price per day, type, transmission, fuel type, seats, doors, and additional features (e.g., air conditioning, navigation, image).
+- Car Information is displayed in an expandable accordion section, showing details such as make, model, price per day, type, transmission, fuel type, seats, doors, and additional features (e.g., air conditioning, navigation, image).
 - Personal Details: Users can enter or update personal information, including first name, last name, email, phone number, and date of birth with age limits specified.
 - Child Seat: Option to select a free child seat and specify details if chosen.
 - Optional Insurance: Users can opt for extra insurance with additional details provided in a modal.
@@ -316,7 +316,7 @@ Authenticated users can reserve a car by:
 
 #### Modals
 
-- Confirmation Modal: Asks for confirmation before starting a new search, ensuring users are aware of the progress loss.
+- Confirmation Modal: Asks for confirmation before starting a new search, ensuring users are aware of the loss of current progress.
 - Terms and Conditions Modal: Provides detailed terms and conditions of the rental service for users to review before agreeing.
 - Extra Insurance Modal: Explains the benefits and costs associated with extra insurance, allowing users to make an informed choice.
 
@@ -337,8 +337,8 @@ The "My Bookings" section is divided into two tabs: Active Bookings and Past Boo
 Displays bookings that are currently active or scheduled for the future.
    - Review Prompt: If the user can leave a review, a prompt will appear with a link to the review page.
    - Confirmation Message: Indicates that the booking is confirmed and informs when reviews can be left.
-   - For bookings, users have options to edit or delete the booking.
-   - Tooltips: Provides additional context for actions like editing and deleting bookings.
+   - Booking Options: Users have options to edit or delete the booking.
+   - Tooltips: Provide additional context for actions like editing and deleting bookings.
 
 <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/my-bookings-active.png"></details>
 
@@ -390,7 +390,7 @@ The "My Reviews" page allows users to view, edit, and delete their submitted rev
    + Edit: Allows users to edit their review.
    + Delete: Provides an option to delete their review.
 
-- Tooltips: Provides additional context for actions like editing and deleting reviews.
+- Tooltips: Provide additional context for actions like editing and deleting reviews.
 
 <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/my-reviews.png"></details>
 
@@ -399,7 +399,7 @@ The "My Reviews" page allows users to view, edit, and delete their submitted rev
 The "Customer Reviews" page displays a list of reviews submitted by customers. It allows users to view detailed feedback and interact with reviews based on their ownership and authentication status.
 
 - Review Display:
-   + Approval Status: Only reviews that have been approved are displayed. Unapproved reviews are hidden from the public view.
+   + Approval Status: Only reviews that have been approved are displayed. Unapproved reviews are hidden from public view.
    + Review Date: Shows when the review was created.
    + Star Rating: Displays the review rating using stars.
    + Review Comment: Shows the textual content of the review.
@@ -420,7 +420,7 @@ Discover our convenient car rental offices located at airports across Ireland.
 
 - Dynamic Dropdown: Easily switch between different airport locations to view relevant information.
 - Detailed Office Info: Get comprehensive details about each airport office, including contact information and operating hours.
-- Interactive Map: Our map, powered by Leaflet, shows the selected airport office's location with a marker..
+- Interactive Map: Our map, powered by Leaflet, shows the selected airport office's location with a marker.
 - Google Maps: Click the link to open the location in Google Maps.
 Ready to find the nearest airport office? Use the dropdown menu to select your location and get all the information you need.
 
@@ -437,13 +437,13 @@ Users can send inquiries or comments through a user-friendly contact form.
 - Automated Email Verification: This feature is crucial for confirming user identities and securing the registration process.
 - Password Recovery: Users can reset their passwords by using the 'Forgot Password' option. After entering their email address, they receive a link to create a new password, ensuring secure access recovery.
 - CSRF Protection: CSRF tokens are implemented to defend against cross-site request forgery, safeguarding user information.
-- Notification System: Users receive real-time notifications for various actions such as booking confirmations or error messages.
+- Notification System: Users receive real-time notifications for various actions, such as booking confirmations or error messages.
 
 [Back To Top](#table-of-contents)
 
 ## Features Left to Implement
 
-- Car Inventory Management: Future enhancements will include a feature to manage car availability across different airports. This system will allow for tracking and updating the inventory, ensuring that various car models are available in multiple locations, with potentially limited options at less frequented airports.
+- Car Inventory Management: Future enhancements will include a feature to manage car availability across different airports. This system will allow for tracking and updating the inventory, ensuring that various car models are available at multiple locations, with potentially limited options at less frequented airports.
 
 [Back To Top](#table-of-contents)
 
@@ -458,40 +458,40 @@ This project was created using the following:
 - Python
 
 ### Frameworks Used
-- Django - Python framework, used to create the full-stack web application
-- Bootstrap 5 - front end framework, helps me with fast and efficient styling
+- Django: Python framework used to create the full-stack web application.
+- Bootstrap 5: Front-end framework that helps me with fast and efficient styling.
 
 ### Databases Used
-- PostgreSQL from Code Institute - used as the database
-- Cloudinary - used to host the static files
+- PostgreSQL from Code Institute: Used as the database.
+- Cloudinary: Used to host static files.
 
 ### Validators Used
-- W3C HTML Validator - used to validate HTML code
-- W3C CSS Validator - used to validate CSS code
-- JShint - used to validate JavaScript code
-- CI Python Linter - used to validate the Python code
+- W3C HTML Validator: Used to validate HTML code.
+- W3C CSS Validator: Used to validate CSS code.
+- JShint: Used to validate JavaScript code.
+- CI Python Linter: Used to validate the Python code.
 
 ### Other
-- Balsamiq - used to create a wireframe
-- Lucid.app - used to create a Database ER diagram
-- Сodeinstitute-ide - used to code the website
-- Django Template Language - templating engine
-- GitHub - for storing the code and for the projects Kanban board
-- Heroku - for hosting and deployement of this project
-- Heroku Scheduler - used to automate routine tasks, such as updating booking statuses to "completed" after the scheduled end date
-- Google Chrome Developer Tools - used during testing, debugging and making the website responsive
-- Google Fonts - used to import fonts
-- Git - version control tool
-- Font Awesome - used for the icons on the website
-- Am I Responsive - to show the website image on a range of devices
-- Lighthouse - used for performance auditing and optimization
-- [Wave](wave.webaim.org) - used for accessibility testing and ensuring compliance with accessibility standards
-- [OpenArt](openart.ai) - used for creating images
-- [Insmind](www.insmind.com) - used for creating transparent backgrounds for images
-- [LeafletJS](https://github.com/TravelTimN/ci-ifd-lead/blob/main/week4-leafletjs/leaflet.md) - used for embedding and interacting with maps on Locations page
-- [Design.com](www.design.com) - used for creating logo
-- [Coolors.co](https://coolors.co/) - used to choose the colours
-- [Squoosh](https://squoosh.app/) - used to reduce the size of an image without significant loss of quality
+- Balsamiq: Used to create a wireframe.
+- Lucid.app: Used to create a Database ER diagram.
+- Сode Institute IDE: Used to code the website.
+- Django Template Language: Templating engine.
+- GitHub: Used for storing the code and for the projects Kanban board.
+- Heroku: Used for hosting and deployement of this project.
+- Heroku Scheduler: Used to automate routine tasks, such as updating booking statuses to "completed" after the scheduled end date.
+- Google Chrome Developer Tools: Used during testing, debugging and making the website responsive.
+- Google Fonts: Used to import fonts.
+- Git: Version control tool.
+- Font Awesome: Used for the icons on the website.
+- Am I Responsive: Used to show the website image on a range of devices.
+- Lighthouse: Used for performance auditing and optimization.
+- [Wave](wave.webaim.org): Used for accessibility testing and ensuring compliance with accessibility standards.
+- [OpenArt](openart.ai): Used for creating images.
+- [Insmind](www.insmind.com): Used for creating transparent backgrounds for images.
+- [LeafletJS](https://github.com/TravelTimN/ci-ifd-lead/blob/main/week4-leafletjs/leaflet.md): Used for embedding and interacting with maps on Locations page.
+- [Design.com](www.design.com): Used for creating logo.
+- [Coolors.co](https://coolors.co/): Used to choose the colours.
+- [Squoosh](https://squoosh.app/): Used to reduce the size of an image without significant loss of quality.
 
 [Back To Top](#table-of-contents)
 
@@ -647,8 +647,8 @@ By following these steps, you can ensure a successful deployment of your applica
 ### Media
 
 - Images: All images for the website were created using [OpenArt](https://openart.ai/).
-- Logo: Used [Design.com](www.design.com) for creating logo for the website.
-- Transparent Backgrounds: To ensure consistency, transparent backgrounds for the car images were created using [Insmind](https://www.insmind.com/).
+- Logo: The logo for the website was created using [Design.com](www.design.com).
+- Transparent Backgrounds: To ensure consistency, transparent backgrounds for car images were created using [Insmind](https://www.insmind.com/).
 
 ### Content and Resources
 

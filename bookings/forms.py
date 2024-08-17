@@ -1,10 +1,10 @@
+from datetime import datetime, timedelta, date
 from django import forms
 from django.utils import timezone
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from .models import Booking
 from offices.models import Office
-from datetime import datetime, timedelta, date
 
 
 def validate_phone_number(value):

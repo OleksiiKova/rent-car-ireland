@@ -1,8 +1,8 @@
 from django import forms
-from .models import UserProfile, Review, ContactMessage
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from star_ratings.models import Rating
+from .models import UserProfile, Review, ContactMessage
 
 
 def validate_phone_number(value):
