@@ -23,6 +23,12 @@ class CarAdmin(SummernoteModelAdmin):
                               including make, model, type, transmission,
                               and fuel type.
     """
-    list_display = ('make', 'model', 'type', 'transmission', 'fuel_type')
+    list_display = ('car_name', 'type', 'transmission', 'fuel_type')
     search_fields = ['make', 'model']
     list_filter = ('make', 'model', 'type', 'transmission', 'fuel_type')
+
+    def car_name(self, obj):
+        """Return the make and model of the car combined."""
+        return f"{obj.make} {obj.model}"
+    
+    car_name.short_description = 'Car Name'

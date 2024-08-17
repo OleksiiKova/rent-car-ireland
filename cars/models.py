@@ -44,6 +44,9 @@ class Car(models.Model):
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField('image', default='placeholder')
 
+    class Meta:
+        ordering = ["make", "model"]
+
     def __str__(self):
         return f"{self.make} {self.model}"
 
