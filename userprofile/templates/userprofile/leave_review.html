@@ -43,7 +43,10 @@
                     </div>
 
                     <!-- Comment Field -->
-                    <div> {{ form.comment|add_class:"form-control w-100 p-3" }}</div>
+                    <div class="text-start">
+                        <label for="id_comment">Leave your comment here</label>
+                        <div> {{ form.comment|add_class:"form-control w-100 p-3 my-1" }}</div>
+                    </div>
 
                     <!-- Anonymous Checkbox -->
                     <div class="my-2">
