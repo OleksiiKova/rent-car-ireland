@@ -25,7 +25,7 @@ class BookingAdmin(SummernoteModelAdmin):
     """
     list_display = ('full_name', 'car', 'start_date',
                     'end_date', 'created_at')
-    search_fields = ['full_name', 'first_name', 'last_name', 'car']
+    search_fields = ['first_name', 'last_name', 'car']
     list_filter = ('car', 'created_at')
 
     def full_name(self, obj):
