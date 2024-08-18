@@ -8,7 +8,8 @@ body {
     background-color: rgba(107, 167, 86, 0.1);
 }
 
-a {
+a,
+i {
     color: #0A210F;
 }
 

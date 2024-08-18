@@ -18,9 +18,9 @@ def car_search(request):
     Renders the search form and displays available cars based on the search
     criteria.
     """
-    car_types = Car.objects.values_list('type', flat=True).distinct()
-    transmissions = Car.objects.values_list(
-        'transmission', flat=True).distinct()
+    car_types = sorted(set(Car.objects.values_list('type', flat=True)))
+    transmissions = sorted(set(
+        Car.objects.values_list('transmission', flat=True)))
 
     if request.method == 'POST':
         form = SearchForm(request.POST)

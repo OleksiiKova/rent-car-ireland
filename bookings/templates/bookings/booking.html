@@ -87,27 +87,27 @@
                             <input type="checkbox" id="navigation" name="navigation"> Navigation
                         </label>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2 d-flex">
                         <label for="car-type" class="mx-2">Car Type:</label>
-                        <select id="car-type" name="car_type" class="mx-2">
+                        <select id="car-type" name="car_type" class="mx-2 form-control py-0" style="width: auto;">
                             <option value="all">All Types</option>
                             {% for car_type in car_types %}
                             <option value="{{ car_type }}">{{ car_type }}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2 d-flex">
                         <label for="transmission" class="mx-2">Transmission:</label>
-                        <select id="transmission" name="transmission" class="mx-2">
+                        <select id="transmission" name="transmission" class="mx-2 form-control py-0">
                             <option value="all">All</option>
                             {% for transmission in transmissions %}
                             <option value="{{ transmission }}">{{ transmission }}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2 d-flex">
                         <label for="sort" class="mx-2">Sort by:</label>
-                        <select id="sort" class="mx-2">
+                        <select id="sort" class="mx-2 form-control py-0" style="width: auto;">
                             <option value="default" selected>Default</option>
                             <option value="price_asc">Price per day ↑</option>
                             <option value="price_desc">Price per day ↓</option>
