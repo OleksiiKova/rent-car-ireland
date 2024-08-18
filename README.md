@@ -286,12 +286,6 @@ Filters and sorting options dynamically update the list of available cars.
 
 <details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/car-filter.png"></details>
 
-#### Car Details
-
-View detailed information about each car.
-
-<details><summary>Click to view a screenshot of the feature</summary><img src="static/images/readme_images/features/car-details.png"></details>
-
 #### Reservations
 
 Authenticated users can reserve a car by:

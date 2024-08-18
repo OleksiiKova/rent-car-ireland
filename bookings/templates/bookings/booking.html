@@ -127,66 +127,8 @@
     {% endif %}
 </div>
 
-<!-- Modal for car details -->
-<div class="modal fade" id="detailCar" tabindex="-1" aria-labelledby="detailCarLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title h4" id="detailCarLabel">Detail Car Information</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="carInfo">
-                    <!-- Car details will be inserted here -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Handles the click event for displaying car details in a modal
-    document.addEventListener('DOMContentLoaded', function () {
-        document.body.addEventListener('click', function (event) {
-            if (event.target.matches('.car-name')) {
-                event.preventDefault();
-    
-                var carId = event.target.getAttribute('data-car-id');
-    
-                // Fetch car details (AJAX request)
-                fetch(`/booking/get_car_details/${carId}/`)  // You need to create a view for this
-                    .then(response => response.json())
-                    .then(data => {
-
-                        // Populate modal with car details
-                        var carInfoElement = document.getElementById('carInfo');
-                        if (carInfoElement) {
-                            carInfoElement.innerHTML = `
-                                <p><strong>${data.car_make} ${data.car_model}</strong></p>
-                                <p><strong>Type:</strong> ${data.car_type}</p>
-                                <p><strong>Year:</strong> ${data.car_year}</p>
-                                <p><strong>Fuel Type:</strong> ${data.car_fuel_type}</p>
-                                <p><strong>Transmission:</strong> ${data.car_transmission}</p>
-                                <p><strong>Seats:</strong> ${data.car_seats}</p>
-                                <p><strong>Doors:</strong> ${data.car_doors}</p>
-                                <p><strong>Air Conditioning:</strong> ${data.car_air_conditioning ? 'Yes' : 'No'}</p>
-                                <p><strong>Navigation:</strong> ${data.car_navigation ? 'Yes' : 'No'}</p>
-                                <p><strong>Price per day:</strong> €${data.car_price_per_day}</p>
-                                <img src="${data.car_image}" alt="Car image" class="img-fluid" id="carDetailImage">
-                            `;
-                        } else {
-                            console.error('Element with id "carInfo" not found.');
-                        }
-                    })
-                    .catch(error => console.error('Error fetching car details:', error));
-            }
-        });
-    });
-
     // Updates the car list based on selected filters
     $(document).ready(function () {
         var sortBy = 'default';

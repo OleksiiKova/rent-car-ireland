@@ -11,12 +11,8 @@
                     </div>
                     <!-- Car Information -->
                     <div class="car-info col-md-6 text-center text-md-start">
-                        <h3>
-                            <a href="#" class="car-name" data-car-id="{{ car.id }}" data-bs-toggle="modal"
-                                data-bs-target="#detailCar">
-                                {{ car.make }} {{ car.model }} <span
+                        <h3>{{ car.make }} {{ car.model }} <span
                                     class="fw-normal fs-5 fst-italic">{{ car.type }}</span>
-                            </a>
                         </h3>
                         <p>Fuel: {{ car.fuel_type }}</p>
                         <p>Transmission: {{ car.transmission }}</p>

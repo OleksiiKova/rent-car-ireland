@@ -105,8 +105,6 @@ To enhance quality and increase confidence in the correctness of the application
 |                                   | Click the "Filter" button to open the filter options       | Displayed a list of filter options                                           | Pass      |          |
 |                                   | Select various filter options                              | The list of cars automatically update to reflect the selected filters        | Pass      |          |
 |                                   | Click the "Reset Filters" button                           | All applied filters should be cleared                                        | Pass      |          |
-|                                   | Click on the car name in a car listing                     | Open a modal window displaying detailed information about the selected car   | Pass      |          |
-|                                   | Click the "Close" button on the modal window               | Close the modal window and return to the search results page                 | Pass      |          |
 |                                   | Click the "Reserve" button for a car listing               | Redirection to the Booking form                                              | Pass      |          |
 | Booking Form                      |                                                            |                                                                              |           |          |
 |                                   | Navigate to the booking form after selecting a car         | The form automatically display the previously entered dates, times, offices  | Pass      |          |
